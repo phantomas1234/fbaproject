@@ -3,7 +3,7 @@
 /***********************************************************************
 *  This code is part of GLPK (GNU Linear Programming Kit).
 *
-*  Copyright (C) 2000, 01, 02, 03, 04, 05, 06, 07, 08 Andrew Makhorin,
+*  Copyright (C) 2000,01,02,03,04,05,06,07,08,2009 Andrew Makhorin,
 *  Department for Applied Informatics, Moscow Aviation Institute,
 *  Moscow, Russia. All rights reserved. E-mail: <mao@mai2.rcnet.ru>.
 *
@@ -30,51 +30,56 @@ extern "C" {
 
 /* library version numbers: */
 #define GLP_MAJOR_VERSION  4
-#define GLP_MINOR_VERSION  32
+#define GLP_MINOR_VERSION  36
 
 #ifndef _GLP_PROB
 #define _GLP_PROB
-typedef struct { double _opaque; } glp_prob;
+typedef struct { double _opaque_prob; } glp_prob;
 /* LP/MIP problem object */
 #endif
 
 /* optimization direction flag: */
-#define GLP_MIN         1  /* minimization */
-#define GLP_MAX         2  /* maximization */
+#define GLP_MIN            1  /* minimization */
+#define GLP_MAX            2  /* maximization */
 
 /* kind of structural variable: */
-#define GLP_CV          1  /* continuous variable */
-#define GLP_IV          2  /* integer variable */
-#define GLP_BV          3  /* binary variable */
+#define GLP_CV             1  /* continuous variable */
+#define GLP_IV             2  /* integer variable */
+#define GLP_BV             3  /* binary variable */
 
 /* type of auxiliary/structural variable: */
-#define GLP_FR          1  /* free variable */
-#define GLP_LO          2  /* variable with lower bound */
-#define GLP_UP          3  /* variable with upper bound */
-#define GLP_DB          4  /* double-bounded variable */
-#define GLP_FX          5  /* fixed variable */
+#define GLP_FR             1  /* free variable */
+#define GLP_LO             2  /* variable with lower bound */
+#define GLP_UP             3  /* variable with upper bound */
+#define GLP_DB             4  /* double-bounded variable */
+#define GLP_FX             5  /* fixed variable */
 
 /* status of auxiliary/structural variable: */
-#define GLP_BS          1  /* basic variable */
-#define GLP_NL          2  /* non-basic variable on lower bound */
-#define GLP_NU          3  /* non-basic variable on upper bound */
-#define GLP_NF          4  /* non-basic free variable */
-#define GLP_NS          5  /* non-basic fixed variable */
+#define GLP_BS             1  /* basic variable */
+#define GLP_NL             2  /* non-basic variable on lower bound */
+#define GLP_NU             3  /* non-basic variable on upper bound */
+#define GLP_NF             4  /* non-basic free variable */
+#define GLP_NS             5  /* non-basic fixed variable */
 
 /* scaling options: */
-#define GLP_SF_GM    0x01  /* perform geometric mean scaling */
-#define GLP_SF_EQ    0x10  /* perform equilibration scaling */
-#define GLP_SF_2N    0x20  /* round scale factors to power of two */
-#define GLP_SF_SKIP  0x40  /* skip scaling if problem is well scaled */
-#define GLP_SF_AUTO  0x80  /* choose scaling options automatically */
+#define GLP_SF_GM       0x01  /* perform geometric mean scaling */
+#define GLP_SF_EQ       0x10  /* perform equilibration scaling */
+#define GLP_SF_2N       0x20  /* round scale factors to power of two */
+#define GLP_SF_SKIP     0x40  /* skip if problem is well scaled */
+#define GLP_SF_AUTO     0x80  /* choose scaling options automatically */
+
+/* solution indicator: */
+#define GLP_SOL            1  /* basic solution */
+#define GLP_IPT            2  /* interior-point solution */
+#define GLP_MIP            3  /* mixed integer solution */
 
 /* solution status: */
-#define GLP_UNDEF       1  /* solution is undefined */
-#define GLP_FEAS        2  /* solution is feasible */
-#define GLP_INFEAS      3  /* solution is infeasible */
-#define GLP_NOFEAS      4  /* no feasible solution exists */
-#define GLP_OPT         5  /* solution is optimal */
-#define GLP_UNBND       6  /* solution is unbounded */
+#define GLP_UNDEF          1  /* solution is undefined */
+#define GLP_FEAS           2  /* solution is feasible */
+#define GLP_INFEAS         3  /* solution is infeasible */
+#define GLP_NOFEAS         4  /* no feasible solution exists */
+#define GLP_OPT            5  /* solution is optimal */
+#define GLP_UNBND          6  /* solution is unbounded */
 
 typedef struct { int lo, hi; } glp_long;
 /* long integer data type */
@@ -86,102 +91,98 @@ typedef struct glp_bfcp glp_bfcp;
 
 struct glp_bfcp
 {     /* basis factorization control parameters */
-      int msg_lev;         /* (reserved) */
-      int type;            /* factorization type: */
-#define GLP_BF_FT       1  /* LUF + Forrest-Tomlin */
-#define GLP_BF_BG       2  /* LUF + Schur compl. + Bartels-Golub */
-#define GLP_BF_GR       3  /* LUF + Schur compl. + Givens rotation */
-      int lu_size;         /* luf.sv_size */
-      double piv_tol;      /* luf.piv_tol */
-      int piv_lim;         /* luf.piv_lim */
-      int suhl;            /* luf.suhl */
-      double eps_tol;      /* luf.eps_tol */
-      double max_gro;      /* luf.max_gro */
-      int nfs_max;         /* fhv.hh_max */
-      double upd_tol;      /* fhv.upd_tol */
-      int nrs_max;         /* lpf.n_max */
-      int rs_size;         /* lpf.v_size */
-      double foo_bar[38];  /* (reserved) */
+      int msg_lev;            /* (reserved) */
+      int type;               /* factorization type: */
+#define GLP_BF_FT          1  /* LUF + Forrest-Tomlin */
+#define GLP_BF_BG          2  /* LUF + Schur compl. + Bartels-Golub */
+#define GLP_BF_GR          3  /* LUF + Schur compl. + Givens rotation */
+      int lu_size;            /* luf.sv_size */
+      double piv_tol;         /* luf.piv_tol */
+      int piv_lim;            /* luf.piv_lim */
+      int suhl;               /* luf.suhl */
+      double eps_tol;         /* luf.eps_tol */
+      double max_gro;         /* luf.max_gro */
+      int nfs_max;            /* fhv.hh_max */
+      double upd_tol;         /* fhv.upd_tol */
+      int nrs_max;            /* lpf.n_max */
+      int rs_size;            /* lpf.v_size */
+      double foo_bar[38];     /* (reserved) */
 };
 
 typedef struct
 {     /* simplex method control parameters */
-      int msg_lev;         /* message level: */
-// #define GLP_MSG_OFF     0  /* no output */
-// #define GLP_MSG_ERR     1  /* warning and error messages only */
-// #define GLP_MSG_ON      2  /* normal output */
-// #define GLP_MSG_ALL     3  /* full output */
-// #define GLP_MSG_DBG     4  /* debug output */
-      int meth;            /* simplex method option: */
-#define GLP_PRIMAL      1  /* use primal simplex */
-#define GLP_DUALP       2  /* use dual; if it fails, use primal */
-#define GLP_DUAL        3  /* use dual simplex */
-      int pricing;         /* pricing technique: */
-#define GLP_PT_STD   0x11  /* standard (Dantzig rule) */
-#define GLP_PT_PSE   0x22  /* projected steepest edge */
-      int r_test;          /* ratio test technique: */
-#define GLP_RT_STD   0x11  /* standard (textbook) */
-#define GLP_RT_HAR   0x22  /* two-pass Harris' ratio test */
-      double tol_bnd;      /* spx.tol_bnd */
-      double tol_dj;       /* spx.tol_dj */
-      double tol_piv;      /* spx.tol_piv */
-      double obj_ll;       /* spx.obj_ll */
-      double obj_ul;       /* spx.obj_ul */
-      int it_lim;          /* spx.it_lim */
-      int tm_lim;          /* spx.tm_lim (milliseconds) */
-      int out_frq;         /* spx.out_frq */
-      int out_dly;         /* spx.out_dly (milliseconds) */
-      int presolve;        /* enable/disable using LP presolver */
-      double foo_bar[36];  /* (reserved) */
+      int msg_lev;            /* message level: */
+#define GLP_MSG_OFF        0  /* no output */
+#define GLP_MSG_ERR        1  /* warning and error messages only */
+#define GLP_MSG_ON         2  /* normal output */
+#define GLP_MSG_ALL        3  /* full output */
+#define GLP_MSG_DBG        4  /* debug output */
+      int meth;               /* simplex method option: */
+#define GLP_PRIMAL         1  /* use primal simplex */
+#define GLP_DUALP          2  /* use dual; if it fails, use primal */
+#define GLP_DUAL           3  /* use dual simplex */
+      int pricing;            /* pricing technique: */
+#define GLP_PT_STD      0x11  /* standard (Dantzig rule) */
+#define GLP_PT_PSE      0x22  /* projected steepest edge */
+      int r_test;             /* ratio test technique: */
+#define GLP_RT_STD      0x11  /* standard (textbook) */
+#define GLP_RT_HAR      0x22  /* two-pass Harris' ratio test */
+      double tol_bnd;         /* spx.tol_bnd */
+      double tol_dj;          /* spx.tol_dj */
+      double tol_piv;         /* spx.tol_piv */
+      double obj_ll;          /* spx.obj_ll */
+      double obj_ul;          /* spx.obj_ul */
+      int it_lim;             /* spx.it_lim */
+      int tm_lim;             /* spx.tm_lim (milliseconds) */
+      int out_frq;            /* spx.out_frq */
+      int out_dly;            /* spx.out_dly (milliseconds) */
+      int presolve;           /* enable/disable using LP presolver */
+      double foo_bar[36];     /* (reserved) */
 } glp_smcp;
 
 #ifndef _GLP_TREE
 #define _GLP_TREE
-typedef struct { double _opaque; } glp_tree;
+typedef struct { double _opaque_tree; } glp_tree;
 /* branch-and-bound tree */
 #endif
 
 typedef struct
 {     /* integer optimizer control parameters */
-      int msg_lev;         /* message level: */
-#define GLP_MSG_OFF     0  /* no output */
-#define GLP_MSG_ERR     1  /* warning and error messages only */
-#define GLP_MSG_ON      2  /* normal output */
-#define GLP_MSG_ALL     3  /* full output */
-#define GLP_MSG_DBG     4  /* debug output */
-      int br_tech;         /* branching technique: */
-#define GLP_BR_FFV      1  /* first fractional variable */
-#define GLP_BR_LFV      2  /* last fractional variable */
-#define GLP_BR_MFV      3  /* most fractional variable */
-#define GLP_BR_DTH      4  /* heuristic by Driebeck and Tomlin */
-      int bt_tech;         /* backtracking technique: */
-#define GLP_BT_DFS      1  /* depth first search */
-#define GLP_BT_BFS      2  /* breadth first search */
-#define GLP_BT_BLB      3  /* best local bound */
-#define GLP_BT_BPH      4  /* best projection heuristic */
-      double tol_int;      /* mip.tol_int */
-      double tol_obj;      /* mip.tol_obj */
-      int tm_lim;          /* mip.tm_lim (milliseconds) */
-      int out_frq;         /* mip.out_frq (milliseconds) */
-      int out_dly;         /* mip.out_dly (milliseconds) */
+      int msg_lev;            /* message level (see glp_smcp) */
+      int br_tech;            /* branching technique: */
+#define GLP_BR_FFV         1  /* first fractional variable */
+#define GLP_BR_LFV         2  /* last fractional variable */
+#define GLP_BR_MFV         3  /* most fractional variable */
+#define GLP_BR_DTH         4  /* heuristic by Driebeck and Tomlin */
+#define GLP_BR_HPC         5  /* hybrid pseudocost */
+      int bt_tech;            /* backtracking technique: */
+#define GLP_BT_DFS         1  /* depth first search */
+#define GLP_BT_BFS         2  /* breadth first search */
+#define GLP_BT_BLB         3  /* best local bound */
+#define GLP_BT_BPH         4  /* best projection heuristic */
+      double tol_int;         /* mip.tol_int */
+      double tol_obj;         /* mip.tol_obj */
+      int tm_lim;             /* mip.tm_lim (milliseconds) */
+      int out_frq;            /* mip.out_frq (milliseconds) */
+      int out_dly;            /* mip.out_dly (milliseconds) */
       void (*cb_func)(glp_tree *tree, void *info);
-                           /* mip.cb_func */
-      void *cb_info;       /* mip.cb_info */
-      int cb_size;         /* mip.cb_size */
-      int pp_tech;         /* preprocessing technique: */
-#define GLP_PP_NONE     0  /* disable preprocessing */
-#define GLP_PP_ROOT     1  /* preprocessing only on root level */
-#define GLP_PP_ALL      2  /* preprocessing on all levels */
-      double mip_gap;      /* relative MIP gap tolerance */
-      int mir_cuts;        /* MIR cuts       (GLP_ON/GLP_OFF) */
-      int gmi_cuts;        /* Gomory's cuts  (GLP_ON/GLP_OFF) */
-      int cov_cuts;        /* cover cuts     (GLP_ON/GLP_OFF) */
-      int clq_cuts;        /* clique cuts    (GLP_ON/GLP_OFF) */
-      int presolve;        /* enable/disable using MIP presolver */
-      int binarize;        /* try to binarize integer variables */
-      double foo_bar[30];  /* (reserved) */
+                              /* mip.cb_func */
+      void *cb_info;          /* mip.cb_info */
+      int cb_size;            /* mip.cb_size */
+      int pp_tech;            /* preprocessing technique: */
+#define GLP_PP_NONE        0  /* disable preprocessing */
+#define GLP_PP_ROOT        1  /* preprocessing only on root level */
+#define GLP_PP_ALL         2  /* preprocessing on all levels */
+      double mip_gap;         /* relative MIP gap tolerance */
+      int mir_cuts;           /* MIR cuts       (GLP_ON/GLP_OFF) */
+      int gmi_cuts;           /* Gomory's cuts  (GLP_ON/GLP_OFF) */
+      int cov_cuts;           /* cover cuts     (GLP_ON/GLP_OFF) */
+      int clq_cuts;           /* clique cuts    (GLP_ON/GLP_OFF) */
+      int presolve;           /* enable/disable using MIP presolver */
+      int binarize;           /* try to binarize integer variables */
+      double foo_bar[30];     /* (reserved) */
 #if 1 /* not yet available */
-      char *fn_sol;        /* file name to write solution found */
+      char *fn_sol;           /* file name to write solution found */
 #endif
 } glp_iocp;
 
@@ -191,51 +192,67 @@ typedef struct
       /* subproblem level at which the row was added */
       int origin;
       /* the row origin flag: */
-#define GLP_RF_REG      0  /* regular constraint */
-#define GLP_RF_LAZY     1  /* "lazy" constraint */
-#define GLP_RF_CUT      2  /* cutting plane constraint */
+#define GLP_RF_REG         0  /* regular constraint */
+#define GLP_RF_LAZY        1  /* "lazy" constraint */
+#define GLP_RF_CUT         2  /* cutting plane constraint */
       int klass;
       /* the row class descriptor: */
-#define GLP_RF_GMI      1  /* Gomory's mixed integer cut */
-#define GLP_RF_MIR      2  /* mixed integer rounding cut */
-#define GLP_RF_COV      3  /* mixed cover cut */
-#define GLP_RF_CLQ      4  /* clique cut */
+#define GLP_RF_GMI         1  /* Gomory's mixed integer cut */
+#define GLP_RF_MIR         2  /* mixed integer rounding cut */
+#define GLP_RF_COV         3  /* mixed cover cut */
+#define GLP_RF_CLQ         4  /* clique cut */
       double foo_bar[7];
       /* (reserved) */
 } glp_attr;
 
 /* enable/disable flag: */
-#define GLP_ON          1  /* enable something */
-#define GLP_OFF         0  /* disable something */
+#define GLP_ON             1  /* enable something */
+#define GLP_OFF            0  /* disable something */
 
 /* reason codes: */
-#define GLP_IROWGEN  0x01  /* request for row generation */
-#define GLP_IBINGO   0x02  /* better integer solution found */
-#define GLP_IHEUR    0x03  /* request for heuristic solution */
-#define GLP_ICUTGEN  0x04  /* request for cut generation */
-#define GLP_IBRANCH  0x05  /* request for branching */
-#define GLP_ISELECT  0x06  /* request for subproblem selection */
-#define GLP_IPREPRO  0x07  /* request for preprocessing */
+#define GLP_IROWGEN     0x01  /* request for row generation */
+#define GLP_IBINGO      0x02  /* better integer solution found */
+#define GLP_IHEUR       0x03  /* request for heuristic solution */
+#define GLP_ICUTGEN     0x04  /* request for cut generation */
+#define GLP_IBRANCH     0x05  /* request for branching */
+#define GLP_ISELECT     0x06  /* request for subproblem selection */
+#define GLP_IPREPRO     0x07  /* request for preprocessing */
+
+/* branch selection indicator: */
+#define GLP_NO_BRNCH       0  /* select no branch */
+#define GLP_DN_BRNCH       1  /* select down-branch */
+#define GLP_UP_BRNCH       2  /* select up-branch */
 
 /* return codes: */
-#define GLP_EBADB    0x01  /* invalid basis */
-#define GLP_ESING    0x02  /* singular matrix */
-#define GLP_ECOND    0x03  /* ill-conditioned matrix */
-#define GLP_EBOUND   0x04  /* invalid bounds */
-#define GLP_EFAIL    0x05  /* solver failed */
-#define GLP_EOBJLL   0x06  /* objective lower limit reached */
-#define GLP_EOBJUL   0x07  /* objective upper limit reached */
-#define GLP_EITLIM   0x08  /* iteration limit exceeded */
-#define GLP_ETMLIM   0x09  /* time limit exceeded */
-#define GLP_ENOPFS   0x0A  /* no primal feasible solution */
-#define GLP_ENODFS   0x0B  /* no dual feasible solution */
-#define GLP_EROOT    0x0C  /* root LP optimum not provided */
-#define GLP_ESTOP    0x0D  /* search terminated by application */
-#define GLP_EMIPGAP  0x0E  /* relative mip gap tolerance reached */
+#define GLP_EBADB       0x01  /* invalid basis */
+#define GLP_ESING       0x02  /* singular matrix */
+#define GLP_ECOND       0x03  /* ill-conditioned matrix */
+#define GLP_EBOUND      0x04  /* invalid bounds */
+#define GLP_EFAIL       0x05  /* solver failed */
+#define GLP_EOBJLL      0x06  /* objective lower limit reached */
+#define GLP_EOBJUL      0x07  /* objective upper limit reached */
+#define GLP_EITLIM      0x08  /* iteration limit exceeded */
+#define GLP_ETMLIM      0x09  /* time limit exceeded */
+#define GLP_ENOPFS      0x0A  /* no primal feasible solution */
+#define GLP_ENODFS      0x0B  /* no dual feasible solution */
+#define GLP_EROOT       0x0C  /* root LP optimum not provided */
+#define GLP_ESTOP       0x0D  /* search terminated by application */
+#define GLP_EMIPGAP     0x0E  /* relative mip gap tolerance reached */
+#define GLP_ENOFEAS     0x0F  /* no primal/dual feasible solution */
+#define GLP_ENOCVG      0x10  /* no convergence */
+#define GLP_EINSTAB     0x11  /* numerical instability */
+#define GLP_EDATA       0x12  /* invalid data */
+#define GLP_ERANGE      0x13  /* result out of range */
 
 /* MPS file format: */
-#define GLP_MPS_DECK    1  /* fixed (ancient) */
-#define GLP_MPS_FILE    2  /* free (modern) */
+#define GLP_MPS_DECK       1  /* fixed (ancient) */
+#define GLP_MPS_FILE       2  /* free (modern) */
+
+#ifndef _GLP_TRAN
+#define _GLP_TRAN
+typedef struct { double _opaque_tran; } glp_tran;
+/* MathProg translator workspace */
+#endif
 
 glp_prob *glp_create_prob(void);
 /* create problem object */
@@ -289,6 +306,9 @@ void glp_del_rows(glp_prob *lp, int nrs, const int num[]);
 
 void glp_del_cols(glp_prob *lp, int ncs, const int num[]);
 /* delete specified columns from problem object */
+
+void glp_copy_prob(glp_prob *dest, glp_prob *prob, int names);
+/* copy problem object content */
 
 void glp_erase_prob(glp_prob *lp);
 /* erase problem object content */
@@ -395,6 +415,9 @@ void glp_cpx_basis(glp_prob *lp);
 int glp_simplex(glp_prob *lp, const glp_smcp *parm);
 /* solve LP problem with the simplex method */
 
+int glp_exact(glp_prob *lp, const glp_smcp *parm);
+/* solve LP problem in exact arithmetic */
+
 void glp_init_smcp(glp_smcp *parm);
 /* initialize simplex method control parameters */
 
@@ -427,6 +450,12 @@ double glp_get_col_prim(glp_prob *lp, int j);
 
 double glp_get_col_dual(glp_prob *lp, int j);
 /* retrieve column dual value (basic solution) */
+
+int glp_get_unbnd_ray(glp_prob *lp);
+/* determine variable causing unboundedness */
+
+int glp_interior(glp_prob *lp, const void *parm);
+/* solve LP problem with the interior-point method */
 
 int glp_ipt_status(glp_prob *lp);
 /* retrieve status of interior-point solution */
@@ -641,8 +670,165 @@ int glp_read_lp(glp_prob *lp, const void *parm, const char *fname);
 int glp_write_lp(glp_prob *lp, const void *parm, const char *fname);
 /* write problem data in CPLEX LP format */
 
+glp_tran *glp_mpl_alloc_wksp(void);
+/* allocate the MathProg translator workspace */
+
+int glp_mpl_read_model(glp_tran *tran, const char *fname, int skip);
+/* read and translate model section */
+
+int glp_mpl_read_data(glp_tran *tran, const char *fname);
+/* read and translate data section */
+
+int glp_mpl_generate(glp_tran *tran, const char *fname);
+/* generate the model */
+
+void glp_mpl_build_prob(glp_tran *tran, glp_prob *prob);
+/* build LP/MIP problem instance from the model */
+
+int glp_mpl_postsolve(glp_tran *tran, glp_prob *prob, int sol);
+/* postsolve the model */
+
+void glp_mpl_free_wksp(glp_tran *tran);
+/* free the MathProg translator workspace */
+
 int glp_main(int argc, const char *argv[]);
 /* stand-alone LP/MIP solver */
+
+/**********************************************************************/
+
+typedef struct _glp_graph glp_graph;
+typedef struct _glp_vertex glp_vertex;
+typedef struct _glp_arc glp_arc;
+
+struct _glp_graph
+{     /* graph descriptor */
+      void *pool; /* DMP *pool; */
+      /* memory pool to store graph components */
+      char *name;
+      /* graph name (1 to 255 chars); NULL means no name is assigned
+         to the graph */
+      int nv_max;
+      /* length of the vertex list (enlarged automatically) */
+      int nv;
+      /* number of vertices in the graph, 0 <= nv <= nv_max */
+      int na;
+      /* number of arcs in the graph, na >= 0 */
+      glp_vertex **v; /* glp_vertex *v[1+nv_max]; */
+      /* v[i], 1 <= i <= nv, is a pointer to i-th vertex */
+      void *index; /* AVL *index; */
+      /* vertex index to find vertices by their names; NULL means the
+         index does not exist */
+      int v_size;
+      /* size of data associated with each vertex (0 to 256 bytes) */
+      int a_size;
+      /* size of data associated with each arc (0 to 256 bytes) */
+};
+
+struct _glp_vertex
+{     /* vertex descriptor */
+      int i;
+      /* vertex ordinal number, 1 <= i <= nv */
+      char *name;
+      /* vertex name (1 to 255 chars); NULL means no name is assigned
+         to the vertex */
+      void *entry; /* AVLNODE *entry; */
+      /* pointer to corresponding entry in the vertex index; NULL means
+         that either the index does not exist or the vertex has no name
+         assigned */
+      void *data;
+      /* pointer to data associated with the vertex */
+      void *temp;
+      /* working pointer */
+      glp_arc *in;
+      /* pointer to the (unordered) list of incoming arcs */
+      glp_arc *out;
+      /* pointer to the (unordered) list of outgoing arcs */
+};
+
+struct _glp_arc
+{     /* arc descriptor */
+      glp_vertex *tail;
+      /* pointer to the tail endpoint */
+      glp_vertex *head;
+      /* pointer to the head endpoint */
+      void *data;
+      /* pointer to data associated with the arc */
+      void *temp;
+      /* working pointer */
+      glp_arc *t_prev;
+      /* pointer to previous arc having the same tail endpoint */
+      glp_arc *t_next;
+      /* pointer to next arc having the same tail endpoint */
+      glp_arc *h_prev;
+      /* pointer to previous arc having the same head endpoint */
+      glp_arc *h_next;
+      /* pointer to next arc having the same head endpoint */
+};
+
+glp_graph *glp_create_graph(int v_size, int a_size);
+/* create graph */
+
+void glp_set_graph_name(glp_graph *G, const char *name);
+/* assign (change) graph name */
+
+int glp_add_vertices(glp_graph *G, int nadd);
+/* add new vertices to graph */
+
+glp_arc *glp_add_arc(glp_graph *G, int i, int j);
+/* add new arc to graph */
+
+void glp_erase_graph(glp_graph *G, int v_size, int a_size);
+/* erase graph content */
+
+void glp_delete_graph(glp_graph *G);
+/* delete graph */
+
+void glp_mincost_lp(glp_prob *lp, glp_graph *G, int names, int v_rhs,
+      int a_low, int a_cap, int a_cost);
+/* convert minimum cost flow problem to LP */
+
+int glp_mincost_okalg(glp_graph *G, int v_rhs, int a_low, int a_cap,
+      int a_cost, double *sol, int a_x, int v_pi);
+/* find minimum-cost flow with out-of-kilter algorithm */
+
+void glp_maxflow_lp(glp_prob *lp, glp_graph *G, int names, int s,
+      int t, int a_cap);
+/* convert maximum flow problem to LP */
+
+int glp_maxflow_ffalg(glp_graph *G, int s, int t, int a_cap,
+      double *sol, int a_x, int v_cut);
+/* find maximal flow with Ford-Fulkerson algorithm */
+
+int glp_read_mincost(glp_graph *G, int v_rhs, int a_low, int a_cap,
+      int a_cost, const char *fname);
+/* read min-cost flow problem data in DIMACS format */
+
+int glp_write_mincost(glp_graph *G, int v_rhs, int a_low, int a_cap,
+      int a_cost, const char *fname);
+/* write min-cost flow problem data in DIMACS format */
+
+int glp_read_maxflow(glp_graph *G, int *s, int *t, int a_cap,
+      const char *fname);
+/* read maximum flow problem data in DIMACS format */
+
+int glp_write_maxflow(glp_graph *G, int s, int t, int a_cap,
+      const char *fname);
+/* write maximum flow problem data in DIMACS format */
+
+int glp_netgen(glp_graph *G, int v_rhs, int a_cap, int a_cost,
+      const int parm[1+15]);
+/* Klingman's network problem generator */
+
+int glp_gridgen(glp_graph *G, int v_rhs, int a_cap, int a_cost,
+      const int parm[1+14]);
+/* grid-like network problem generator */
+
+int glp_rmfgen(glp_graph *G, int *s, int *t, int a_cap,
+      const int parm[1+5]);
+/* Goldfarb's maximum flow problem generator */
+
+int glp_weak_comp(glp_graph *G, int v_num);
+/* find all weakly connected components of graph */
 
 /**********************************************************************/
 
@@ -848,462 +1034,462 @@ typedef struct
          '?' - primal and dual solutions are not complementary */
 } LPXKKT;
 
-
+#define lpx_create_prob _glp_lpx_create_prob
 LPX *lpx_create_prob(void);
 /* create problem object */
 
-
+#define lpx_set_prob_name _glp_lpx_set_prob_name
 void lpx_set_prob_name(LPX *lp, const char *name);
 /* assign (change) problem name */
 
-
+#define lpx_set_obj_name _glp_lpx_set_obj_name
 void lpx_set_obj_name(LPX *lp, const char *name);
 /* assign (change) objective function name */
 
-
+#define lpx_set_obj_dir _glp_lpx_set_obj_dir
 void lpx_set_obj_dir(LPX *lp, int dir);
 /* set (change) optimization direction flag */
 
-
+#define lpx_add_rows _glp_lpx_add_rows
 int lpx_add_rows(LPX *lp, int nrs);
 /* add new rows to problem object */
 
-
+#define lpx_add_cols _glp_lpx_add_cols
 int lpx_add_cols(LPX *lp, int ncs);
 /* add new columns to problem object */
 
-
+#define lpx_set_row_name _glp_lpx_set_row_name
 void lpx_set_row_name(LPX *lp, int i, const char *name);
 /* assign (change) row name */
 
-
+#define lpx_set_col_name _glp_lpx_set_col_name
 void lpx_set_col_name(LPX *lp, int j, const char *name);
 /* assign (change) column name */
 
-
+#define lpx_set_row_bnds _glp_lpx_set_row_bnds
 void lpx_set_row_bnds(LPX *lp, int i, int type, double lb, double ub);
 /* set (change) row bounds */
 
-
+#define lpx_set_col_bnds _glp_lpx_set_col_bnds
 void lpx_set_col_bnds(LPX *lp, int j, int type, double lb, double ub);
 /* set (change) column bounds */
 
-
+#define lpx_set_obj_coef _glp_lpx_set_obj_coef
 void lpx_set_obj_coef(glp_prob *lp, int j, double coef);
 /* set (change) obj. coefficient or constant term */
 
-
+#define lpx_set_mat_row _glp_lpx_set_mat_row
 void lpx_set_mat_row(LPX *lp, int i, int len, const int ind[],
       const double val[]);
 /* set (replace) row of the constraint matrix */
 
-
+#define lpx_set_mat_col _glp_lpx_set_mat_col
 void lpx_set_mat_col(LPX *lp, int j, int len, const int ind[],
       const double val[]);
 /* set (replace) column of the constraint matrix */
 
-
+#define lpx_load_matrix _glp_lpx_load_matrix
 void lpx_load_matrix(LPX *lp, int ne, const int ia[], const int ja[],
       const double ar[]);
 /* load (replace) the whole constraint matrix */
 
-
+#define lpx_del_rows _glp_lpx_del_rows
 void lpx_del_rows(LPX *lp, int nrs, const int num[]);
 /* delete specified rows from problem object */
 
-
+#define lpx_del_cols _glp_lpx_del_cols
 void lpx_del_cols(LPX *lp, int ncs, const int num[]);
 /* delete specified columns from problem object */
 
-
+#define lpx_delete_prob _glp_lpx_delete_prob
 void lpx_delete_prob(LPX *lp);
 /* delete problem object */
 
-
+#define lpx_get_prob_name _glp_lpx_get_prob_name
 const char *lpx_get_prob_name(LPX *lp);
 /* retrieve problem name */
 
-
+#define lpx_get_obj_name _glp_lpx_get_obj_name
 const char *lpx_get_obj_name(LPX *lp);
 /* retrieve objective function name */
 
-
+#define lpx_get_obj_dir _glp_lpx_get_obj_dir
 int lpx_get_obj_dir(LPX *lp);
 /* retrieve optimization direction flag */
 
-
+#define lpx_get_num_rows _glp_lpx_get_num_rows
 int lpx_get_num_rows(LPX *lp);
 /* retrieve number of rows */
 
-
+#define lpx_get_num_cols _glp_lpx_get_num_cols
 int lpx_get_num_cols(LPX *lp);
 /* retrieve number of columns */
 
-
+#define lpx_get_row_name _glp_lpx_get_row_name
 const char *lpx_get_row_name(LPX *lp, int i);
 /* retrieve row name */
 
-
+#define lpx_get_col_name _glp_lpx_get_col_name
 const char *lpx_get_col_name(LPX *lp, int j);
 /* retrieve column name */
 
-
+#define lpx_get_row_type _glp_lpx_get_row_type
 int lpx_get_row_type(LPX *lp, int i);
 /* retrieve row type */
 
-
+#define lpx_get_row_lb _glp_lpx_get_row_lb
 double lpx_get_row_lb(LPX *lp, int i);
 /* retrieve row lower bound */
 
-
+#define lpx_get_row_ub _glp_lpx_get_row_ub
 double lpx_get_row_ub(LPX *lp, int i);
 /* retrieve row upper bound */
 
-
+#define lpx_get_row_bnds _glp_lpx_get_row_bnds
 void lpx_get_row_bnds(LPX *lp, int i, int *typx, double *lb,
       double *ub);
 /* retrieve row bounds */
 
-
+#define lpx_get_col_type _glp_lpx_get_col_type
 int lpx_get_col_type(LPX *lp, int j);
 /* retrieve column type */
 
-
+#define lpx_get_col_lb _glp_lpx_get_col_lb
 double lpx_get_col_lb(LPX *lp, int j);
 /* retrieve column lower bound */
 
-
+#define lpx_get_col_ub _glp_lpx_get_col_ub
 double lpx_get_col_ub(LPX *lp, int j);
 /* retrieve column upper bound */
 
-
+#define lpx_get_col_bnds _glp_lpx_get_col_bnds
 void lpx_get_col_bnds(LPX *lp, int j, int *typx, double *lb,
       double *ub);
 /* retrieve column bounds */
 
-
+#define lpx_get_obj_coef _glp_lpx_get_obj_coef
 double lpx_get_obj_coef(LPX *lp, int j);
 /* retrieve obj. coefficient or constant term */
 
-
+#define lpx_get_num_nz _glp_lpx_get_num_nz
 int lpx_get_num_nz(LPX *lp);
 /* retrieve number of constraint coefficients */
 
-
+#define lpx_get_mat_row _glp_lpx_get_mat_row
 int lpx_get_mat_row(LPX *lp, int i, int ind[], double val[]);
 /* retrieve row of the constraint matrix */
 
-
+#define lpx_get_mat_col _glp_lpx_get_mat_col
 int lpx_get_mat_col(LPX *lp, int j, int ind[], double val[]);
 /* retrieve column of the constraint matrix */
 
-
+#define lpx_create_index _glp_lpx_create_index
 void lpx_create_index(LPX *lp);
 /* create the name index */
 
-
+#define lpx_find_row _glp_lpx_find_row
 int lpx_find_row(LPX *lp, const char *name);
 /* find row by its name */
 
-
+#define lpx_find_col _glp_lpx_find_col
 int lpx_find_col(LPX *lp, const char *name);
 /* find column by its name */
 
-
+#define lpx_delete_index _glp_lpx_delete_index
 void lpx_delete_index(LPX *lp);
 /* delete the name index */
 
-
+#define lpx_scale_prob _glp_lpx_scale_prob
 void lpx_scale_prob(LPX *lp);
 /* scale problem data */
 
-
+#define lpx_unscale_prob _glp_lpx_unscale_prob
 void lpx_unscale_prob(LPX *lp);
 /* unscale problem data */
 
-
+#define lpx_set_row_stat _glp_lpx_set_row_stat
 void lpx_set_row_stat(LPX *lp, int i, int stat);
 /* set (change) row status */
 
-
+#define lpx_set_col_stat _glp_lpx_set_col_stat
 void lpx_set_col_stat(LPX *lp, int j, int stat);
 /* set (change) column status */
 
-
+#define lpx_std_basis _glp_lpx_std_basis
 void lpx_std_basis(LPX *lp);
 /* construct standard initial LP basis */
 
-
+#define lpx_adv_basis _glp_lpx_adv_basis
 void lpx_adv_basis(LPX *lp);
 /* construct advanced initial LP basis */
 
-
+#define lpx_cpx_basis _glp_lpx_cpx_basis
 void lpx_cpx_basis(LPX *lp);
 /* construct Bixby's initial LP basis */
 
-
+#define lpx_simplex _glp_lpx_simplex
 int lpx_simplex(LPX *lp);
 /* easy-to-use driver to the simplex method */
 
-
+#define lpx_exact _glp_lpx_exact
 int lpx_exact(LPX *lp);
 /* easy-to-use driver to the exact simplex method */
 
-
+#define lpx_get_status _glp_lpx_get_status
 int lpx_get_status(LPX *lp);
 /* retrieve generic status of basic solution */
 
-
+#define lpx_get_prim_stat _glp_lpx_get_prim_stat
 int lpx_get_prim_stat(LPX *lp);
 /* retrieve primal status of basic solution */
 
-
+#define lpx_get_dual_stat _glp_lpx_get_dual_stat
 int lpx_get_dual_stat(LPX *lp);
 /* retrieve dual status of basic solution */
 
-
+#define lpx_get_obj_val _glp_lpx_get_obj_val
 double lpx_get_obj_val(LPX *lp);
 /* retrieve objective value (basic solution) */
 
-
+#define lpx_get_row_stat _glp_lpx_get_row_stat
 int lpx_get_row_stat(LPX *lp, int i);
 /* retrieve row status (basic solution) */
 
-
+#define lpx_get_row_prim _glp_lpx_get_row_prim
 double lpx_get_row_prim(LPX *lp, int i);
 /* retrieve row primal value (basic solution) */
 
-
+#define lpx_get_row_dual _glp_lpx_get_row_dual
 double lpx_get_row_dual(LPX *lp, int i);
 /* retrieve row dual value (basic solution) */
 
-
+#define lpx_get_row_info _glp_lpx_get_row_info
 void lpx_get_row_info(LPX *lp, int i, int *tagx, double *vx,
       double *dx);
 /* obtain row solution information */
 
-
+#define lpx_get_col_stat _glp_lpx_get_col_stat
 int lpx_get_col_stat(LPX *lp, int j);
 /* retrieve column status (basic solution) */
 
-
+#define lpx_get_col_prim _glp_lpx_get_col_prim
 double lpx_get_col_prim(LPX *lp, int j);
 /* retrieve column primal value (basic solution) */
 
-
+#define lpx_get_col_dual _glp_lpx_get_col_dual
 double lpx_get_col_dual(glp_prob *lp, int j);
 /* retrieve column dual value (basic solution) */
 
-
+#define lpx_get_col_info _glp_lpx_get_col_info
 void lpx_get_col_info(LPX *lp, int j, int *tagx, double *vx,
       double *dx);
 /* obtain column solution information (obsolete) */
 
-
+#define lpx_get_ray_info _glp_lpx_get_ray_info
 int lpx_get_ray_info(LPX *lp);
 /* determine what causes primal unboundness */
 
-
+#define lpx_check_kkt _glp_lpx_check_kkt
 void lpx_check_kkt(LPX *lp, int scaled, LPXKKT *kkt);
 /* check Karush-Kuhn-Tucker conditions */
 
-
+#define lpx_warm_up _glp_lpx_warm_up
 int lpx_warm_up(LPX *lp);
 /* "warm up" LP basis */
 
-
+#define lpx_eval_tab_row _glp_lpx_eval_tab_row
 int lpx_eval_tab_row(LPX *lp, int k, int ind[], double val[]);
 /* compute row of the simplex table */
 
-
+#define lpx_eval_tab_col _glp_lpx_eval_tab_col
 int lpx_eval_tab_col(LPX *lp, int k, int ind[], double val[]);
 /* compute column of the simplex table */
 
-
+#define lpx_transform_row _glp_lpx_transform_row
 int lpx_transform_row(LPX *lp, int len, int ind[], double val[]);
 /* transform explicitly specified row */
 
-
+#define lpx_transform_col _glp_lpx_transform_col
 int lpx_transform_col(LPX *lp, int len, int ind[], double val[]);
 /* transform explicitly specified column */
 
-
+#define lpx_prim_ratio_test _glp_lpx_prim_ratio_test
 int lpx_prim_ratio_test(LPX *lp, int len, const int ind[],
       const double val[], int how, double tol);
 /* perform primal ratio test */
 
-
+#define lpx_dual_ratio_test _glp_lpx_dual_ratio_test
 int lpx_dual_ratio_test(LPX *lp, int len, const int ind[],
       const double val[], int how, double tol);
 /* perform dual ratio test */
 
-
+#define lpx_interior _glp_lpx_interior
 int lpx_interior(LPX *lp);
 /* easy-to-use driver to the interior point method */
 
-
+#define lpx_ipt_status _glp_lpx_ipt_status
 int lpx_ipt_status(LPX *lp);
 /* retrieve status of interior-point solution */
 
-
+#define lpx_ipt_obj_val _glp_lpx_ipt_obj_val
 double lpx_ipt_obj_val(LPX *lp);
 /* retrieve objective value (interior point) */
 
-
+#define lpx_ipt_row_prim _glp_lpx_ipt_row_prim
 double lpx_ipt_row_prim(LPX *lp, int i);
 /* retrieve row primal value (interior point) */
 
-
+#define lpx_ipt_row_dual _glp_lpx_ipt_row_dual
 double lpx_ipt_row_dual(LPX *lp, int i);
 /* retrieve row dual value (interior point) */
 
-
+#define lpx_ipt_col_prim _glp_lpx_ipt_col_prim
 double lpx_ipt_col_prim(LPX *lp, int j);
 /* retrieve column primal value (interior point) */
 
-
+#define lpx_ipt_col_dual _glp_lpx_ipt_col_dual
 double lpx_ipt_col_dual(LPX *lp, int j);
 /* retrieve column dual value (interior point) */
 
-
+#define lpx_set_class _glp_lpx_set_class
 void lpx_set_class(LPX *lp, int klass);
 /* set problem class */
 
-
+#define lpx_get_class _glp_lpx_get_class
 int lpx_get_class(LPX *lp);
 /* determine problem klass */
 
-
+#define lpx_set_col_kind _glp_lpx_set_col_kind
 void lpx_set_col_kind(LPX *lp, int j, int kind);
 /* set (change) column kind */
 
-
+#define lpx_get_col_kind _glp_lpx_get_col_kind
 int lpx_get_col_kind(LPX *lp, int j);
 /* retrieve column kind */
 
-
+#define lpx_get_num_int _glp_lpx_get_num_int
 int lpx_get_num_int(LPX *lp);
 /* retrieve number of integer columns */
 
-
+#define lpx_get_num_bin _glp_lpx_get_num_bin
 int lpx_get_num_bin(LPX *lp);
 /* retrieve number of binary columns */
 
-
+#define lpx_integer _glp_lpx_integer
 int lpx_integer(LPX *lp);
 /* easy-to-use driver to the branch-and-bound method */
 
-
+#define lpx_intopt _glp_lpx_intopt
 int lpx_intopt(LPX *lp);
 /* easy-to-use driver to the branch-and-bound method */
 
-
+#define lpx_mip_status _glp_lpx_mip_status
 int lpx_mip_status(LPX *lp);
 /* retrieve status of MIP solution */
 
-
+#define lpx_mip_obj_val _glp_lpx_mip_obj_val
 double lpx_mip_obj_val(LPX *lp);
 /* retrieve objective value (MIP solution) */
 
-
+#define lpx_mip_row_val _glp_lpx_mip_row_val
 double lpx_mip_row_val(LPX *lp, int i);
 /* retrieve row value (MIP solution) */
 
-
+#define lpx_mip_col_val _glp_lpx_mip_col_val
 double lpx_mip_col_val(LPX *lp, int j);
 /* retrieve column value (MIP solution) */
 
-
+#define lpx_check_int _glp_lpx_check_int
 void lpx_check_int(LPX *lp, LPXKKT *kkt);
 /* check integer feasibility conditions */
 
-
+#define lpx_reset_parms _glp_lpx_reset_parms
 void lpx_reset_parms(LPX *lp);
 /* reset control parameters to default values */
 
-
+#define lpx_set_int_parm _glp_lpx_set_int_parm
 void lpx_set_int_parm(LPX *lp, int parm, int val);
 /* set (change) integer control parameter */
 
-
+#define lpx_get_int_parm _glp_lpx_get_int_parm
 int lpx_get_int_parm(LPX *lp, int parm);
 /* query integer control parameter */
 
-
+#define lpx_set_real_parm _glp_lpx_set_real_parm
 void lpx_set_real_parm(LPX *lp, int parm, double val);
 /* set (change) real control parameter */
 
-
+#define lpx_get_real_parm _glp_lpx_get_real_parm
 double lpx_get_real_parm(LPX *lp, int parm);
 /* query real control parameter */
 
-
+#define lpx_read_mps _glp_lpx_read_mps
 LPX *lpx_read_mps(const char *fname);
 /* read problem data in fixed MPS format */
 
-
+#define lpx_write_mps _glp_lpx_write_mps
 int lpx_write_mps(LPX *lp, const char *fname);
 /* write problem data in fixed MPS format */
 
-
+#define lpx_read_bas _glp_lpx_read_bas
 int lpx_read_bas(LPX *lp, const char *fname);
 /* read LP basis in fixed MPS format */
 
-
+#define lpx_write_bas _glp_lpx_write_bas
 int lpx_write_bas(LPX *lp, const char *fname);
 /* write LP basis in fixed MPS format */
 
-
+#define lpx_read_freemps _glp_lpx_read_freemps
 LPX *lpx_read_freemps(const char *fname);
 /* read problem data in free MPS format */
 
-
+#define lpx_write_freemps _glp_lpx_write_freemps
 int lpx_write_freemps(LPX *lp, const char *fname);
 /* write problem data in free MPS format */
 
-
+#define lpx_read_cpxlp _glp_lpx_read_cpxlp
 LPX *lpx_read_cpxlp(const char *fname);
 /* read problem data in CPLEX LP format */
 
-
+#define lpx_write_cpxlp _glp_lpx_write_cpxlp
 int lpx_write_cpxlp(LPX *lp, const char *fname);
 /* write problem data in CPLEX LP format */
 
-
+#define lpx_read_model _glp_lpx_read_model
 LPX *lpx_read_model(const char *model, const char *data,
       const char *output);
 /* read LP/MIP model written in GNU MathProg language */
 
-
+#define lpx_print_prob _glp_lpx_print_prob
 int lpx_print_prob(LPX *lp, const char *fname);
 /* write problem data in plain text format */
 
-
+#define lpx_print_sol _glp_lpx_print_sol
 int lpx_print_sol(LPX *lp, const char *fname);
 /* write LP problem solution in printable format */
 
-
+#define lpx_print_sens_bnds _glp_lpx_print_sens_bnds
 int lpx_print_sens_bnds(LPX *lp, const char *fname);
 /* write bounds sensitivity information */
 
-
+#define lpx_print_ips _glp_lpx_print_ips
 int lpx_print_ips(LPX *lp, const char *fname);
 /* write interior point solution in printable format */
 
-
+#define lpx_print_mip _glp_lpx_print_mip
 int lpx_print_mip(LPX *lp, const char *fname);
 /* write MIP problem solution in printable format */
 
-
+#define lpx_is_b_avail _glp_lpx_is_b_avail
 int lpx_is_b_avail(LPX *lp);
 /* check if LP basis is available */
 
-
+#define lpx_write_pb _glp_lpx_write_pb
 int lpx_write_pb(LPX *lp, const char *fname, int normalized,
       int binarize);
 /* write problem data in (normalized) OPB format */
 
-
+#define lpx_main _glp_lpx_main
 int lpx_main(int argc, const char *argv[]);
 /* stand-alone LP/MIP solver */
 
