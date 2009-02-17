@@ -12,7 +12,8 @@ import os
 
 
 def main():
-    os.system('cd glpk-4.36; ./configure; make; make install; make clean; make distclean')
+    os.system('cd glpk-4.36; ./configure; make; make install; make clean; \
+    make distclean')
     os.system('python setup.py install --prefix=$HOME/privateRoot')
     os.system('cd build; rm -R *')
 
