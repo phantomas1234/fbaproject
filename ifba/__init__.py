@@ -7,5 +7,5 @@ Created by Nikolaus Sonnenschein on 2008-03-06.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
-__all__ = (['combinatorics', 'Database', 'distFBA', 'glpki', 'GlpkWrap',
-            'rpoZanalysis'])
+__all__ = (['distributedFBA', 'glpki', 'GlpkWrap', 'blockedReactions', 
+'ContextFBA', 'fluxVariability', 'general'])
