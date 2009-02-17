@@ -1,0 +1,690 @@
+glp_read_lp: reading problem data from `../HumanFBA/validHumanFBAmodel.lp'...
+../HumanFBA/validHumanFBAmodel.lp:16847: warning: lower bound of variable `R("MglcDASHDb_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16847: warning: upper bound of variable `R("MglcDASHDb_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16848: warning: lower bound of variable `R("Mo2b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16848: warning: upper bound of variable `R("Mo2b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16849: warning: lower bound of variable `R("Mpib_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16849: warning: upper bound of variable `R("Mpib_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16850: warning: lower bound of variable `R("Mso4b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16850: warning: upper bound of variable `R("Mso4b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16851: warning: lower bound of variable `R("Mnh4b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16851: warning: upper bound of variable `R("Mnh4b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16852: warning: lower bound of variable `R("Mna1b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16852: warning: upper bound of variable `R("Mna1b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16853: warning: lower bound of variable `R("Mkb_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16853: warning: upper bound of variable `R("Mkb_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16854: warning: lower bound of variable `R("Mca2b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16854: warning: upper bound of variable `R("Mca2b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16859: warning: lower bound of variable `R("Mfe3b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16859: warning: upper bound of variable `R("Mfe3b_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16862: warning: lower bound of variable `R("Mclb_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16862: warning: upper bound of variable `R("Mclb_Transp")' redefined
+../HumanFBA/validHumanFBAmodel.lp:16862: warning: keyword `end' missing
+glp_read_lp: 3188 rows, 5701 columns, 19594 non-zeros
+glp_read_lp: 16862 lines were read
+Scaling...
+ A: min|aij| =  2.000e-02  max|aij| =  2.000e+01  ratio =  1.000e+03
+EQ: min|aij| =  1.000e-02  max|aij| =  1.000e+00  ratio =  1.000e+02
+{'R("R_MCDm")': 1.0}
+checking  R("R_Obj")
+{'R("R_Obj")': 1.0}
+results for:  R("R_Obj")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  30.5774750588
+checking  R("M10fthf5glub_Transp")
+{'R("M10fthf5glub_Transp")': 1.0}
+results for:  R("M10fthf5glub_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf5glu_LPAREN_e_RPAREN_")
+{'R("R_EX_10fthf5glu_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_10fthf5glu_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf5glu_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_10fthf5glu_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_10fthf5glu_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHF5GLUtl")
+{'R("R_10FTHF5GLUtl")': 1.0}
+results for:  R("R_10FTHF5GLUtl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  171947.828052
+checking  R("R_10FTHF5GLUtm")
+{'R("R_10FTHF5GLUtm")': 1.0}
+results for:  R("R_10FTHF5GLUtm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  375873.344793
+checking  R("R_FPGS7")
+{'R("R_FPGS7")': 1.0}
+results for:  R("R_FPGS7")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  171947.828052
+checking  R("R_FPGS8")
+{'R("R_FPGS8")': 1.0}
+results for:  R("R_FPGS8")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  275116.524883
+checking  R("R_GGH_DASH_10FTHF5GLUe")
+{'R("R_GGH_DASH_10FTHF5GLUe")': 1.0}
+results for:  R("R_GGH_DASH_10FTHF5GLUe")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_GGH_DASH_10FTHF6GLUe")
+{'R("R_GGH_DASH_10FTHF6GLUe")': 1.0}
+results for:  R("R_GGH_DASH_10FTHF6GLUe")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_GGH_DASH_10FTHF5GLUl")
+{'R("R_GGH_DASH_10FTHF5GLUl")': 1.0}
+results for:  R("R_GGH_DASH_10FTHF5GLUl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  171947.828052
+checking  R("R_GGH_DASH_10FTHF6GLUl")
+{'R("R_GGH_DASH_10FTHF6GLUl")': 1.0}
+results for:  R("R_GGH_DASH_10FTHF6GLUl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  275116.524883
+checking  R("R_FPGS7m")
+{'R("R_FPGS7m")': 1.0}
+results for:  R("R_FPGS7m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  375873.344793
+checking  R("R_FPGS8m")
+{'R("R_FPGS8m")': 1.0}
+results for:  R("R_FPGS8m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  479042.041624
+checking  R("M10fthf6glub_Transp")
+{'R("M10fthf6glub_Transp")': 1.0}
+results for:  R("M10fthf6glub_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf6glu_LPAREN_e_RPAREN_")
+{'R("R_EX_10fthf6glu_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_10fthf6glu_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf6glu_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_10fthf6glu_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_10fthf6glu_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHF6GLUtl")
+{'R("R_10FTHF6GLUtl")': 1.0}
+results for:  R("R_10FTHF6GLUtl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  275116.524883
+checking  R("R_10FTHF6GLUtm")
+{'R("R_10FTHF6GLUtm")': 1.0}
+results for:  R("R_10FTHF6GLUtm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  479042.041624
+checking  R("R_FPGS9")
+{'R("R_FPGS9")': 1.0}
+results for:  R("R_FPGS9")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  343895.656104
+checking  R("R_GGH_DASH_10FTHF7GLUe")
+{'R("R_GGH_DASH_10FTHF7GLUe")': 1.0}
+results for:  R("R_GGH_DASH_10FTHF7GLUe")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_GGH_DASH_10FTHF7GLUl")
+{'R("R_GGH_DASH_10FTHF7GLUl")': 1.0}
+results for:  R("R_GGH_DASH_10FTHF7GLUl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  343895.656104
+checking  R("R_FPGS9m")
+{'R("R_FPGS9m")': 1.0}
+results for:  R("R_FPGS9m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  547821.172845
+checking  R("M10fthf7glub_Transp")
+{'R("M10fthf7glub_Transp")': 1.0}
+results for:  R("M10fthf7glub_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf7glu_LPAREN_e_RPAREN_")
+{'R("R_EX_10fthf7glu_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_10fthf7glu_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf7glu_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_10fthf7glu_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_10fthf7glu_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHF7GLUtl")
+{'R("R_10FTHF7GLUtl")': 1.0}
+results for:  R("R_10FTHF7GLUtl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  343895.656104
+checking  R("R_10FTHF7GLUtm")
+{'R("R_10FTHF7GLUtm")': 1.0}
+results for:  R("R_10FTHF7GLUtm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  547821.172845
+checking  R("M10fthfb_Transp")
+{'R("M10fthfb_Transp")': 1.0}
+results for:  R("M10fthfb_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf_LPAREN_e_RPAREN_")
+{'R("R_EX_10fthf_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_10fthf_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_10fthf_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_10fthf_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_10fthf_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHFtl")
+{'R("R_10FTHFtl")': 1.0}
+results for:  R("R_10FTHFtl")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHFtl_Rev")
+{'R("R_10FTHFtl_Rev")': 1.0}
+results for:  R("R_10FTHFtl_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHFtm")
+{'R("R_10FTHFtm")': 1.0}
+results for:  R("R_10FTHFtm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_10FTHFtm_Rev")
+{'R("R_10FTHFtm_Rev")': 1.0}
+results for:  R("R_10FTHFtm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_AICART")
+{'R("R_AICART")': 1.0}
+results for:  R("R_AICART")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  322623.677376
+checking  R("R_AICART_Rev")
+{'R("R_AICART_Rev")': 1.0}
+results for:  R("R_AICART_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  322623.677376
+checking  R("R_FTHFDH")
+{'R("R_FTHFDH")': 1.0}
+results for:  R("R_FTHFDH")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  36.5232381817
+checking  R("R_FTHFL")
+{'R("R_FTHFL")': 1.0}
+results for:  R("R_FTHFL")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_FTHFL_Rev")
+{'R("R_FTHFL_Rev")': 1.0}
+results for:  R("R_FTHFL_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_GARFT")
+{'R("R_GARFT")': 1.0}
+results for:  R("R_GARFT")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  317167.682832
+checking  R("R_GARFT_Rev")
+{'R("R_GARFT_Rev")': 1.0}
+results for:  R("R_GARFT_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  317167.682832
+checking  R("R_MTHFC")
+{'R("R_MTHFC")': 1.0}
+results for:  R("R_MTHFC")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_MTHFC_Rev")
+{'R("R_MTHFC_Rev")': 1.0}
+results for:  R("R_MTHFC_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_FTHFLm")
+{'R("R_FTHFLm")': 1.0}
+results for:  R("R_FTHFLm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  545823.454176
+checking  R("R_FTHFLm_Rev")
+{'R("R_FTHFLm_Rev")': 1.0}
+results for:  R("R_FTHFLm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_MTHFCm")
+{'R("R_MTHFCm")': 1.0}
+results for:  R("R_MTHFCm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_MTHFCm_Rev")
+{'R("R_MTHFCm_Rev")': 1.0}
+results for:  R("R_MTHFCm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("M11DASHcisDASHretfab_Transp")
+{'R("M11DASHcisDASHretfab_Transp")': 1.0}
+results for:  R("M11DASHcisDASHretfab_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_11_DASH_cis_DASH_retfa_LPAREN_e_RPAREN_")
+{'R("R_EX_11_DASH_cis_DASH_retfa_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_11_DASH_cis_DASH_retfa_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_11_DASH_cis_DASH_retfa_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_11_DASH_cis_DASH_retfa_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_11_DASH_cis_DASH_retfa_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_LRAT1")
+{'R("R_LRAT1")': 1.0}
+results for:  R("R_LRAT1")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  48.2995035148
+checking  R("R_RETFAt2")
+{'R("R_RETFAt2")': 1.0}
+results for:  R("R_RETFAt2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RETH2")
+{'R("R_RETH2")': 1.0}
+results for:  R("R_RETH2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  48.2995035148
+checking  R("R_RETH2e")
+{'R("R_RETH2e")': 1.0}
+results for:  R("R_RETH2e")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSLtm")
+{'R("R_11DOCRTSLtm")': 1.0}
+results for:  R("R_11DOCRTSLtm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSLtm_Rev")
+{'R("R_11DOCRTSLtm_Rev")': 1.0}
+results for:  R("R_11DOCRTSLtm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSLtr")
+{'R("R_11DOCRTSLtr")': 1.0}
+results for:  R("R_11DOCRTSLtr")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSLtr_Rev")
+{'R("R_11DOCRTSLtr_Rev")': 1.0}
+results for:  R("R_11DOCRTSLtr_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45011B12m")
+{'R("R_P45011B12m")': 1.0}
+results for:  R("R_P45011B12m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45021A2r")
+{'R("R_P45021A2r")': 1.0}
+results for:  R("R_P45021A2r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSTRNtm")
+{'R("R_11DOCRTSTRNtm")': 1.0}
+results for:  R("R_11DOCRTSTRNtm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSTRNtm_Rev")
+{'R("R_11DOCRTSTRNtm_Rev")': 1.0}
+results for:  R("R_11DOCRTSTRNtm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSTRNtr")
+{'R("R_11DOCRTSTRNtr")': 1.0}
+results for:  R("R_11DOCRTSTRNtr")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_11DOCRTSTRNtr_Rev")
+{'R("R_11DOCRTSTRNtr_Rev")': 1.0}
+results for:  R("R_11DOCRTSTRNtr_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45011B11m")
+{'R("R_P45011B11m")': 1.0}
+results for:  R("R_P45011B11m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45011B21m")
+{'R("R_P45011B21m")': 1.0}
+results for:  R("R_P45011B21m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45021A1r")
+{'R("R_P45021A1r")': 1.0}
+results for:  R("R_P45021A1r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P4504B1r")
+{'R("R_P4504B1r")': 1.0}
+results for:  R("R_P4504B1r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ALOX12")
+{'R("R_ALOX12")': 1.0}
+results for:  R("R_ALOX12")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ALCD21_D")
+{'R("R_ALCD21_D")': 1.0}
+results for:  R("R_ALCD21_D")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PPDOx")
+{'R("R_PPDOx")': 1.0}
+results for:  R("R_PPDOx")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PPDOy")
+{'R("R_PPDOy")': 1.0}
+results for:  R("R_PPDOy")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ALCD21_L")
+{'R("R_ALCD21_L")': 1.0}
+results for:  R("R_ALCD21_L")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ALR3")
+{'R("R_ALR3")': 1.0}
+results for:  R("R_ALR3")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ALOX12R")
+{'R("R_ALOX12R")': 1.0}
+results for:  R("R_ALOX12R")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_13DAMPPOX")
+{'R("R_13DAMPPOX")': 1.0}
+results for:  R("R_13DAMPPOX")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  33.7043120457
+checking  R("R_SPMDOX")
+{'R("R_SPMDOX")': 1.0}
+results for:  R("R_SPMDOX")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  33.7043120457
+checking  R("R_DM_13_DASH_cis_DASH_oretn_LPAREN_n_RPAREN_")
+{'R("R_DM_13_DASH_cis_DASH_oretn_LPAREN_n_RPAREN_")': 1.0}
+results for:  R("R_DM_13_DASH_cis_DASH_oretn_LPAREN_n_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ORETNF2")
+{'R("R_ORETNF2")': 1.0}
+results for:  R("R_ORETNF2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ORETNtn2")
+{'R("R_ORETNtn2")': 1.0}
+results for:  R("R_ORETNtn2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ORETNtn2_Rev")
+{'R("R_ORETNtn2_Rev")': 1.0}
+results for:  R("R_ORETNtn2_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RAI4")
+{'R("R_RAI4")': 1.0}
+results for:  R("R_RAI4")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RAI4_Rev")
+{'R("R_RAI4_Rev")': 1.0}
+results for:  R("R_RAI4_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DM_13_DASH_cis_DASH_retn_LPAREN_n_RPAREN_")
+{'R("R_DM_13_DASH_cis_DASH_retn_LPAREN_n_RPAREN_")': 1.0}
+results for:  R("R_DM_13_DASH_cis_DASH_retn_LPAREN_n_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RADH3")
+{'R("R_RADH3")': 1.0}
+results for:  R("R_RADH3")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RADH3_Rev")
+{'R("R_RADH3_Rev")': 1.0}
+results for:  R("R_RADH3_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RADH4")
+{'R("R_RADH4")': 1.0}
+results for:  R("R_RADH4")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RADH4_Rev")
+{'R("R_RADH4_Rev")': 1.0}
+results for:  R("R_RADH4_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RAI3")
+{'R("R_RAI3")': 1.0}
+results for:  R("R_RAI3")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RAI3_Rev")
+{'R("R_RAI3_Rev")': 1.0}
+results for:  R("R_RAI3_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RAtn3")
+{'R("R_RAtn3")': 1.0}
+results for:  R("R_RAtn3")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RAtn3_Rev")
+{'R("R_RAtn3_Rev")': 1.0}
+results for:  R("R_RAtn3_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RETNtr2")
+{'R("R_RETNtr2")': 1.0}
+results for:  R("R_RETNtr2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("M13DASHcisDASHretnglcb_Transp")
+{'R("M13DASHcisDASHretnglcb_Transp")': 1.0}
+results for:  R("M13DASHcisDASHretnglcb_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_13_DASH_cis_DASH_retnglc_LPAREN_e_RPAREN_")
+{'R("R_EX_13_DASH_cis_DASH_retnglc_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_13_DASH_cis_DASH_retnglc_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_13_DASH_cis_DASH_retnglc_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_13_DASH_cis_DASH_retnglc_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_13_DASH_cis_DASH_retnglc_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RETNGLCt2")
+{'R("R_RETNGLCt2")': 1.0}
+results for:  R("R_RETNGLCt2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_RETNGLCt2r")
+{'R("R_RETNGLCt2r")': 1.0}
+results for:  R("R_RETNGLCt2r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_UGT1A5r2")
+{'R("R_UGT1A5r2")': 1.0}
+results for:  R("R_UGT1A5r2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ACYP")
+{'R("R_ACYP")': 1.0}
+results for:  R("R_ACYP")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DPGM")
+{'R("R_DPGM")': 1.0}
+results for:  R("R_DPGM")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DPGM_Rev")
+{'R("R_DPGM_Rev")': 1.0}
+results for:  R("R_DPGM_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_GAPD")
+{'R("R_GAPD")': 1.0}
+results for:  R("R_GAPD")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  176767.823232
+checking  R("R_GAPD_Rev")
+{'R("R_GAPD_Rev")': 1.0}
+results for:  R("R_GAPD_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  176767.823232
+checking  R("R_PGK")
+{'R("R_PGK")': 1.0}
+results for:  R("R_PGK")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PGK_Rev")
+{'R("R_PGK_Rev")': 1.0}
+results for:  R("R_PGK_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_ALOX15")
+{'R("R_ALOX15")': 1.0}
+results for:  R("R_ALOX15")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_HSD3B13")
+{'R("R_HSD3B13")': 1.0}
+results for:  R("R_HSD3B13")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_HSD3B13r")
+{'R("R_HSD3B13r")': 1.0}
+results for:  R("R_HSD3B13r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45017A1r")
+{'R("R_P45017A1r")': 1.0}
+results for:  R("R_P45017A1r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45017A2r")
+{'R("R_P45017A2r")': 1.0}
+results for:  R("R_P45017A2r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45017A3r")
+{'R("R_P45017A3r")': 1.0}
+results for:  R("R_P45017A3r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P45017A4r")
+{'R("R_P45017A4r")': 1.0}
+results for:  R("R_P45017A4r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P4504F81r")
+{'R("R_P4504F81r")': 1.0}
+results for:  R("R_P4504F81r")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_1a_COMMA_24_COMMA_25VITD2Hm")
+{'R("R_1a_COMMA_24_COMMA_25VITD2Hm")': 1.0}
+results for:  R("R_1a_COMMA_24_COMMA_25VITD2Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_1a_COMMA_25VITD2Hm")
+{'R("R_1a_COMMA_25VITD2Hm")': 1.0}
+results for:  R("R_1a_COMMA_25VITD2Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_1a_COMMA_24_COMMA_25VITD3Hm")
+{'R("R_1a_COMMA_24_COMMA_25VITD3Hm")': 1.0}
+results for:  R("R_1a_COMMA_24_COMMA_25VITD3Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_1a_COMMA_25VITD3Hm")
+{'R("R_1a_COMMA_25VITD3Hm")': 1.0}
+results for:  R("R_1a_COMMA_25VITD3Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_25VITD2Hm")
+{'R("R_25VITD2Hm")': 1.0}
+results for:  R("R_25VITD2Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_25VITD3Hm")
+{'R("R_25VITD3Hm")': 1.0}
+results for:  R("R_25VITD3Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("M1glychsb_Transp")
+{'R("M1glychsb_Transp")': 1.0}
+results for:  R("M1glychsb_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_1glyc_hs_LPAREN_e_RPAREN_")
+{'R("R_EX_1glyc_hs_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_1glyc_hs_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_1glyc_hs_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_1glyc_hs_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_1glyc_hs_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_LPS4e")
+{'R("R_LPS4e")': 1.0}
+results for:  R("R_LPS4e")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("M1mncamb_Transp")
+{'R("M1mncamb_Transp")': 1.0}
+results for:  R("M1mncamb_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_1mncam_LPAREN_e_RPAREN_")
+{'R("R_EX_1mncam_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_1mncam_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_1mncam_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_1mncam_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_1mncam_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_1MNCAMti")
+{'R("R_1MNCAMti")': 1.0}
+results for:  R("R_1MNCAMti")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_NNMT")
+{'R("R_NNMT")': 1.0}
+results for:  R("R_NNMT")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_NMPTRCOX")
+{'R("R_NMPTRCOX")': 1.0}
+results for:  R("R_NMPTRCOX")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DPROOp")
+{'R("R_DPROOp")': 1.0}
+results for:  R("R_DPROOp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_HPROxm")
+{'R("R_HPROxm")': 1.0}
+results for:  R("R_HPROxm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PHCDm")
+{'R("R_PHCDm")': 1.0}
+results for:  R("R_PHCDm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PHCHGSm")
+{'R("R_PHCHGSm")': 1.0}
+results for:  R("R_PHCHGSm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PHCHGSm_Rev")
+{'R("R_PHCHGSm_Rev")': 1.0}
+results for:  R("R_PHCHGSm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_1PPDCRp")
+{'R("R_1PPDCRp")': 1.0}
+results for:  R("R_1PPDCRp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_PPD2CSPp")
+{'R("R_PPD2CSPp")': 1.0}
+results for:  R("R_PPD2CSPp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_G5SADs")
+{'R("R_G5SADs")': 1.0}
+results for:  R("R_G5SADs")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P5CR")
+{'R("R_P5CR")': 1.0}
+results for:  R("R_P5CR")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  953807.046192
+checking  R("R_P5CRx")
+{'R("R_P5CRx")': 1.0}
+results for:  R("R_P5CRx")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  953807.046192
+checking  R("R_PRO1x")
+{'R("R_PRO1x")': 1.0}
+results for:  R("R_PRO1x")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  953807.046192
+checking  R("R_PROD2")
+{'R("R_PROD2")': 1.0}
+results for:  R("R_PROD2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  30.2615435876
+checking  R("R_G5SADrm")
+{'R("R_G5SADrm")': 1.0}
+results for:  R("R_G5SADrm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_G5SADrm_Rev")
+{'R("R_G5SADrm_Rev")': 1.0}
+results for:  R("R_G5SADrm_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P5CDm")
+{'R("R_P5CDm")': 1.0}
+results for:  R("R_P5CDm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  955631.044368
+checking  R("R_P5CRm")
+{'R("R_P5CRm")': 1.0}
+results for:  R("R_P5CRm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  22175.977824
+checking  R("R_P5CRxm")
+{'R("R_P5CRxm")': 1.0}
+results for:  R("R_P5CRxm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  22175.977824
+checking  R("R_PRO1xm")
+{'R("R_PRO1xm")': 1.0}
+results for:  R("R_PRO1xm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  22175.977824
+checking  R("R_PROD2m")
+{'R("R_PROD2m")': 1.0}
+results for:  R("R_PROD2m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  65.63854
+checking  R("R_P450SCC1m")
+{'R("R_P450SCC1m")': 1.0}
+results for:  R("R_P450SCC1m")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_P450SCC1m_Rev")
+{'R("R_P450SCC1m_Rev")': 1.0}
+results for:  R("R_P450SCC1m_Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DASCBH")
+{'R("R_DASCBH")': 1.0}
+results for:  R("R_DASCBH")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DOGULND1")
+{'R("R_DOGULND1")': 1.0}
+results for:  R("R_DOGULND1")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DOGULND2")
+{'R("R_DOGULND2")': 1.0}
+results for:  R("R_DOGULND2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DOGULNO1")
+{'R("R_DOGULNO1")': 1.0}
+results for:  R("R_DOGULNO1")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DOGULNO2")
+{'R("R_DOGULNO2")': 1.0}
+results for:  R("R_DOGULNO2")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_DPGase")
+{'R("R_DPGase")': 1.0}
+results for:  R("R_DPGase")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("M2425dhvitd2b_Transp")
+{'R("M2425dhvitd2b_Transp")': 1.0}
+results for:  R("M2425dhvitd2b_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_2425dhvitd2_LPAREN_e_RPAREN_")
+{'R("R_EX_2425dhvitd2_LPAREN_e_RPAREN_")': 1.0}
+results for:  R("R_EX_2425dhvitd2_LPAREN_e_RPAREN_")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_2425dhvitd2_LPAREN_e_RPAREN__Rev")
+{'R("R_EX_2425dhvitd2_LPAREN_e_RPAREN__Rev")': 1.0}
+results for:  R("R_EX_2425dhvitd2_LPAREN_e_RPAREN__Rev")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_24_COMMA_25DHVITD2t")
+{'R("R_24_COMMA_25DHVITD2t")': 1.0}
+results for:  R("R_24_COMMA_25DHVITD2t")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_24_COMMA_25DHVITD2tm")
+{'R("R_24_COMMA_25DHVITD2tm")': 1.0}
+results for:  R("R_24_COMMA_25DHVITD2tm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_24_COMMA_25VITD2Hm")
+{'R("R_24_COMMA_25VITD2Hm")': 1.0}
+results for:  R("R_24_COMMA_25VITD2Hm")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("M2425dhvitd3b_Transp")
+{'R("M2425dhvitd3b_Transp")': 1.0}
+results for:  R("M2425dhvitd3b_Transp")  for  pUC-18_EBER2-L2.tsv
+Inconsistency Score:  0.0
+checking  R("R_EX_2425dhvitd3_LPAREN_e_RPAREN_")
+{'R("R_EX_2425dhvitd3_LPAREN_e_RPAREN_")': 1.0}

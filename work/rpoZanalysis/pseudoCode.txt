@@ -1,0 +1,37 @@
+unessentials = set()
+essentials = set()
+allReactions = set(model.getReactions())
+
+for reaction in allReactions:
+
+	try:
+    	for carbon in viableMedia:
+            # Here the carbon source and the reaction get send to the client
+    	    
+    		if essentialQ(carbon, reaction) == True: # The Answer comes from the client
+    			raise "Essential!"
+    		else:
+    			pass
+    except:
+        pass
+    
+    for carbon in lethalMedia:
+
+		if reaction in essentials2:
+			continue
+		(essentialQ, newActiveReactions) = analyze(reaction)
+	
+		if essentialQ == True:
+			essentials2.add(reaction)
+		else:
+			unessentials2.add(reaction)
+
+			
+			
+for carbon in viableMedia
+
+allReactions.difference_update(essentials)
+
+unessentials2 = set()
+essentials2 = set()
+

@@ -1,0 +1,1040 @@
+abbreviation	name	formula	charge	compartment	kegg_id	cas_id	internal_id	
+h2o	H2O	H2O	0	Cytosol, Extra-organism, Periplasm	C00001	7732-18-5	33474	
+atp	ATP	C10H12N5O13P3	-4	Cytosol	C00002	56-65-5	33477	
+nad	Nicotinamide adenine dinucleotide	C21H26N7O14P2	-1	Cytosol	C00003	53-84-9	33480	
+nadh	Nicotinamide adenine dinucleotide - reduced	C21H27N7O14P2	-2	Cytosol	C00004	58-68-4	33484	
+nadph	Nicotinamide adenine dinucleotide phosphate - reduced	C21H26N7O17P3	-4	Cytosol	C00005	2646-71-1	33486	
+nadp	Nicotinamide adenine dinucleotide phosphate	C21H25N7O17P3	-3	Cytosol	C00006	53-59-8	33488	
+o2	O2	O2	0	Cytosol, Extra-organism, Periplasm	C00007	7782-44-7	33493	
+adp	ADP	C10H12N5O10P2	-3	Cytosol	C00008	58-64-0	33496	
+pi	Phosphate	HO4P	-2	Cytosol, Extra-organism, Periplasm	C00009	14265-44-2	33499	
+coa	Coenzyme A	C21H32N7O16P3S	-4	Cytosol	C00010	85-61-0	33502	
+co2	CO2	CO2	0	Cytosol, Extra-organism, Periplasm	C00011	124-38-9	33506	
+ppi	Diphosphate	HO7P2	-3	Cytosol	C00013	2466-09-3	33511	
+nh4	Ammonium	H4N	1	Cytosol, Extra-organism, Periplasm	C01342	14798-03-9	33515	
+udp	UDP	C9H11N2O12P2	-3	Cytosol	C00015	58-98-0	33518	
+fad	Flavin adenine dinucleotide oxidized	C27H31N9O15P2	-2	Cytosol	C00016	146-14-5	33521	
+pydx5p	Pyridoxal 5'-phosphate	C8H8NO6P	-2	Cytosol	C00018	54-47-7	33526	
+amet	S-Adenosyl-L-methionine	C15H23N6O5S	1	Cytosol	C00019	29908-03-0	33530	
+amp	AMP	C10H12N5O7P	-2	Cytosol, Extra-organism, Periplasm	C00020	61-19-8	33534	
+ahcys	S-Adenosyl-L-homocysteine	C14H20N6O5S	0	Cytosol	C00021	979-92-0	33543	
+pyr	Pyruvate	C3H3O3	-1	Cytosol, Extra-organism, Periplasm	C00022	127-17-3	33546	
+fe2	Fe2+	Fe	2	Cytosol, Extra-organism, Periplasm	C00023	None	33552	
+accoa	Acetyl-CoA	C23H34N7O17P3S	-4	Cytosol	C00024	72-89-9	33558	
+glu-L	L-Glutamate	C5H8NO4	-1	Cytosol, Extra-organism, Periplasm	C00025	56-86-0	33561	
+akg	2-Oxoglutarate	C5H4O5	-2	Cytosol, Extra-organism, Periplasm	C00026	328-50-7	33565	
+h2o2	Hydrogen peroxide	H2O2	0	Cytosol, Extra-organism, Periplasm	C00027	7722-84-1	33570	
+udpg	UDPglucose	C15H22N2O17P2	-2	Cytosol, Extra-organism, Periplasm	C00029		33576	
+glc-D	D-Glucose	C6H12O6	0	Cytosol, Extra-organism, Periplasm	C00031	50-99-7	33582	
+pheme	Protoheme	C34H30FeN4O4	-2	Cytosol, Extra-organism, Periplasm	C00032	14875-96-8	33586	
+ac	Acetate	C2H3O2	-1	Cytosol, Extra-organism, Periplasm	C00033	71-50-1	33590	
+mn2	Mn2+	Mn	2	Cytosol, Extra-organism, Periplasm	C00034	None	33594	
+gdp	GDP	C10H12N5O11P2	-3	Cytosol, Extra-organism, Periplasm	C00035	146-91-8	33599	
+oaa	Oxaloacetate	C4H2O5	-2	Cytosol	C00036	328-42-7	33604	
+gly	Glycine	C2H5NO2	0	Cytosol, Extra-organism, Periplasm	C00037	56-40-6	33610	
+zn2	Zinc	Zn	2	Cytosol, Extra-organism, Periplasm	C00038	7440-66-6	33614	
+ala-L	L-Alanine	C3H7NO2	0	Cytosol, Extra-organism, Periplasm	C00041	56-41-7	33629	
+succ	Succinate	C4H4O4	-2	Cytosol, Extra-organism, Periplasm	C00042	110-15-6	33633	
+uacgam	UDP-N-acetyl-D-glucosamine	C17H25N3O17P2	-2	Cytosol, Extra-organism, Periplasm	C00043		33638	
+gtp	GTP	C10H12N5O14P3	-4	Cytosol, Extra-organism, Periplasm	C00044	86-01-1	33641	
+lys-L	L-Lysine	C6H15N2O2	1	Cytosol, Extra-organism, Periplasm	C00047	56-87-1	33655	
+glx	Glyoxylate	C2H1O3	-1	Cytosol	C00048	298-12-4	33659	
+asp-L	L-Aspartate	C4H6NO4	-1	Cytosol, Extra-organism, Periplasm	C00049	56-84-8	33663	
+gthrd	Reduced glutathione	C10H16N3O6S	-1	Cytosol, Extra-organism, Periplasm	C00051	70-18-8	33669	
+udpgal	UDPgalactose	C15H22N2O17P2	-2	Cytosol, Extra-organism, Periplasm	C00052		33675	
+paps	3'-Phosphoadenylyl sulfate	C10H11N5O13P2S	-4	Cytosol	C00053	482-67-7	33679	
+pap	Adenosine 3',5'-bisphosphate	C10H11N5O10P2	-4	Cytosol	C00054	1053-73-2	33684	
+cmp	CMP	C9H12N3O8P	-2	Cytosol, Extra-organism, Periplasm	C00055		33689	
+for	Formate	CH1O2	-1	Cytosol, Extra-organism, Periplasm	C00058	64-18-6	33693	
+so4	Sulfate	O4S	-2	Cytosol, Extra-organism, Periplasm	C00059	7664-93-9	33697	
+fmn	FMN	C17H19N4O9P	-2	Cytosol	C00061	146-17-8	33703	
+arg-L	L-Arginine	C6H15N4O2	1	Cytosol, Extra-organism, Periplasm	C00062	74-79-3	33707	
+ctp	CTP	C9H12N3O14P3	-4	Cytosol	C00063	65-47-4	33710	
+gln-L	L-Glutamine	C5H10N2O3	0	Cytosol, Extra-organism, Periplasm	C00064	56-85-9	33714	
+ser-L	L-Serine	C3H7NO3	0	Cytosol, Extra-organism, Periplasm	C00065	56-45-1	33717	
+fald	Formaldehyde	CH2O	0	Cytosol, Extra-organism, Periplasm	C00067	50-00-0	33726	
+thmpp	Thiamine diphosphate	C12H16N4O7P2S	-2	Cytosol	C00068	154-87-0	33732	
+ascb-L	L-Ascorbate	C6H8O6	0	Extra-organism, Periplasm	C00072	50-81-7	33747	
+met-L	L-Methionine	C5H11NO2S	0	Cytosol, Extra-organism, Periplasm	C00073	63-68-3	33753	
+pep	Phosphoenolpyruvate	C3H2O6P	-3	Cytosol	C00074	138-08-9	33756	
+utp	UTP	C9H11N2O15P3	-4	Cytosol	C00075	63-39-8	33760	
+ca2	Calcium	Ca	2	Cytosol, Extra-organism, Periplasm	C00076	7440-70-2	33764	
+trp-L	L-Tryptophan	C11H12N2O2	0	Cytosol, Extra-organism, Periplasm	C00078	73-22-3	33772	
+phe-L	L-Phenylalanine	C9H11NO2	0	Cytosol, Extra-organism, Periplasm	C00079	63-91-2	33775	
+h	H+	H	1	Cytosol, Extra-organism, Periplasm	C00080	12408-02-5	33778	
+itp	ITP	C10H11N4O14P3	-4	Cytosol	C00081	132-06-9	33780	
+tyr-L	L-Tyrosine	C9H11NO3	0	Cytosol, Extra-organism, Periplasm	C00082	60-18-4	33785	
+malcoa	Malonyl-CoA	C24H33N7O19P3S	-5	Cytosol	C00083	524-14-1	33789	
+acald	Acetaldehyde	C2H4O	0	Cytosol, Extra-organism, Periplasm	C00084	75-07-0	33792	
+f6p	D-Fructose 6-phosphate	C6H11O9P	-2	Cytosol, Extra-organism, Periplasm	C00085	643-13-0	33795	
+urea	Urea	CH4N2O	0	Cytosol, Extra-organism, Periplasm	C00086	57-13-6	33799	
+s	Sulfur	S	0	Cytosol	C00087	7704-34-9	33802	
+no2	Nitrite	NO2	-1	Cytosol, Extra-organism, Periplasm	C00088	7697-37-2	33805	
+sucr	Sucrose	C12H22O11	0	Extra-organism, Periplasm	C00089	57-50-1	33807	
+succoa	Succinyl-CoA	C25H35N7O19P3S	-5	Cytosol	C00091	604-98-8	33820	
+so3	Sulfite	O3S	-2	Cytosol, Extra-organism, Periplasm	C00094	7782-99-2	33833	
+fru	D-Fructose	C6H12O6	0	Cytosol, Extra-organism, Periplasm	C00095	57-48-7	33835	
+cys-L	L-Cysteine	C3H7NO2S	0	Cytosol, Extra-organism, Periplasm	C00097	52-90-4	33843	
+ala-B	beta-Alanine	C3H7NO2	0	Cytosol, Extra-organism, Periplasm	C00099	107-95-9	33848	
+ppcoa	Propanoyl-CoA	C24H36N7O17P3S	-4	Cytosol	C00100	317-66-8	33852	
+thf	5,6,7,8-Tetrahydrofolate	C19H21N7O6	-2	Cytosol	C00101	135-16-0	33856	
+g1p	D-Glucose 1-phosphate	C6H11O9P	-2	Cytosol, Extra-organism, Periplasm	C00103	59-56-3	33865	
+idp	IDP	C10H11N4O11P2	-3	Cytosol	C00104	86-04-4	33869	
+ump	UMP	C9H11N2O9P	-2	Cytosol, Extra-organism, Periplasm	C00105	58-97-9	33873	
+ura	Uracil	C4H4N2O2	0	Cytosol, Extra-organism, Periplasm	C00106	66-22-8	33879	
+anth	Anthranilate	C7H6NO2	-1	Cytosol	C00108	118-92-3	33883	
+2obut	2-Oxobutanoate	C4H5O3	-1	Cytosol	C00109	600-18-0	33889	
+dhap	Dihydroxyacetone phosphate	C3H5O6P	-2	Cytosol	C00111	57-04-5	33898	
+cdp	CDP	C9H12N3O11P2	-3	Cytosol	C00112	63-38-7	33901	
+chol	Choline	C5H14NO	1	Cytosol, Extra-organism, Periplasm	C00114	123-41-1	33910	
+glyc	Glycerol	C3H8O3	0	Cytosol, Extra-organism, Periplasm	C00116	56-81-5	33915	
+prpp	5-Phospho-alpha-D-ribose 1-diphosphate	C5H8O14P3	-5	Cytosol	C00119		33926	
+btn	Biotin	C10H15N2O3S	-1	Cytosol	C00120	58-85-5	33931	
+rib-D	D-Ribose	C5H10O5	0	Cytosol, Extra-organism, Periplasm	C00121	50-69-1	33936	
+fum	Fumarate	C4H2O4	-2	Cytosol, Extra-organism, Periplasm	C00122	110-17-8	33938	
+leu-L	L-Leucine	C6H13NO2	0	Cytosol, Extra-organism, Periplasm	C00123	61-90-5	33942	
+gal	D-Galactose	C6H12O6	0	Cytosol, Extra-organism, Periplasm	C00124	59-23-4	33945	
+gthox	Oxidized glutathione	C20H30N6O12S2	-2	Cytosol, Extra-organism, Periplasm	C00127		33951	
+ipdp	Isopentenyl diphosphate	C5H9O7P2	-3	Cytosol	C00129		33956	
+imp	IMP	C10H11N4O8P	-2	Cytosol, Extra-organism, Periplasm	C00130	131-99-7	33960	
+datp	dATP	C10H12N5O12P3	-4	Cytosol	C00131	1927-31-7	33969	
+ala-D	D-Alanine	C3H7NO2	0	Cytosol, Extra-organism, Periplasm	C00133	338-69-2	33977	
+ptrc	Putrescine	C4H14N2	2	Cytosol, Extra-organism, Periplasm	C00134	110-60-1	33980	
+his-L	L-Histidine	C6H9N3O2	0	Cytosol, Extra-organism, Periplasm	C00135	71-00-1	33985	
+btcoa	Butanoyl-CoA	C25H38N7O17P3S	-4	Cytosol	C00136		33988	
+inost	myo-Inositol	C6H12O6	0	Cytosol, Extra-organism, Periplasm	C00137	87-89-8	33990	
+acgam	N-Acetyl-D-glucosamine	C8H15NO6	0	Cytosol, Extra-organism, Periplasm	C00140	7512-17-6	34006	
+3mob	3-Methyl-2-oxobutanoate	C5H7O3	-1	Cytosol	C00141		34011	
+mlthf	5,10-Methylenetetrahydrofolate	C20H21N7O6	-2	Cytosol	C00143		34022	
+gmp	GMP	C10H12N5O8P	-2	Cytosol, Extra-organism, Periplasm	C00144	85-32-5	34024	
+ade	Adenine	C5H5N5	0	Cytosol, Extra-organism, Periplasm	C00147	73-24-5	34039	
+pro-L	L-Proline	C5H9NO2	0	Cytosol, Extra-organism, Periplasm	C00148	147-85-3	34042	
+mal-L	L-Malate	C4H4O5	-2	Cytosol, Extra-organism, Periplasm	C00149	97-67-6	34045	
+asn-L	L-Asparagine	C4H8N2O3	0	Cytosol, Extra-organism, Periplasm	C00152	70-47-3	34055	
+ncam	Nicotinamide	C6H6N2O	0	Cytosol	C00153	98-92-0	34058	
+pmtcoa	Palmitoyl-CoA (n-C16:0CoA)	C37H62N7O17P3S	-4	Cytosol	C00154		34063	
+4hbz	4-Hydroxybenzoate	C7H5O3	-1	Cytosol	C00156	99-96-7	34069	
+cit	Citrate	C6H5O7	-3	Cytosol, Extra-organism, Periplasm	C00158	77-92-9	34080	
+man	D-Mannose	C6H12O6	0	Cytosol, Extra-organism, Periplasm	C00159	3458-28-4	34085	
+glyclt	Glycolate	C2H3O3	-1	Cytosol, Extra-organism, Periplasm	C00160	79-14-1	34090	
+ppa	Propionate (n-C3:0)	C3H5O2	-1	Cytosol, Extra-organism, Periplasm	C00163	79-09-4	34098	
+phpyr	Phenylpyruvate	C9H7O3	-1	Cytosol	C00166	156-06-9	34111	
+udpglcur	UDP-D-glucuronate	C15H19N2O18P2	-3	Cytosol, Extra-organism, Periplasm	C00167		34117	
+hpyr	Hydroxypyruvate	C3H3O4	-1	Cytosol	C00168	1113-60-6	34120	
+cbp	Carbamoyl phosphate	CH2NO5P	-2	Cytosol	C00169		34125	
+5mta	5-Methylthioadenosine	C11H15N5O3S	0	Cytosol	C00170	2457-80-9	34127	
+cobalt2	Co2+	Co	2	Cytosol, Extra-organism, Periplasm	C00175	7440-48-4	34141	
+cyan	Hydrogen cyanide	CHN	0	Cytosol, Extra-organism, Periplasm	C01326	57-12-5	34146	
+thym	Thymine	C5H6N2O2	0	Cytosol, Extra-organism, Periplasm	C00178	65-71-4	34151	
+agm	Agmatine	C5H16N4	2	Cytosol, Extra-organism, Periplasm	C00179	306-60-5	34153	
+xyl-D	D-Xylose	C5H10O5	0	Cytosol, Extra-organism, Periplasm	C00181	58-86-6	34162	
+val-L	L-Valine	C5H11NO2	0	Cytosol, Extra-organism, Periplasm	C00183	72-18-4	34167	
+dha	Dihydroxyacetone	C3H6O3	0	Cytosol, Extra-organism, Periplasm	C00184	96-26-4	34170	
+lac-L	L-Lactate	C3H5O3	-1	Cytosol, Extra-organism, Periplasm	C00186	79-33-4	34179	
+thr-L	L-Threonine	C4H9NO3	0	Cytosol, Extra-organism, Periplasm	C00188	72-19-5	34186	
+etha	Ethanolamine	C2H8NO	1	Cytosol, Extra-organism, Periplasm	C00189	141-43-5	34189	
+glcur	D-Glucuronate	C6H9O7	-1	Cytosol, Extra-organism, Periplasm	C00191	6556-12-3	34196	
+adocbl	Adenosylcobalamin	C72H100CoN18O17P	0	Cytosol, Extra-organism, Periplasm	C00194	13870-90-1	34204	
+23dhb	2,3-Dihydroxybenzoate	C7H5O4	-1	Cytosol	C00196	303-38-8	34227	
+3pg	3-Phospho-D-glycerate	C3H4O7P	-3	Cytosol	C00197		34230	
+ru5p-D	D-Ribulose 5-phosphate	C5H9O8P	-2	Cytosol	C00199	4151-19-3	34237	
+udpacgal	UDP-N-acetyl-D-galactosamine	C17H25N3O17P2	-2	Extra-organism, Periplasm	C00203	None	34247	
+2ddglcn	2-Dehydro-3-deoxy-D-gluconate	C6H9O6	-1	Cytosol, Extra-organism, Periplasm	C00204	None	34249	
+dadp	dADP	C10H12N5O9P2	-3	Cytosol	C00206	None	34254	
+malt	Maltose	C12H22O11	0	Cytosol, Extra-organism, Periplasm	C00208	69-79-4	34261	
+adn	Adenosine	C10H13N5O4	0	Cytosol, Extra-organism, Periplasm	C00212	58-61-7	34273	
+sarcs	Sarcosine	C3H7NO2	0	Cytosol	C00213	107-97-1	34275	
+glu-D	D-Glutamate	C5H8NO4	-1	Cytosol	C00217	6893-26-1	34285	
+aps	Adenosine 5'-phosphosulfate	C10H12N5O10PS	-2	Cytosol	C00224		34307	
+actp	Acetyl phosphate	C2H3O5P	-2	Cytosol	C00227	19926-71-7	34318	
+xu5p-D	D-Xylulose 5-phosphate	C5H9O8P	-2	Cytosol	C00231	None	34329	
+sucsal	Succinic semialdehyde	C4H5O3	-1	Cytosol	C00232	692-29-5	34331	
+4mop	4-Methyl-2-oxopentanoate	C6H9O3	-1	Cytosol	C00233		34334	
+10fthf	10-Formyltetrahydrofolate	C20H21N7O7	-2	Cytosol	C00234		34337	
+13dpg	3-Phospho-D-glyceroyl phosphate	C3H4O10P2	-4	Cytosol	C00236	None	34342	
+k	potassium	K	1	Cytosol, Extra-organism, Periplasm	C00238		34349	
+dcmp	dCMP	C9H12N3O7P	-2	Cytosol, Extra-organism, Periplasm	C00239	1032-65-1	34352	
+gua	Guanine	C5H5N5O	0	Cytosol, Extra-organism, Periplasm	C00242	73-40-5	34363	
+lcts	Lactose	C12H22O11	0	Cytosol, Extra-organism, Periplasm	C00243	63-42-3	34366	
+taur	Taurine	C2H7NO3S	0	Cytosol, Extra-organism, Periplasm	C00245	107-35-7	34373	
+but	Butyrate (n-C4:0)	C4H7O2	-1	Cytosol, Extra-organism, Periplasm	C00246	107-92-6	34376	
+hdca	Hexadecanoate (n-C16:0)	C16H31O2	-1	Cytosol, Extra-organism, Periplasm	C00249	57-10-3	34386	
+pydx	Pyridoxal	C8H9NO3	0	Cytosol	C00250	66-72-8	34393	
+chor	chorismate	C10H8O6	-2	Cytosol	C00251	55508-12-8	34395	
+nac	Nicotinate	C6H4NO2	-1	Cytosol, Extra-organism, Periplasm	C00253	59-67-6	34401	
+pphn	Prephenate	C10H8O6	-2	Cytosol	C00254	126-49-8	34406	
+ribflv	Riboflavin	C17H20N4O6	0	Cytosol	C00255	83-88-5	34409	
+lac-D	D-Lactate	C3H5O3	-1	Cytosol, Extra-organism, Periplasm	C00256	10326-41-7	34414	
+glcn	D-Gluconate	C6H11O7	-1	Cytosol, Extra-organism, Periplasm	C00257	526-95-4	34420	
+glyc-R	(R)-Glycerate	C3H5O4	-1	Cytosol, Extra-organism, Periplasm	C00258	473-81-4	34424	
+arab-L	L-Arabinose	C5H10O5	0	Cytosol, Extra-organism, Periplasm	C00259	147-81-9	34429	
+hxan	Hypoxanthine	C5H4N4O	0	Cytosol, Extra-organism, Periplasm	C00262	68-94-0	34434	
+hom-L	L-Homoserine	C4H9NO3	0	Cytosol, Extra-organism, Periplasm	C00263	672-15-1	34437	
+gcald	Glycolaldehyde	C2H4O2	0	Cytosol	C00266		34446	
+acnam	N-Acetylneuraminate	C11H18NO9	-1	Cytosol, Extra-organism, Periplasm	C00270	131-48-6	34458	
+man6p	D-Mannose 6-phosphate	C6H11O9P	-2	Cytosol, Extra-organism, Periplasm	C00275	None	34471	
+e4p	D-Erythrose 4-phosphate	C4H7O7P	-2	Cytosol	C00279	585-18-2	34479	
+s7p	Sedoheptulose 7-phosphate	C7H13O10P	-2	Cytosol	C00281	None	34485	
+h2	H2	H2	0	Cytosol, Extra-organism, Periplasm	C00282	1333-74-0	34488	
+h2s	Hydrogen sulfide	H2S	0	Cytosol, Extra-organism, Periplasm	C00283	7783-06-4	34491	
+dgtp	dGTP	C10H12N5O13P3	-4	Cytosol	C00286	2564-35-4	34502	
+hco3	Bicarbonate	CHO3	-1	Cytosol	C00288	71-52-3	34509	
+ni2	nickel	Ni	2	Cytosol, Extra-organism, Periplasm	C00291		34516	
+ins	Inosine	C10H12N4O5	0	Cytosol, Extra-organism, Periplasm	C00294	58-63-9	34525	
+orot	Orotate	C5H3N2O4	-1	Cytosol, Extra-organism, Periplasm	C00295	65-86-1	34527	
+uri	Uridine	C9H12N2O6	0	Cytosol, Extra-organism, Periplasm	C00299	58-96-8	34541	
+adprib	ADPribose	C15H21N5O14P2	-2	Cytosol	C00301		34547	
+xylu-D	D-Xylulose	C5H10O5	0	Cytosol	C00310	551-84-8	34575	
+icit	Isocitrate	C6H5O7	-3	Cytosol	C00311	30810-51-6	34579	
+xylu-L	L-Xylulose	C5H10O5	0	Cytosol, Extra-organism, Periplasm	C00312	527-50-4	34584	
+pydxn	Pyridoxine	C8H11NO3	0	Cytosol	C00314	65-23-6	34590	
+spmd	Spermidine	C7H22N3	3	Cytosol, Extra-organism, Periplasm	C00315	124-20-9	34593	
+crn	L-Carnitine	C7H15NO3	0	Cytosol, Extra-organism, Periplasm	C00318	541-15-1	34600	
+tsul	Thiosulfate	O3S2	-2	Cytosol, Extra-organism, Periplasm	C00320		34610	
+gdpfuc	GDP-L-fucose	C16H23N5O15P2	-2	Cytosol	C00325		34623	
+citr-L	L-Citrulline	C6H13N3O3	0	Cytosol	C00327	372-75-8	34627	
+gam	D-Glucosamine	C6H14NO5	1	Extra-organism, Periplasm	C00329	3416-24-8	34633	
+dgsn	Deoxyguanosine	C10H13N5O4	0	Cytosol, Extra-organism, Periplasm	C00330	961-07-9	34637	
+aacoa	Acetoacetyl-CoA	C25H36N7O18P3S	-4	Cytosol	C00332	1420-36-6	34646	
+galur	D-Galacturonate	C6H9O7	-1	Cytosol, Extra-organism, Periplasm	C00333	685-73-4	34649	
+4abut	4-Aminobutanoate	C4H9NO2	0	Cytosol, Extra-organism, Periplasm	C00334	56-12-2	34652	
+dhor-S	(S)-Dihydroorotate	C5H5N2O4	-1	Cytosol	C00337	5988-19-2	34662	
+grdp	Geranyl diphosphate	C10H17O7P2	-3	Cytosol	C00341		34675	
+trdrd	Reduced thioredoxin	XH2	0	Cytosol	C00342		34677	
+trdox	Oxidized thioredoxin	X	0	Cytosol	C00343		34679	
+6pgc	6-Phospho-D-gluconate	C6H10O10P	-3	Cytosol	C00345		34686	
+udcpp	Undecaprenyl phosphate	C55H89O4P	-2	Cytosol, Periplasm	C00348		34696	
+gam6p	D-Glucosamine 6-phosphate	C6H13NO8P	-1	Cytosol, Extra-organism, Periplasm	C00352	3616-42-0	34709	
+fdp	D-Fructose 1,6-bisphosphate	C6H10O12P2	-4	Cytosol	C00354	488-69-7	34717	
+acgam6p	N-Acetyl-D-glucosamine 6-phosphate	C8H14NO9P	-2	Cytosol	C00357	102029-88-9	34733	
+damp	dAMP	C10H12N5O6P	-2	Cytosol, Extra-organism, Periplasm	C00360	653-63-4	34735	
+dgdp	dGDP	C10H12N5O10P2	-3	Cytosol	C00361		34741	
+dgmp	dGMP	C10H12N5O7P	-2	Cytosol, Extra-organism, Periplasm	C00362	902-04-5	34744	
+dtdp	dTDP	C10H13N2O11P2	-3	Cytosol	C00363		34750	
+dtmp	dTMP	C10H13N2O8P	-2	Cytosol, Extra-organism, Periplasm	C00364	365-07-1	34753	
+dump	dUMP	C9H11N2O8P	-2	Cytosol, Extra-organism, Periplasm	C00365	964-26-1	34762	
+urate	Urate	C5H4N4O3	0	Cytosol	C00366	69-93-2	34768	
+thm	Thiamin	C12H17N4OS	1	Cytosol, Extra-organism, Periplasm	C00378	67-03-8	34804	
+csn	Cytosine	C4H5N3O	0	Cytosol, Extra-organism, Periplasm	C00380	71-30-7	34812	
+xan	Xanthine	C5H4N4O2	0	Cytosol, Extra-organism, Periplasm	C00385	69-89-6	34825	
+mnl	D-Mannitol	C6H14O6	0	Extra-organism, Periplasm	C00392	69-65-8	34845	
+ile-L	L-Isoleucine	C6H13NO2	0	Cytosol, Extra-organism, Periplasm	C00407	73-32-5	34887	
+dhf	7,8-Dihydrofolate	C19H19N7O6	-2	Cytosol	C00415	4033-27-6	34911	
+acon-C	cis-Aconitate	C6H3O6	-3	Cytosol	C00417	585-84-2	34920	
+cinnm	trans-Cinnamate	C9H7O2	-1	Cytosol	C00423	140-10-3	34938	
+lald-L	L-Lactaldehyde	C3H6O2	0	Cytosol	C00424	598-35-6	34941	
+5aop	5-Amino-4-oxopentanoate	C5H9NO3	0	Cytosol	C00430	106-60-5	34963	
+acorn	N2-Acetyl-L-ornithine	C7H14N2O3	0	Cytosol	C00437	None	34982	
+cbasp	N-Carbamoyl-L-aspartate	C5H6N2O5	-2	Cytosol	C00438		34984	
+5mthf	5-Methyltetrahydrofolate	C20H24N7O6	-1	Cytosol	C00440		34988	
+aspsa	L-Aspartate 4-semialdehyde	C4H7NO3	0	Cytosol	C00441	None	34990	
+r1p	alpha-D-Ribose 1-phosphate	C5H9O8P	-2	Cytosol	C00442	58459-37-3	34994	
+methf	5,10-Methenyltetrahydrofolate	C20H20N7O6	-1	Cytosol	C00445		34999	
+gal1p	alpha-D-Galactose 1-phosphate	C6H11O9P	-2	Cytosol, Extra-organism, Periplasm	C00446	2255-14-3	35001	
+frdp	Farnesyl diphosphate	C15H25O7P2	-3	Cytosol	C00448	13058-04-3	35006	
+nmn	NMN	C11H14N2O8P	-1	Cytosol, Extra-organism, Periplasm	C00455	1094-61-7	35022	
+dctp	dCTP	C9H12N3O13P3	-4	Cytosol	C00458	2056-98-6	35027	
+dttp	dTTP	C10H13N2O14P3	-4	Cytosol	C00459		35032	
+dutp	dUTP	C9H11N2O14P3	-4	Cytosol	C00460		35037	
+indole	Indole	C8H7N	0	Cytosol, Extra-organism, Periplasm	C00463	120-72-9	35045	
+etoh	Ethanol	C2H6O	0	Cytosol, Extra-organism, Periplasm	C00469	64-17-5	35062	
+cytd	Cytidine	C9H13N3O5	0	Cytosol, Extra-organism, Periplasm	C00475	65-46-3	35089	
+ppal	Propanal	C3H6O	0	Cytosol, Extra-organism, Periplasm	C00479	123-38-6	35098	
+tym	Tyramine	C8H12NO	1	Extra-organism, Periplasm	C00483	51-67-2	35110	
+skm	Shikimate	C7H9O5	-1	Cytosol, Extra-organism, Periplasm	C00493	138-59-0	35144	
+mal-D	D-Malate	C4H4O5	-2	Cytosol, Extra-organism, Periplasm	C00497	636-61-3	35157	
+adpglc	ADPglucose	C16H23N5O15P2	-2	Cytosol	C00498		35161	
+alltt	Allantoate	C4H7N4O4	-1	Cytosol	C00499	99-16-1	35164	
+rmn	L-Rhamnose	C6H12O5	0	Cytosol, Extra-organism, Periplasm	C00507	3615-41-6	35191	
+rbl-L	L-Ribulose	C5H10O5	0	Cytosol	C00508		35195	
+mana	D-Mannonate	C6H11O7	-1	Cytosol	C00514		35217	
+pant-R	(R)-Pantoate	C6H11O4	-1	Cytosol	C00522	470-29-1	35240	
+duri	Deoxyuridine	C9H12N2O5	0	Cytosol, Extra-organism, Periplasm	C00526	951-78-0	35251	
+hqn	Hydroquinone	C6H6O2	0	Cytosol	C00530	123-31-9	35259	
+no	Nitric oxide	NO	0	Cytosol, Extra-organism, Periplasm	C00533	10102-43-9	35273	
+pydam	Pyridoxamine	C8H13N2O2	1	Cytosol	C00534	85-87-0	35277	
+mthgxl	Methylglyoxal	C3H4O2	0	Cytosol	C00546	78-98-8	35307	
+4abutn	4-Aminobutanal	C4H10NO	1	Cytosol	C00555		35337	
+tagur	D-Tagaturonate	C6H9O7	-1	Cytosol	C00558	None	35350	
+dad-2	Deoxyadenosine	C10H13N5O3	0	Cytosol, Extra-organism, Periplasm	C00559	958-09-8	35352	
+tma	trimethylamine	C3H10N	1	Cytosol, Extra-organism, Periplasm	C00565	75-50-3	35366	
+4abz	4-Aminobenzoate	C7H6NO2	-1	Cytosol	C00568	150-13-0	35376	
+betald	Betaine aldehyde	C5H12NO	1	Cytosol	C00576		35400	
+glyald	D-Glyceraldehyde	C3H6O3	0	Cytosol, Extra-organism, Periplasm	C00577	453-17-8	35402	
+dms	Dimethyl sulfide	C2H6S	0	Cytosol, Extra-organism, Periplasm	C00580	75-18-3	35409	
+phaccoa	Phenylacetyl-CoA	C29H38N7O17P3S	-4	Cytosol	C00582		35419	
+op4en	2-Oxopent-4-enoate	C5H5O3	-1	Cytosol	C00596		35454	
+pacald	Phenylacetaldehyde	C8H8O	0	Cytosol, Extra-organism, Periplasm	C00601	122-78-1	35469	
+3sala	3-Sulfino-L-alanine	C3H5NO4S	-2	Cytosol	C00606	1115-65-7	35482	
+N1aspmd	N1-Acetylspermidine	C9H23N3O	2	Cytosol	C00612	34450-16-3	35495	
+3dhguln	3-Dehydro-L-gulonate	C6H9O7	-1	Cytosol	C00618		35509	
+acglu	N-Acetyl-L-glutamate	C7H9NO5	-2	Cytosol	C00624	1188-37-0	35520	
+pdx5p	Pyridoxine 5'-phosphate	C8H10NO6P	-2	Cytosol	C00627	447-05-2	35527	
+2dhglcn	2-Dehydro-D-gluconate	C6H9O7	-1	Cytosol	C00629		35536	
+2pg	D-Glycerate 2-phosphate	C3H4O7P	-3	Cytosol	C00631		35542	
+mnl1p	D-Mannitol 1-phosphate	C6H13O9P	-2	Cytosol	C00644		35604	
+acmana	N-Acetyl-D-mannosamine	C8H15NO6	0	Cytosol, Extra-organism, Periplasm	C00645	3615-17-6	35606	
+pyam5p	Pyridoxamine 5'-phosphate	C8H12N2O5P	-1	Cytosol	C00647	529-96-4	35609	
+xmp	Xanthosine 5'-phosphate	C10H11N4O9P	-2	Cytosol, Extra-organism, Periplasm	C00655	523-98-8	35623	
+2ahbut	(S)-2-Aceto-2-hydroxybutanoate	C6H9O4	-1	Cytosol	C06006		35632	
+g3p	Glyceraldehyde 3-phosphate	C3H5O6P	-2	Cytosol	C00118	142-10-9	35637	
+26dap-LL	LL-2,6-Diaminoheptanedioate	C7H14N2O4	0	Cytosol	C00666	583-93-7	35647	
+glucys	gamma-L-Glutamyl-L-cysteine	C8H13N2O5S	-1	Cytosol	C00669	686-58-8	35655	
+g3pc	sn-Glycero-3-phosphocholine	C8H20NO6P	0	Cytosol, Extra-organism, Periplasm	C00670		35659	
+3mop	(S)-3-Methyl-2-oxopentanoate	C6H9O3	-1	Cytosol	C00671		35662	
+2dr1p	2-Deoxy-D-ribose 1-phosphate	C5H9O7P	-2	Cytosol	C00672		35664	
+2dr5p	2-Deoxy-D-ribose 5-phosphate	C5H9O7P	-2	Cytosol	C00673	102916-66-5	35666	
+5dh4dglc	5-Dehydro-4-deoxy-D-glucarate	C6H6O7	-2	Cytosol	C00679		35679	
+26dap-M	meso-2,6-Diaminoheptanedioate	C7H14N2O4	0	Cytosol, Extra-organism, Periplasm	C00680	None	35681	
+mmcoa-S	(S)-Methylmalonyl-CoA	C25H35N7O19P3S	-5	Cytosol	C00683		35689	
+dtdp4d6dg	dTDP-4-dehydro-6-deoxy-D-glucose	C16H22N2O15P2	-2	Cytosol	C00687		35701	
+dtdp4d6dm	dTDP-4-dehydro-6-deoxy-L-mannose	C16H22N2O15P2	-2	Cytosol	C00688		35704	
+tre6p	alpha,alpha'-Trehalose 6-phosphate	C12H21O14P	-2	Cytosol	C00689	4484-88-2	35708	
+uamag	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate	C28H39N5O23P2	-4	Cytosol	C00692		35714	
+xtp	XTP	C10H11N4O15P3	-4	Cytosol	C00700		35735	
+hg2	Hg2+	Hg	2	Cytosol, Extra-organism, Periplasm	C00703		35741	
+o2s	Superoxide anion	O2	-1	Cytosol, Extra-organism, Periplasm	C00704		35743	
+glyb	Glycine betaine	C5H11NO2	0	Cytosol, Extra-organism, Periplasm	C00719	107-43-7	35786	
+ser-D	D-Serine	C3H7NO3	0	Cytosol, Extra-organism, Periplasm	C00740	312-84-5	35846	
+sheme	Siroheme	C42H36FeN4O16	-8	Cytosol	C00748		35869	
+glcr	D-Glucarate	C6H8O8	-2	Cytosol, Extra-organism, Periplasm	C00818	87-73-0	35926	
+idon-L	L-Idonate	C6H11O7	-1	Cytosol, Extra-organism, Periplasm	C00770	1114-17-6	35934	
+cys-D	D-Cysteine	C3H7NO2S	0	Cytosol, Extra-organism, Periplasm	C00793	921-01-7	36015	
+sbt-D	D-Sorbitol	C6H14O6	0	Extra-organism, Periplasm	C00794	50-70-4	36018	
+oxur	Oxalureate	C3H3N2O4	-1	Cytosol	C00802	585-05-7	36042	
+altrn	D-Altronate	C6H11O7	-1	Cytosol	C00817		36098	
+dtdpglu	dTDPglucose	C16H24N2O16P2	-2	Cytosol	C00842	2009-24-7	36175	
+cbl1	Cob(I)alamin	C62H88CoN13O14P	-1	Cytosol, Extra-organism, Periplasm	C00853	18534-66-2	36205	
+met-D	D-Methionine	C5H10NO2S	0	Cytosol, Extra-organism, Periplasm	C00855	348-67-4	36214	
+dnad	Deamino-NAD+	C21H24N6O15P2	-2	Cytosol	C00857		36219	
+histd	L-Histidinol	C6H12N3O	1	Cytosol	C00860	None	36226	
+rml	L-Rhamnulose	C6H12O5	0	Cytosol	C00861		36228	
+pnto-R	(R)-Pantothenate	C9H16NO5	-1	Cytosol, Extra-organism, Periplasm	C00864	79-83-4	36234	
+b2coa	Crotonoyl-CoA	C25H36N7O17P3S	-4	Cytosol	C00877	102680-35-3	36265	
+galct-D	D-Galactarate	C6H8O8	-2	Cytosol, Extra-organism, Periplasm	C00879	526-99-8	36273	
+galctn-D	D-Galactonate	C6H11O7	-1	Cytosol, Extra-organism, Periplasm	C00880		36277	
+dcyt	Deoxycytidine	C9H13N3O4	0	Cytosol, Extra-organism, Periplasm	C00881	951-77-9	36280	
+dpcoa	Dephospho-CoA	C21H33N7O13P2S	-2	Cytosol	C00882		36283	
+ichor	Isochorismate	C10H8O6	-2	Cytosol	C00885		36293	
+n2o	Nitrous oxide	N2O	0	Cytosol, Extra-organism, Periplasm	C00887	10024-97-2	36299	
+tartr-L	L-tartrate	C4H4O6	-2	Cytosol, Extra-organism, Periplasm	C00898	87-69-4	36331	
+fruur	D-Fructuronate	C6H9O7	-1	Cytosol, Extra-organism, Periplasm	C00905	669-90-9	36345	
+dhpt	Dihydropteroate	C14H13N6O3	-1	Cytosol	C00921		36380	
+ppbng	Porphobilinogen	C10H13N2O4	-1	Cytosol	C00931	487-90-1	36404	
+lald-D	D-Lactaldehyde	C3H6O2	0	Cytosol	C00937	None	36414	
+3dhq	3-Dehydroquinate	C7H9O6	-1	Cytosol	C00944		36436	
+mercppyr	Mercaptopyruvate	C3H3O3S	-1	Cytosol	C00957		36476	
+2dhp	2-Dehydropantoate	C6H9O4	-1	Cytosol	C00966		36502	
+acser	O-Acetyl-L-serine	C5H9NO4	0	Cytosol, Extra-organism, Periplasm	C00979	66638-22-0	36530	
+2pglyc	2-Phosphoglycolate	C2H2O6P	-3	Cytosol	C00988		36550	
+alaala	D-Alanyl-D-alanine	C6H12N2O3	0	Cytosol, Extra-organism, Periplasm	C00993	923-16-0	36564	
+pser-L	O-Phospho-L-serine	C3H6NO6P	-2	Cytosol, Extra-organism, Periplasm	C01005	407-41-0	36594	
+rbflvrd	Reduced riboflavin	C17H22N4O6	0	Cytosol	C01007		36596	
+fuc-L	L-Fucose	C6H12O5	0	Cytosol, Extra-organism, Periplasm	C01019	2438-80-4	36636	
+hmbil	Hydroxymethylbilane	C40H38N4O17	-8	Cytosol	C01024	73023-76-4	36648	
+n8aspmd	N8-Acetylspermidine	C9H23N3O	2	Cytosol	C01029	34450-15-2	36657	
+dann	7,8-Diaminononanoate	C9H21N2O2	1	Cytosol	C01037		36673	
+uamr	UDP-N-acetylmuramate	C20H28N3O19P2	-3	Cytosol	C01050		36702	
+uppg3	Uroporphyrinogen III	C40H36N4O16	-8	Cytosol	C01051	1976-85-8	36704	
+5dglcn	5-Dehydro-D-gluconate	C6H9O7	-1	Cytosol, Extra-organism, Periplasm	C01062		36726	
+pmcoa	Pimeloyl-CoA	C28H41N7O19P3S	-5	Cytosol	C01063		36728	
+pppg9	Protoporphyrinogen IX	C34H38N4O4	-2	Cytosol	C01079		36764	
+thmmp	Thiamin monophosphate	C12H16N4O4PS	-1	Cytosol	C01081	532-40-1	36768	
+tre	Trehalose	C12H22O11	0	Cytosol, Extra-organism, Periplasm	C01083	99-20-7	36774	
+8aonn	8-Amino-7-oxononanoate	C9H17NO3	0	Cytosol	C01092		36792	
+sbt6p	D-Sorbitol 6-phosphate	C6H13O9P	-2	Cytosol	C01096	108392-12-7	36801	
+fc1p	L-Fuculose 1-phosphate	C6H11O8P	-2	Cytosol	C01099	None	36805	
+hisp	L-Histidinol phosphate	C6H11N3O4P	-1	Cytosol	C01100	25679-93-0	36807	
+ru5p-L	L-Ribulose 5-phosphate	C5H9O8P	-2	Cytosol	C01101		36809	
+phom	O-Phospho-L-homoserine	C4H8NO6P	-2	Cytosol	C01102		36811	
+orot5p	Orotidine 5'-phosphate	C10H10N2O11P	-3	Cytosol	C01103	2149-82-8	36813	
+tmao	Trimethylamine N-oxide	C3H9NO	0	Cytosol, Extra-organism, Periplasm	C01104	1184-78-7	36816	
+ara5p	D-Arabinose 5-phosphate	C5H9O8P	-2	Cytosol	C01112		36837	
+suchms	O-Succinyl-L-homoserine	C8H12NO6	-1	Cytosol	C01118	1492-23-5	36847	
+rml1p	L-Rhamnulose 1-phosphate	C6H11O8P	-2	Cytosol	C01131		36878	
+acgal	N-Acetyl-D-galactosamine	C8H15NO6	0	Extra-organism, Periplasm	C01132	14215-68-0	36880	
+pan4p	Pantetheine 4'-phosphate	C11H21N2O7PS	-2	Cytosol	C01134		36886	
+ametam	S-Adenosylmethioninamine	C14H24N6O3S	2	Cytosol	C01137		36895	
+3hbcoa	(S)-3-Hydroxybutanoyl-CoA	C25H38N7O18P3S	-4	Cytosol	C01144		36912	
+2h3oppan	2-Hydroxy-3-oxopropanoate	C3H3O4	-1	Cytosol	C01146		36915	
+r15bp	D-Ribose 1,5-bisphosphate	C5H8O11P2	-4	Cytosol	C01151	None	36924	
+glu5sa	L-Glutamate 5-semialdehyde	C5H9NO3	0	Cytosol	C01165	None	36962	
+uacmam	UDP-N-acetyl-D-mannosamine	C17H25N3O17P2	-2	Cytosol	C01170		36973	
+g6p	D-Glucose 6-phosphate	C6H11O9P	-2	Cytosol, Extra-organism, Periplasm	C00092	56-73-5	36977	
+34hpp	3-(4-Hydroxyphenyl)pyruvate	C9H7O4	-1	Cytosol	C01179		37006	
+nicrnt	Nicotinate D-ribonucleotide	C11H12NO9P	-2	Cytosol	C01185		37018	
+kdo	3-Deoxy-D-manno-2-octulosonate	C8H13O8	-1	Cytosol	C01187		37028	
+minohp	myo-Inositol hexakisphosphate	C6H6O24P6	-12	Extra-organism, Periplasm	C01204		37070	
+uama	UDP-N-acetylmuramoyl-L-alanine	C23H33N4O20P2	-3	Cytosol	C01212		37088	
+mmcoa-R	(R)-Methylmalonyl-CoA	C25H35N7O19P3S	-5	Cytosol	C01213		37090	
+2dh3dgal	2-Dehydro-3-deoxy-D-galactonate	C6H9O6	-1	Cytosol	C01216		37100	
+gdpddman	GDP-4-dehydro-6-deoxy-D-mannose	C16H21N5O15P2	-2	Cytosol	C01222		37116	
+g3pi	sn-Glycero-3-phospho-1-inositol	C9H18O11P	-1	Cytosol, Extra-organism, Periplasm	C01225		37125	
+ppgpp	Guanosine 3',5'-bis(diphosphate)	C10H11N5O17P4	-6	Cytosol	C01228		37137	
+g3pe	sn-Glycero-3-phosphoethanolamine	C5H14NO6P	0	Cytosol, Extra-organism, Periplasm	C01233		37147	
+6pgl	6-phospho-D-glucono-1,5-lactone	C6H9O9P	-2	Cytosol	C01236	None	37157	
+acg5sa	N-Acetyl-L-glutamate 5-semialdehyde	C7H10NO4	-1	Cytosol	C01250	None	37191	
+imacp	3-(Imidazol-4-yl)-2-oxopropyl phosphate	C6H7N2O5P	-2	Cytosol	C01267		37231	
+5apru	5-Amino-6-(5'-phosphoribosylamino)uracil	C9H13N4O9P	-2	Cytosol	C01268		37234	
+3psme	5-O-(1-Carboxyvinyl)-3-phosphoshikimate	C10H9O10P	-4	Cytosol	C01269		37236	
+3haACP	(3R)-3-Hydroxyacyl-[acyl-carrier protein]	C15H27N2O9PRS	-1	Cytosol	C01271		37241	
+4ahmmp	4-Amino-5-hydroxymethyl-2-methylpyrimidine	C6H9N3O	0	Cytosol	C01279	73-67-6	37263	
+2dh3dgal6p	2-Dehydro-3-deoxy-D-galactonate 6-phosphate	C6H8O9P	-3	Cytosol	C01286		37281	
+2cpr5p	1-(2-Carboxyphenylamino)-1-deoxy-D-ribulose 5-phosphate	C12H13NO9P	-3	Cytosol	C01302		37317	
+na1	Sodium	Na	1	Cytosol, Extra-organism, Periplasm	C01330	7440-23-5	37376	
+xdp	XDP	C10H11N4O12P2	-3	Cytosol	C01337		37387	
+didp	dIDP	C10H11N4O10P2	-3	Cytosol	C01344		37395	
+ditp	dITP	C10H11N4O13P3	-4	Cytosol	C01345		37399	
+dudp	dUDP	C9H11N2O11P2	-3	Cytosol	C01346		37403	
+3ump	3'-UMP	C9H11N2O9P	-2	Extra-organism, Periplasm	C01368	35170-03-7	37447	
+btal	Butanal	C4H8O	0	Cytosol	C01412	123-72-8	37538	
+cynt	Cyanate	CNO	-1	Cytosol, Extra-organism, Periplasm	C01417	420-05-3	37550	
+oxam	Oxamate	C2H2NO3	-1	Cytosol	C01444	471-47-6	37602	
+aso4	arsenate	AsO4	-3	Cytosol	C01478	7778-39-4	37686	
+all-D	D-Allose	C6H12O6	0	Cytosol, Extra-organism, Periplasm	C01487	2595-97-3	37710	
+lyx-L	L-Lyxose	C5H10O5	0	Cytosol, Extra-organism, Periplasm	C01508	1949-78-6	37762	
+seln	Selenide	HSe	-1	Cytosol	C01528	531-44-2	37794	
+ocdca	octadecanoate (n-C18:0)	C18H35O2	-1	Cytosol, Extra-organism, Periplasm	C01530	57-11-4	37799	
+alltn	Allantoin	C4H6N4O3	0	Cytosol, Extra-organism, Periplasm	C01551	97-59-6	37849	
+dca	Decanoate (n-C10:0)	C10H19O2	-1	Cytosol, Extra-organism, Periplasm	C01571	334-48-5	37897	
+gal-bD	beta D-Galactose	C6H12O6	0	Extra-organism, Periplasm	C01582	33419-42-0	37923	
+hxa	Hexanoate (n-C6:0)	C6H11O2	-1	Cytosol, Extra-organism, Periplasm	C01585	142-62-1	37927	
+orn	Ornithine	C5H13N2O2	1	Cytosol, Extra-organism, Periplasm	C01602	70-26-8	37976	
+trnaarg	tRNA(Arg)	R	0	Cytosol	C01636		38054	
+trnaasn	tRNA(Asn)	C10H17O10PR2	0	Cytosol	C01637		38056	
+trnaasp	tRNA(Asp)	R	0	Cytosol	C01638		38058	
+trnacys	tRNA(Cys)	R	0	Cytosol	C01639		38060	
+trnagln	tRNA(Gln)	R	0	Cytosol	C01640		38062	
+trnagly	tRNA(Gly)	R	0	Cytosol	C01642		38066	
+trnahis	tRNA(His)	R	0	Cytosol	C01643		38068	
+trnaile	tRNA(Ile)	R	0	Cytosol	C01644		38070	
+trnaleu	tRNA(Leu)	R	0	Cytosol	C01645		38072	
+trnalys	tRNA(Lys)	R	0	Cytosol	C01646		38074	
+trnamet	tRNA(Met)	R	0	Cytosol	C01647		38076	
+trnaphe	tRNA(Phe)	R	0	Cytosol	C01648		38078	
+trnapro	tRNA(Pro)	R	0	Cytosol	C01649		38080	
+trnaser	tRNA(Ser)	R	0	Cytosol	C01650		38082	
+trnathr	tRNA(Thr)	R	0	Cytosol	C01651		38084	
+trnatrp	tRNA(Trp)	R	0	Cytosol	C01652		38086	
+trnaval	tRNA(Val)	R	0	Cytosol	C01653		38088	
+15dap	1,5-Diaminopentane	C5H16N2	2	Cytosol, Extra-organism, Periplasm	C01672	462-94-2	38125	
+galt	Galactitol	C6H14O6	0	Extra-organism, Periplasm	C01697	608-66-2	38183	
+tcynt	Thiocyanate	CNS	-1	Cytosol, Extra-organism, Periplasm	C01755	463-56-9	38336	
+xtsn	Xanthosine	C10H12N4O6	0	Cytosol, Extra-organism, Periplasm	C01762	146-80-5	38352	
+ddcacoa	Dodecanoyl-CoA (n-C12:0CoA)	C33H54N7O17P3S	-4	Cytosol	C01832	6244-92-4	38504	
+alpp	applipoprotein	X	0	Periplasm	C01834		38510	
+malttr	Maltotriose	C18H32O16	0	Cytosol, Extra-organism, Periplasm	C01835	1109-28-0	38512	
+aact	Aminoacetone	C3H8NO	1	Cytosol	C01888	298-08-8	38629	
+dtbt	Dethiobiotin	C10H17N2O3	-1	Cytosol	C01909		38667	
+malthx	Maltohexaose	C36H62O31	0	Cytosol, Extra-organism, Periplasm	C01936	34620-77-4	38732	
+occoa	Octanoyl-CoA (n-C8:0CoA)	C29H46N7O17P3S	-4	Cytosol	C01944		38747	
+maltttr	Maltotetraose	C24H42O21	0	Cytosol, Extra-organism, Periplasm	C02052	34612-38-9	38985	
+acmalt	Acetyl-maltose	C14H24O12	0	Cytosol	C02130		39162	
+ppp9	Protoporphyrin	C34H32N4O4	-2	Cytosol	C02191	553-12-8	39293	
+2mcit	2-Methylcitrate	C7H7O7	-3	Cytosol	C02225	96-17-3	39369	
+cyst-L	L-Cystathionine	C7H14N2O4S	0	Cytosol	C02291	56-88-2	39523	
+acon-T	trans-Aconitate	C6H3O6	-3	Cytosol	C02341	4023-65-8	39643	
+23camp	2',3'-Cyclic AMP	C10H11N5O6P	-1	Extra-organism, Periplasm	C02353		39672	
+23ccmp	2',3'-Cyclic CMP	C9H11N3O7P	-1	Extra-organism, Periplasm	C02354		39674	
+23cump	2',3'-Cyclic UMP	C9H10N2O8P	-1	Extra-organism, Periplasm	C02355		39676	
+dscl	dihydrosirohydrochlorin	C42H41N4O16	-7	Cytosol	C02463	65207-12-7	39875	
+3c3hmp	3-Carboxy-3-hydroxy-4-methylpentanoate	C7H10O5	-2	Cytosol	C02504		39972	
+suc6p	Sucrose 6-phosphate	C12H21O14P	-2	Cytosol	C02591		40149	
+tdcoa	Tetradecanoyl-CoA (n-C14:0CoA)	C35H58N7O17P3S	-4	Cytosol	C02593		40154	
+2ippm	2-Isopropylmaleate	C7H8O4	-2	Cytosol	C02631		40241	
+3dhsk	3-Dehydroshikimate	C7H7O5	-1	Cytosol	C02637		40260	
+acglc-D	6-Acetyl-D-glucose	C8H14O7	0	Cytosol	C02655	107-85-7	40288	
+ddca	Dodecanoate (n-C12:0)	C12H23O2	-1	Cytosol, Extra-organism, Periplasm	C02679	143-07-7	40351	
+acmum	N-Acetylmuramate	C11H18NO8	-1	Extra-organism, Periplasm	C02713	61633-75-8	40415	
+sucbz	o-Succinylbenzoate	C11H8O5	-2	Cytosol	C02730		40449	
+prbatp	1-(5-Phosphoribosyl)-ATP	C15H19N5O20P4	-6	Cytosol	C02739		40470	
+fldrd	flavodoxin (reduced)	XH2	0	Cytosol	C02745		40486	
+fldox	flavodoxin (oxidized)	X	0	Cytosol	C02869		40728	
+ppap	Propanoyl phosphate	C3H5O5P	-2	Cytosol	C02876		40738	
+12ppd-R	(R)-Propane-1,2-diol	C3H8O2	0	Cytosol, Extra-organism, Periplasm	C02912	4254-14-2	40801	
+12ppd-S	(S)-Propane-1,2-diol	C3H8O2	0	Cytosol, Extra-organism, Periplasm	C02917	4254-14-3	40815	
+all6p	D-Allose 6-phosphate	C6H11O9P	-2	Cytosol	C02962	147-94-4	40909	
+f1p	D-Fructose 1-phosphate	C6H11O9P	-2	Cytosol	C02976	15978-08-2	40936	
+glyc2p	Glycerol 2-phosphate	C3H7O6P	-2	Extra-organism, Periplasm	C02979	3249-68-1	40942	
+Nmtrp	N-Methyltryptophan	C12H14N2O2	0	Cytosol	C02983	526-31-8	40949	
+glutrna	L-Glutamyl-tRNA(Glu)	C5H7NO3R	0	Cytosol	C02987	None	40960	
+metsox-S-L	L-Methionine Sulfoxide	C5H11NO3S	0	Cytosol, Extra-organism, Periplasm	C02989		40964	
+malt6p	Maltose 6'-phosphate	C12H21O14P	-2	Cytosol	C02995	None	40977	
+4pasp	4-Phospho-L-aspartate	C4H6NO7P	-2	Cytosol	C03082		41164	
+5mtr	5-Methylthio-D-ribose	C6H12O4S	0	Cytosol	C03089		41179	
+pram	5-Phospho-beta-D-ribosylamine	C5H11NO7P	-1	Cytosol	C03090		41182	
+dmbzid	5,6-Dimethylbenzimidazole	C9H10N2	0	Cytosol	C03114	582-60-5	41234	
+sbzcoa	O-Succinylbenzoyl-CoA	C32H39N7O20P3S	-5	Cytosol	C03160		41314	
+mmet	S-Methyl-L-methionine	C6H14NO2S	1	Cytosol, Extra-organism, Periplasm	C03172		41336	
+skm5p	Shikimate 5-phosphate	C7H8O8P	-3	Cytosol	C03175		41343	
+dd2coa	trans-Dodec-2-enoyl-CoA	C33H52N7O17P3S	-4	Cytosol	C03221		41433	
+3php	3-Phosphohydroxypyruvate	C3H2O7P	-3	Cytosol	C03232		41453	
+cpppg3	Coproporphyrinogen III	C36H40N4O8	-4	Cytosol	C03263	2624-63-7	41515	
+g3pg	Glycerophosphoglycerol	C6H14O8P	-1	Cytosol, Extra-organism, Periplasm	C03274	11034-93-8	41538	
+pppi	Inorganic triphosphate	HO10P3	-4	Cytosol	C03279		41547	
+glu5p	L-Glutamate 5-phosphate	C5H8NO7P	-2	Cytosol	C03287		41564	
+xu5p-L	L-Xylulose 5-phosphate	C5H9O8P	-2	Cytosol	C03291	None	41573	
+fmettrna	N-Formylmethionyl-tRNA	C6H9NO2SR	0	Cytosol	C03294		41579	
+sucarg	N2-Succinyl-L-arginine	C10H17N4O5	-1	Cytosol	C03296	1758-80-1	41581	
+dtdprmn	dTDP-L-rhamnose	C16H24N2O15P2	-2	Cytosol	C03319	572-96-3	41621	
+23dhdp	2,3-Dihydrodipicolinate	C7H5NO4	-2	Cytosol	C03340		41662	
+air	5-amino-1-(5-phospho-D-ribosyl)imidazole	C8H12N3O7P	-2	Cytosol	C03373	25635-88-5	41727	
+4per	4-Phospho-D-erythronate	C4H6O8P	-3	Cytosol	C03393		41765	
+argsuc	N(omega)-(L-Arginino)succinate	C10H17N4O6	-1	Cytosol	C03406	None	41790	
+sucorn	N2-Succinyl-L-ornithine	C9H15N2O5	-1	Cytosol	C03415	80102-04-1	41816	
+lgt-S	(R)-S-Lactoylglutathione	C13H20N3O8S	-1	Cytosol	C03451	59-85-8	41876	
+4ppan	D-4'-Phosphopantothenate	C9H15NO8P	-3	Cytosol	C03492		41952	
+3ig3p	C'-(3-Indolyl)-glycerol 3-phosphate	C11H12NO6P	-2	Cytosol	C03506		41982	
+2aobut	L-2-Amino-3-oxobutanoate	C4H7NO3	0	Cytosol	C03508		41986	
+rhcys	S-Ribosyl-L-homocysteine	C9H17NO6S	0	Cytosol	C03539	37558-16-0	42044	
+udcpdp	Undecaprenyl diphosphate	C55H89O7P2	-3	Cytosol, Periplasm	C03543		42055	
+4h2opntn	4-Hydroxy-2-oxopentanoate	C5H7O4	-1	Cytosol	C03589	111844-33-8	42143	
+dhna	1,4-Dihydroxy-2-naphthoate	C11H7O4	-1	Cytosol	C03657		42264	
+quln	Quinolinate	C7H3NO4	-2	Cytosol	C03722	89-00-9	42393	
+udpgalfur	UDP-D-galacto-1,4-furanose	C15H22N2O17P2	-2	Cytosol	C03733	638-23-3	42414	
+r5p	alpha-D-Ribose 5-phosphate	C5H9O8P	-2	Cytosol, Extra-organism, Periplasm	C00117	4300-28-1	42420	
+glu1sa	L-Glutamate 1-semialdehyde	C5H9NO3	0	Cytosol	C03741	None	42432	
+dopa	Dopamine	C8H12NO2	1	Extra-organism, Periplasm	C03758	51-61-6	42467	
+4hoxpacd	4-Hydroxyphenylacetaldehyde	C8H8O2	0	Extra-organism, Periplasm	C03765	60-11-7	42489	
+dcamp	N6-(1,2-Dicarboxyethyl)-AMP	C14H14N5O11P	-4	Cytosol	C03794		42544	
+man1p	D-Mannose 1-phosphate	C6H11O9P	-2	Cytosol	C03812		42578	
+gar	N1-(5-Phospho-D-ribosyl)glycinamide	C7H14N2O8P	-1	Cytosol	C03838		42621	
+prbamp	1-(5-Phosphoribosyl)-AMP	C15H19N5O14P2	-4	Cytosol	C02741		42711	
+pgp140	Phosphatidylglycerophosphate (ditetradecanoyl, n-C14:0)	C34H65O13P2	-3	Cytosol, Periplasm	C03892		42727	
+1pyr5c	1-Pyrroline-5-carboxylate	C5H6NO2	-1	Cytosol	C03912		42766	
+thdp	2,3,4,5-Tetrahydrodipicolinate	C7H7NO4	-2	Cytosol	C03972		42888	
+34dhpac	3,4-Dihydroxyphenylacetaldehyde	C8H8O3	0	Extra-organism, Periplasm	C04043		43022	
+dhpppn	3-(2,3-Dihydroxyphenyl)propanoate	C9H9O4	-1	Cytosol	C04044		43025	
+ap5a	P1,P5-Bis(5'-adenosyl) pentaphosphate	C20H24N10O22P5	-5	Cytosol	C04058	4637-56-3	43056	
+23dhmp	(R)-2,3-Dihydroxy-3-methylpentanoate	C6H11O4	-1	Cytosol	C06007		43150	
+ctbt	crotonobetaine	C7H13NO2	0	Cytosol, Periplasm	C04114	6666-46-2	43172	
+acg5p	N-Acetyl-L-glutamyl 5-phosphate	C7H9NO8P	-3	Cytosol	C04133		43209	
+octdp	all-trans-Octaprenyl diphosphate	C40H65O7P2	-3	Cytosol	C04146		43243	
+23ddhb	2,3-Dihydro-2,3-dihydroxybenzoate	C7H7O4	-1	Cytosol	C04171		43290	
+5mdr1p	5-Methylthio-5-deoxy-D-ribose 1-phosphate	C6H11O7PS	-2	Cytosol	C04188		43318	
+2mcacn	cis-2-Methylaconitate	C7H5O6	-3	Cytosol	C04225	99-98-9	43396	
+3c4mop	3-Carboxy-4-methyl-2-oxopentanoate	C7H8O5	-2	Cytosol	C04236		43420	
+but2eACP	But-2-enoyl-[acyl-carrier protein]	C15H25N2O8PRS	-1	Cytosol	C04246	128-33-6	43437	
+acgam1p	N-Acetyl-D-glucosamine 1-phosphate	C8H14NO9P	-2	Cytosol, Extra-organism, Periplasm	C04256	None	43457	
+acmanap	N-Acetyl-D-mannosamine 6-phosphate	C8H14NO9P	-2	Cytosol	C04257	157296-99-6	43459	
+dtdp4addg	dTDP-4-amino-4,6-dideoxy-D-galactose	C16H26N3O14P2	-1	Cytosol	C04268		43484	
+23dhmb	(R)-2,3-Dihydroxy-3-methylbutanoate	C5H9O4	-1	Cytosol	C04272		43492	
+4mhetz	4-Methyl-5-(2-hydroxyethyl)-thiazole	C6H9NOS	0	Cytosol	C04294	137-00-8	43535	
+pran	N-(5-Phospho-D-ribosyl)anthranilate	C12H13NO9P	-3	Cytosol	C04302	None	43555	
+4mpetz	4-Methyl-5-(2-phosphoethyl)-thiazole	C6H8NO4PS	-2	Cytosol	C04327		43602	
+dmlz	6,7-Dimethyl-8-(1-D-ribityl)lumazine	C13H18N4O6	0	Cytosol	C04332		43611	
+4ppcys	N-((R)-4-Phosphopantothenoyl)-L-cysteine	C12H20N2O9PS	-3	Cytosol	C04352		43650	
+fgam	N2-Formyl-N1-(5-phospho-D-ribosyl)glycinamide	C8H13N2O9P	-2	Cytosol	C04376		43690	
+3c2hmp	3-Carboxy-2-hydroxy-4-methylpentanoate	C7H10O5	-2	Cytosol	C04411		43761	
+sl26da	N-Succinyl-LL-2,6-diaminoheptanedioate	C11H16N2O7	-2	Cytosol	C04421		43785	
+amob	S-Adenosyl-4-methylthio-2-oxobutanoate	C15H19N5O6S	0	Cytosol	C04425		43797	
+2ddg6p	2-Dehydro-3-deoxy-D-gluconate 6-phosphate	C6H8O9P	-3	Cytosol	C04442		43826	
+5aprbu	5-Amino-6-(5'-phosphoribitylamino)uracil	C9H15N4O9P	-2	Cytosol	C04454		43851	
+sl2a6o	N-Succinyl-2-L-amino-6-oxoheptanedioate	C11H12NO8	-3	Cytosol	C04462		43864	
+kdo8p	3-Deoxy-D-manno-octulosonate 8-phosphate	C8H12O11P	-3	Cytosol	C04478		43894	
+hkndd	2-Hydroxy-6-oxonona-2,4-diene-1,9-dioate	C9H8O6	-2	Cytosol	C04479	53-42-9	43897	
+gdptp	Guanosine 3'-diphosphate 5'-triphosphate	C10H11N5O20P5	-7	Cytosol	C04494		43927	
+4ampm	4-Amino-2-methyl-5-phosphomethylpyrimidine	C6H8N3O4P	-2	Cytosol	C04556		44041	
+5mdru1p	5-Methylthio-5-deoxy-D-ribulose 1-phosphate	C6H11O7PS	-2	Cytosol	C04582		44103	
+micit	methylisocitrate	C7H7O7	-3	Cytosol	C04593	20298-95-7	44122	
+3hdecACP	(R)-3-Hydroxydecanoyl-[acyl-carrier protein]	C21H39N2O9PRS	-1	Cytosol	C04619	320-77-4	44184	
+uaccg	UDP-N-acetyl-3-O-(1-carboxyvinyl)-D-glucosamine	C20H26N3O19P2	-3	Cytosol	C04631		44212	
+fpram	2-(Formamido)-N1-(5-phospho-D-ribosyl)acetamidine	C8H15N3O8P	-1	Cytosol	C04640		44236	
+u23ga	UDP-2,3-bis(3-hydroxytetradecanoyl)glucosamine	C43H75N3O20P2	-2	Cytosol	C04652		44263	
+eig3p	D-erythro-1-(Imidazol-4-yl)glycerol 3-phosphate	C6H9N2O6P	-2	Cytosol	C04666		44288	
+aicar	5-Amino-1-(5-Phospho-D-ribosyl)imidazole-4-carboxamide	C9H13N4O8P	-2	Cytosol	C04677	3031-94-5	44312	
+2dda7p	2-Dehydro-3-deoxy-D-arabino-heptonate 7-phosphate	C7H10O10P	-3	Cytosol	C04691		44349	
+4r5au	4-(1-D-Ribitylamino)-5-aminouracil	C9H16N4O6	0	Cytosol	C04732		44429	
+fprica	5-Formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide	C10H13N4O9P	-2	Cytosol	C04734		44434	
+u3aga	UDP-3-O-(3-hydroxytetradecanoyl)-N-acetylglucosamine	C31H51N3O19P2	-2	Cytosol	C04738		44447	
+5aizc	5-amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxylate	C9H11N3O9P	-3	Cytosol	C04751		44477	
+2mahmp	2-Methyl-4-amino-5-hydroxymethylpyrimidine diphosphate	C6H8N3O7P2	-3	Cytosol	C04752	745-65-3	44484	
+5prdmbz	N1-(5-Phospho-alpha-D-ribosyl)-5,6-dimethylbenzimidazole	C14H17N2O7P	-2	Cytosol	C04778		44527	
+25aics	(S)-2-[5-Amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxamido]succinate	C13H15N4O12P	-4	Cytosol	C04823		44624	
+lipidX	2,3-Bis(3-hydroxytetradecanoyl)-beta-D-glucosaminyl 1-phosphate	C34H64NO12P	-2	Cytosol	C04824	None	44628	
+dhnpt	Dihydroneopterin	C9H13N5O4	0	Cytosol	C04874		44772	
+ugmd	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate	C35H51N7O26P2	-4	Cytosol	C04877		44782	
+ugmda	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine	C41H61N9O28P2	-4	Cytosol	C04882		44801	
+ahdt	2-Amino-4-hydroxy-6-(erythro-1,2,3-trihydroxypropyl)dihydropteridine triphosphate	C9H12N5O13P3	-4	Cytosol	C04895		44843	
+prfp	1-(5-Phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino]imidazole-4-carboxamide	C15H21N5O15P2	-4	Cytosol	C04896		44846	
+prlp	5-[(5-phospho-1-deoxyribulos-1-ylamino)methylideneamino]-1-(5-phosphoribosyl)imidazole-4-carboxamide	C15H21N5O15P2	-4	Cytosol	C04916		44913	
+lipidA	2,3,2'3'-Tetrakis(beta-hydroxymyristoyl)-D-glucosaminyl-1,6-beta-D-glucosamine 1,4'-bisphosphate	C68H126N2O23P2	-4	Cytosol		None	44967	
+isetac	Isethionic acid	C2H5O4S	-1	Cytosol, Extra-organism, Periplasm	C05123	107-36-8	45154	
+selnp	Selenophosphate	H2O3PSe	-1	Cytosol	C05172		45264	
+sectrna	L-Selenocysteinyl-tRNA(Sec)	C3H6NOSeR	1	Cytosol	C05173		45266	
+dad-5	5'-Deoxyadenosine	C10H13N5O3	0	Cytosol	C05198		45324	
+acetol	Acetol	C3H6O2	0	Cytosol	C05235	116-09-6	45400	
+3hhdcoa	(S)-3-Hydroxyhexadecanoyl-CoA	C37H62N7O18P3S	-4	Cytosol	C05258		45443	
+3ohdcoa	3-Oxohexadecanoyl-CoA	C37H60N7O18P3S	-4	Cytosol	C05259		45445	
+3htdcoa	(S)-3-Hydroxytetradecanoyl-CoA	C35H58N7O18P3S	-4	Cytosol	C05260		45447	
+3otdcoa	3-Oxotetradecanoyl-CoA	C35H56N7O18P3S	-4	Cytosol	C05261		45449	
+3hddcoa	(S)-3-Hydroxydodecanoyl-CoA	C33H54N7O18P3S	-4	Cytosol	C05262		45451	
+3oddcoa	3-Oxododecanoyl-CoA	C33H52N7O18P3S	-4	Cytosol	C05263		45453	
+3hdcoa	(S)-3-Hydroxydecanoyl-CoA	C31H50N7O18P3S	-4	Cytosol	C05264		45455	
+3odcoa	3-Oxodecanoyl-CoA	C31H48N7O18P3S	-4	Cytosol	C05265		45458	
+3hocoa	(S)-3-Hydroxyoctanoyl-CoA	C29H46N7O18P3S	-4	Cytosol	C05266		45460	
+3oocoa	3-Oxooctanoyl-CoA	C29H44N7O18P3S	-4	Cytosol	C05267		45463	
+3hhcoa	(S)-3-Hydroxyhexanoyl-CoA	C27H42N7O18P3S	-4	Cytosol	C05268		45465	
+3ohcoa	3-Oxohexanoyl-CoA	C27H40N7O18P3S	-4	Cytosol	C05269	5096-70-8	45468	
+hxcoa	Hexanoyl-CoA (n-C6:0CoA)	C27H42N7O17P3S	-4	Cytosol	C05270		45470	
+hx2coa	trans-Hex-2-enoyl-CoA	C27H40N7O17P3S	-4	Cytosol	C05271		45472	
+hdd2coa	trans-Hexadec-2-enoyl-CoA	C37H60N7O17P3S	-4	Cytosol	C05272		45474	
+td2coa	trans-Tetradec-2-enoyl-CoA	C35H56N7O17P3S	-4	Cytosol	C05273		45476	
+dcacoa	Decanoyl-CoA (n-C10:0CoA)	C31H50N7O17P3S	-4	Cytosol	C05274		45478	
+dc2coa	trans-Dec-2-enoyl-CoA	C31H48N7O17P3S	-4	Cytosol	C05275		45480	
+oc2coa	trans-Oct-2-enoyl-CoA	C29H44N7O17P3S	-4	Cytosol	C05276		45482	
+hcys-L	L-Homocysteine	C4H9NO2S	0	Cytosol	C00155	6027-13-0	45588	
+peamn	Phenethylamine	C8H12N	1	Extra-organism, Periplasm	C05332	64-04-0	45591	
+glcur1p	D-Glucuronate 1-phosphate	C6H8O10P	-3	Extra-organism, Periplasm	C05385		45711	
+gdpofuc	GDP-4-oxo-L-fucose	C16H21N5O15P2	-2	Cytosol			45716	
+melib	Melibiose	C12H22O11	0	Cytosol, Extra-organism, Periplasm	C05402	585-99-9	45736	
+23doguln	2,3-Dioxo-L-gulonate	C6H7O7	-1	Cytosol	C05409		45750	
+din	Deoxyinosine	C10H12N4O4	0	Cytosol, Extra-organism, Periplasm	C05512	890-38-0	45942	
+athr-L	L-Allo-threonine	C4H9NO3	0	Cytosol	C05519	28954-12-3	45952	
+arbtn-fe3	Aerobactin	C22H33FeN4O13	0	Cytosol, Extra-organism, Periplasm	C05554	61-33-6	46016	
+pppn	Phenylpropanoate	C9H9O2	-1	Cytosol, Extra-organism, Periplasm	C05629	2628-17-3	46159	
+gtspmd	Glutathionylspermidine	C17H36N6O5S	2	Cytosol	C05730	7783-08-6	46368	
+butACP	Butyryl-ACP (n-C4:0ACP)	C15H27N2O8PRS	-1	Cytosol	C05745	7783-08-6	46390	
+3ohexACP	3-Oxohexanoyl-[acyl-carrier protein]	C17H29N2O9PRS	-1	Cytosol	C05746	7783-08-6	46393	
+3hhexACP	(R)-3-Hydroxyhexanoyl-[acyl-carrier protein]	C17H31N2O9PRS	-1	Cytosol	C05747	7783-08-6	46396	
+thex2eACP	trans-Hex-2-enoyl-[acyl-carrier protein]	C17H29N2O8PRS	-1	Cytosol	C05748	7783-08-6	46401	
+hexACP	Hexanoyl-ACP (n-C6:0ACP)	C17H31N2O8PRS	-1	Cytosol	C05749	7783-08-6	46404	
+3ooctACP	3-Oxooctanoyl-[acyl-carrier protein]	C19H33N2O9PRS	-1	Cytosol	C05750	7783-08-6	46407	
+toct2eACP	trans-Oct-2-enoyl-[acyl-carrier protein]	C19H33N2O8PRS	-1	Cytosol	C05751	7783-08-6	46410	
+3odecACP	3-Oxodecanoyl-[acyl-carrier protein]	C21H37N2O9PRS	-1	Cytosol	C05753	7783-08-6	46416	
+tdec2eACP	trans-Dec-2-enoyl-[acyl-carrier protein]	C21H37N2O8PRS	-1	Cytosol	C05754	7783-08-6	46419	
+3oddecACP	3-Oxododecanoyl-[acyl-carrier protein]	C23H41N2O9PRS	-1	Cytosol	C05756	7783-08-6	46425	
+3hddecACP	(R)-3-Hydroxydodecanoyl-[acyl-carrier protein]	C23H43N2O9PRS	-1	Cytosol	C05757	7783-08-6	46428	
+tddec2eACP	trans-Dodec-2-enoyl-[acyl-carrier protein]	C23H41N2O8PRS	-1	Cytosol	C05758	7783-08-6	46433	
+3omrsACP	3-Oxotetradecanoyl-[acyl-carrier protein]	C25H45N2O9PRS	-1	Cytosol	C05759	7783-08-6	46436	
+tmrs2eACP	trans-Tetradec-2-enoyl-[acyl-carrier protein]	C25H45N2O8PRS	-1	Cytosol	C05760	7783-08-6	46439	
+3opalmACP	3-Oxohexadecanoyl-[acyl-carrier protein]	C27H49N2O9PRS	-1	Cytosol	C05762	7783-08-6	46445	
+tpalm2eACP	trans-Hexadec-2-enoyl-[acyl-carrier protein]	C27H49N2O8PRS	-1	Cytosol	C05763	7783-08-6	46448	
+cbi	Cobinamide	C48H72CoN11O8	0	Cytosol, Extra-organism, Periplasm	C05774	1867-62-5	46472	
+rdmbzi	N1-(alpha-D-ribosyl)-5,6-dimethylbenzimidazole	C14H18N2O4	0	Cytosol	C05775		46474	
+scl	sirohydrochlorin	C42H39N4O16	-7	Cytosol	C05778		46482	
+3ophb	3-Octaprenyl-4-hydroxybenzoate	C47H69O3	-1	Cytosol	C05809		46544	
+2oph	2-Octaprenylphenol	C46H70O	0	Cytosol	C05810		46546	
+2ohph	2-Octaprenyl-6-hydroxyphenol	C46H70O2	0	Cytosol	C05811		46548	
+2omph	2-Octaprenyl-6-methoxyphenol	C47H72O2	0	Cytosol	C05812		46550	
+ssaltpp	Succinate semialdehyde-thiamin diphosphate anion	C16H21N4O10P2S	-3	Cytosol	C05816		46558	
+2shchc	2-Succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate	C11H10O6	-2	Cytosol	C05817		46560	
+2dmmq8	2-Demethylmenaquinone 8	C50H70O2	0	Cytosol	C05818		46562	
+mql8	Menaquinol 8	C51H74O2	0	Cytosol	C05819		46564	
+iasp	Iminoaspartate	C4H3NO4	-2	Cytosol	C05840		46611	
+uagmda	Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine	C87H139N7O23P2	-4	Cytosol	C05897		46787	
+uaagmda	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-ala-D-glu-meso-2,6-diaminopimeloyl-D-ala-D-ala	C95H152N8O28P2	-4	Cytosol	C05898		46790	
+sucglu	N2-Succinyl-L-glutamate	C9H10NO7	-3	Cytosol	C05931	33981-72-5	46951	
+sucgsa	N2-Succinyl-L-glutamate 5-semialdehyde	C9H11NO6	-2	Cytosol	C05932		46953	
+clpn140	cardiolipin (tetratetradecanoyl, n-C14:0)	C65H124O17P2	-2	Periplasm	C05980		47122	
+u3hga	UDP-3-O-(3-hydroxytetradecanoyl)-D-glucosamine	C29H50N3O18P2	-1	Cytosol	C06022		47227	
+lipa	KDO(2)-lipid (A)	C110H196N2O39P2	-6	Cytosol, Extra-organism, Periplasm	C06026		47241	
+gam1p	D-Glucosamine 1-phosphate	C6H13NO8P	-1	Cytosol	C06156		47544	
+arbt6p	Arbutin 6-phosphate	C12H15O10P	-2	Cytosol	C06187		47607	
+3gmp	3'-GMP	C10H12N5O8P	-2	Extra-organism, Periplasm	C06193		47625	
+23cgmp	2',3'-Cyclic GMP	C10H11N5O7P	-1	Extra-organism, Periplasm	C06194		47631	
+dimp	dIMP	C10H11N4O7P	-2	Cytosol, Extra-organism, Periplasm	C06196		47635	
+fe3hox	Fe(III)hydroxamate	C9H18O6N3Fe	0	Cytosol, Extra-organism, Periplasm	C06227		47707	
+fecrm	Ferrichrome	C27H42FeN9O12	0	Cytosol, Extra-organism, Periplasm	C06228		47710	
+fe3dcit	Fe(III)dicitrate	C12H10FeO14	-3	Extra-organism, Periplasm	C06229		47712	
+feenter	Fe-enterobactin	C30H27FeN3O15	3	Cytosol, Extra-organism, Periplasm	C06230		47715	
+mobd	Molybdate	MoO4	-2	Cytosol, Extra-organism, Periplasm	C06232		47720	
+uacmamu	UDP-N-acetyl-D-mannosaminouronate	C17H22N3O18P2	-3	Cytosol	C06240		47733	
+acanth	N-Acetylanthranilate	C9H8NO3	-1	Cytosol	C06332	89-52-1	47990	
+adphep-DD	ADP-D-glycero-D-manno-heptose	C17H25N5O16P2	-2	Cytosol	C06397	119-61-9	48160	
+octa	octanoate (n-C8:0)	C8H15O2	-1	Cytosol, Extra-organism, Periplasm	C06423	124-07-2	48223	
+tyrp	Phosphotyrosine	C9H10NO6P	-2	Extra-organism, Periplasm	C06501		48439	
+adocbi	Adenosyl cobinamide	C58H84CoN16O11	1	Cytosol	C06508		48459	
+adocbip	Adenosyl cobinamide phosphate	C58H83CoN16O14P	-1	Cytosol	C06509		48461	
+agdpcbi	Adenosine-GDP-cobinamide	C68H95CoN21O21P2	-1	Cytosol	C06510		48463	
+aso3	arsenite	AsO3	-3	Cytosol, Extra-organism, Periplasm	C06697		48880	
+ppt	Phosphonate	HO3P	-2	Extra-organism, Periplasm	C06701	13598-36-2	48890	
+ag	silver	Ag	1	Cytosol, Extra-organism	C06710	7440-22-4	48910	
+aacald	Aminoacetaldehyde	C2H6NO	1	Cytosol	C06735	452-86-8	48971	
+fe3	Fe3+	Fe	3	Cytosol, Extra-organism, Periplasm		None	50061	
+cl	Chloride	Cl	-1	Cytosol, Extra-organism, Periplasm	C00115		50130	
+thymd	Thymidine	C10H14N2O5	0	Cytosol, Extra-organism, Periplasm	C00214	50-89-5	50348	
+no3	Nitrate	NO3	-1	Cytosol, Extra-organism, Periplasm	C00244		50426	
+cu2	Cu2+	Cu	2	Cytosol, Extra-organism, Periplasm			50600	
+dcdp	dCDP	C9H12N3O10P2	-3	Cytosol	C00705	None	50858	
+gsn	Guanosine	C10H13N5O5	0	Cytosol, Extra-organism, Periplasm	C00387	118-00-3	51567	
+trnatyr	tRNA(Tyr)	R	0	Cytosol	C00787		52620	
+alatrna	L-Alanyl-tRNA(Ala)	C3H6NOR	1	Cytosol	C00886		52727	
+trnaala	tRNA(Ala)	R	0	Cytosol	C01635		52733	
+leutrna	L-Leucyl-tRNA(Leu)	C6H12NOR	1	Cytosol	C02047		52740	
+argtrna	L-Arginyl-tRNA(Arg)	C6H14N4OR	2	Cytosol	C02163		52745	
+glntrna	L-Glutaminyl-tRNA(Gln)	C5H9N2O2R	1	Cytosol	C02282		52750	
+glytrna	Glycyl-tRNA(Gly)	C2H4NOR	1	Cytosol	C02412		52755	
+sertrna	L-Seryl-tRNA(Ser)	C3H6NO2R	1	Cytosol	C02553		52763	
+valtrna	L-Valyl-tRNA(Val)	C5H10NOR	1	Cytosol	C02554		52766	
+protrna	L-Prolyl-tRNA(Pro)	C5H8NOR	1	Cytosol	C02702		52769	
+tyrtrna	L-Tyrosyl-tRNA(Tyr)	C9H10NO2R	1	Cytosol	C02839		52772	
+asptrna	L-Aspartyl-tRNA(Asp)	C4H5NO3R	0	Cytosol	C02984		52775	
+histrna	L-Histidyl-tRNA(His)	C6H8N3OR	1	Cytosol	C02988		52781	
+thrtrna	L-Threonyl-tRNA(Thr)	C4H8NO2R	1	Cytosol	C02992		52784	
+cystrna	L-Cysteinyl-tRNA(Cys)	C3H6NOSR	1	Cytosol	C03125		52787	
+iletrna	L-Isoleucyl-tRNA(Ile)	C6H12NOR	1	Cytosol	C03127		52790	
+asntrna	L-Asparaginyl-tRNA(Asn)	C14H23N2O12PR2	1	Cytosol	C03402		52793	
+phetrna	L-Phenylalanyl-tRNA(Phe)	C9H10NOR	1	Cytosol	C03511		52796	
+trptrna	L-Tryptophanyl-tRNA(Trp)	C11H11N2OR	1	Cytosol	C03512		52799	
+alac-S	(S)-2-Acetolactate	C5H7O4	-1	Cytosol	C06010		109372	
+dmpp	Dimethylallyl diphosphate	C5H9O7P2	-3	Cytosol	C00235	358-71-4	131960	
+fadh2	Flavin adenine dinucleotide reduced	C27H33N9O15P2	-2	Cytosol	C01352		132077	
+fcl-L	L-fuculose	C6H12O5	0	Cytosol	C01721		132120	
+trnaglu	tRNA (Glu)	R	0	Cytosol	C01641	None	132267	
+malACP	Malonyl-[acyl-carrier protein]	C14H22N2O10PRS	-2	Cytosol	C01209	None	132642	
+glyc3p	Glycerol 3-phosphate	C3H7O6P	-2	Cytosol, Extra-organism, Periplasm	C00093		137383	
+mqn8	Menaquinone 8	C51H72O2	0	Cytosol	C00828	84-81-1	199245	
+db4p	3,4-dihydroxy-2-butanone 4-phosphate	C4H7O6P	-2	Cytosol			199371	
+4adcho	4-amino-4-deoxychorismate	C10H10NO5	-1	Cytosol	C11355		214284	
+ttdca	tetradecanoate (n-C14:0)	C14H27O2	-1	Cytosol, Extra-organism, Periplasm	C06424	544-63-8	215851	
+dxyl5p	1-deoxy-D-xylulose 5-phosphate	C5H9O7P	-2	Cytosol	C11437		216273	
+2me4p	2-C-methyl-D-erythritol 4-phosphate	C5H11O7P	-2	Cytosol	C11434		216293	
+4c2me	4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol	C14H23N3O14P2	-2	Cytosol	C11435		216317	
+2p4c2me	2-phospho-4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol	C14H22N3O17P3	-4	Cytosol			216335	
+2mecdp	2-C-methyl-D-erythritol 2,4-cyclodiphosphate	C5H10O9P2	-2	Cytosol	C11453		216364	
+glycogen	glycogen	C6H10O5	0	Cytosol	C00182		227233	
+hemeO	Heme O	C49H56FeN4O5	-2	Cytosol			227628	
+mettrna	L-Methionyl-tRNA (Met)	C5H10NOSR	1	Cytosol	C02430		227723	
+lystrna	L-Lysine-tRNA (Lys)	C6H14N2OR	2	Cytosol	C01931		227725	
+2kmb	2-keto-4-methylthiobutyrate	C5H7O3S	-1	Cytosol			228408	
+hdcea	Hexadecenoate (n-C16:1)	C16H29O2	-1	Cytosol, Extra-organism, Periplasm			246167	
+tagdp-D	D-Tagatose 1,6-biphosphate	C6H10O12P2	-4	Cytosol	C03785		1436448	
+ACP	acyl carrier protein	C11H21N2O7PRS	-1	Cytosol	C00229		1436893	
+acACP	Acetyl-ACP	C13H23N2O8PRS	-1	Cytosol			1436913	
+actACP	Acetoacetyl-ACP	C15H25N2O9PRS	-1	Cytosol	C05744		1436931	
+ddcaACP	Dodecanoyl-ACP (n-C12:0ACP)	C23H43N2O8PRS	-1	Cytosol	C05223		1436978	
+myrsACP	Myristoyl-ACP (n-C14:0ACP)	C25H47N2O8PRS	-1	Cytosol	C05761		1437493	
+tdeACP	cis-tetradec-7-enoyl-[acyl-carrier protein] (n-C14:1)	C25H45N2O8PRS	-1	Cytosol			1437535	
+palmACP	Palmitoyl-ACP (n-C16:0ACP)	C27H51N2O8PRS	-1	Cytosol	C05764		1437566	
+hdeACP	cis-hexadec-9-enoyl-[acyl-carrier protein] (n-C16:1)	C27H49N2O8PRS	-1	Cytosol			1437594	
+octeACP	cis-octadec-11-enoyl-[acyl-carrier protein] (n-C18:1)	C29H53N2O8PRS	-1	Cytosol			1437596	
+lipidAds	Lipid A Disaccharide	C68H127N2O20P	-2	Cytosol	C04932		1438046	
+4hba	4-Hydroxy-benzyl alcohol	C7H8O2	0	Cytosol			1438178	
+q8	Ubiquinone-8	C49H74O4	0	Cytosol	C00399	1339-63-5	1438260	
+q8h2	Ubiquinol-8	C49H76O4	0	Cytosol	C00390		1438261	
+2dmmql8	2-Demethylmenaquinol 8	C50H72O2	0	Cytosol			1438263	
+dxyl	1-deoxy-D-xylulose	C5H10O4	0	Cytosol	C06257		1438793	
+galt1p	Galactitol 1-phosphate	C6H13O9P	-2	Cytosol	C06311		1439076	
+tag6p-D	D-Tagatose 6-phosphate	C6H11O9P	-2	Cytosol	C01097		1439080	
+ocdcaACP	Octadecanoyl-ACP (n-C18:0ACP)	C29H55N2O8PRS	-1	Cytosol			1440358	
+5caiz	5-phosphoribosyl-5-carboxyaminoimidazole	C9H11N3O9P	-3	Cytosol			1441327	
+cgly	Cys-Gly	C5H10N2O3S	0	Cytosol, Extra-organism, Periplasm	C01419	19246-18-5	1445980	
+ocACP	Octanoyl-ACP (n-C8:0ACP)	C19H35N2O8PRS	-1	Cytosol	C05752		1446145	
+dcaACP	Decanoyl-ACP (n-C10:0ACP)	C21H39N2O8PRS	-1	Cytosol	C05755		1446147	
+h2mb4p	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate	C5H9O8P2	-3	Cytosol	C11811		1446395	
+2ombzl	2-Octaprenyl-6-methoxy-1,4-benzoquinol	C47H72O3	0	Cytosol			1446534	
+2ommbl	2-Octaprenyl-3-methyl-6-methoxy- 1,4-benzoquinol	C48H74O3	0	Cytosol			1446539	
+2omhmbl	2-Octaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinol	C48H74O4	0	Cytosol			1446551	
+25drapp	2,5-Diamino-6-(ribosylamino)-4-(3H)-pyrimidinone 5'-phosphate	C9H14N5O8P	-2	Cytosol			1446959	
+dhpmp	Dihydroneopterin monophosphate	C9H12N5O7P	-2	Cytosol	C05925		1447045	
+6hmhpt	6-hydroxymethyl dihydropterin	C7H9N5O2	0	Cytosol			1447073	
+6hmhptpp	6-hydroxymethyl-dihydropterin pyrophosphate	C7H8N5O8P2	-3	Cytosol			1447078	
+ohpb	2-Oxo-3-hydroxy-4-phosphobutanoate	C4H4O8P	-3	Cytosol	C06054		1447403	
+phthr	O-Phospho-4-hydroxy-L-threonine	C4H8NO7P	-2	Cytosol	C06055		1448859	
+4hthr	4-Hydroxy-L-threonine	C4H9NO4	0	Cytosol	C06056		1450010	
+3hmrsACP	(R)-3-Hydroxytetradecanoyl-[acyl-carrier protein]	C25H47N2O9PRS	-1	Cytosol	C04688		1450063	
+kdo2lipid4	KDO(2)-lipid IV(A)	C84H148N2O37P2	-6	Cytosol, Extra-organism, Periplasm	C06025		1450113	
+kdo2lipid4L	KDO(2)-lipid IV(A) with laurate	C96H170N2O38P2	-6	Cytosol	C06251		1450133	
+ckdo	CMP-3-deoxy-D-manno-octulosonate	C17H24N3O15P	-2	Cytosol			1450191	
+kdolipid4	KDO-lipid IV(A)	C76H137N2O30P2	-5	Cytosol	C06024		1450230	
+dkmpp	2,3-diketo-5-methylthio-1-phosphopentane	C6H9O6PS	-2	Cytosol			1450933	
+ttdcea	tetradecenoate (n-C14:1)	C14H25O2	-1	Cytosol, Extra-organism, Periplasm			1451010	
+ocdcea	octadecenoate (n-C18:1)	C18H33O2	-1	Cytosol, Extra-organism, Periplasm			1451011	
+tdecoa	Tetradecenoyl-CoA (n-C14:1CoA)	C35H56N7O17P3S	-4	Cytosol			1451382	
+hdcoa	Hexadecenoyl-CoA (n-C16:1CoA)	C37H60N7O17P3S	-4	Cytosol			1451383	
+stcoa	Stearoyl-CoA (n-C18:0CoA)	C39H66N7O17P3S	-4	Cytosol	C00412	362-66-3	1451385	
+odecoa	Octadecenoyl-CoA (n-C18:1CoA)	C39H64N7O17P3S	-4	Cytosol			1451388	
+od2coa	trans-Octadec-2-enoyl-CoA	C39H64N7O17P3S	-4	Cytosol			1452075	
+3hodcoa	(S)-3-Hydroxyoctadecanoyl-CoA	C39H66N7O18P3S	-4	Cytosol			1452167	
+apoACP	apoprotein [acyl carrier protein]	RHO	0	Cytosol			1452673	
+gdpmann	GDP-D-mannose	C16H23N5O16P2	-2	Cytosol	C00096		1460457	
+cenchddd	cis-3-(3-carboxyethenyl)-3,5-cyclohexadiene-1,2-diol	C9H9O4	-1	Cytosol			1472194	
+cechddd	cis-3-(3-carboxyethyl)-3,5-cyclohexadiene-1,2-diol	C9H11O4	-1	Cytosol			1472223	
+dhcinnm	2,3-dihydroxicinnamic acid	C9H7O4	-1	Cytosol			1472265	
+hkntd	2-hydroxy-6-ketononatrienedioate	C9H6O6	-2	Cytosol			1472288	
+3hpppn	3-(3-hydroxy-phenyl)propionate	C9H9O3	-1	Cytosol, Extra-organism, Periplasm			1472372	
+3hcinnm	3-hydroxycinnamic acid	C9H7O3	-1	Cytosol, Extra-organism, Periplasm			1472404	
+dmso	Dimethyl sulfoxide	C2H6OS	0	Cytosol, Extra-organism, Periplasm	C11143		1482895	
+25dkglcn	2,5-diketo-D-gluconate	C6H7O7	-1	Cytosol	C02780		1482980	
+2dhguln	2-Dehydro-L-gulonate	C6H9O7	-1	Cytosol			1482981	
+urdglyc	(-)-Ureidoglycolate	C3H5N2O4	-1	Cytosol	C00603		1483307	
+dtdp4aaddg	dTDP-4-acetamido-4,6-dideoxy-D-galactose	C18H27N3O15P2	-2	Cytosol			1483499	
+unaga	Undecaprenyl diphospho N-acetyl-glucosamine	C63H103NO12P2	-2	Cytosol			1483642	
+unagamu	Undecaprenyl-diphospho-N-acetylglucosamine-N-acetylmannosaminuronate	C71H113N2O18P2	-3	Cytosol			1483661	
+unagamuf	Undecaprenyl-diphospho N-acetylglucosamine-N-acetylmannosaminuronate-N-acetamido-4,6-dideoxy-D-galactose	C79H126N3O22P2	-3	Cytosol, Periplasm			1483737	
+3dhgulnp	3-keto-L-gulonate-6-phosphate	C6H8O10P	-3	Cytosol			1483967	
+g3ps	Glycerophosphoserine	C6H13NO8P	-1	Cytosol, Extra-organism, Periplasm			1484554	
+ap4a	P1,P4-Bis(5'-adenosyl) tetraphosphate	C20H24N10O19P4	-4	Cytosol	C01260		1484745	
+gp4g	P1,P4-Bis(5'-guanosyl) tetraphosphate	C20H24N10O21P4	-4	Cytosol	C01261		1484779	
+camp	cAMP	C10H11N5O6P	-1	Cytosol	C00575		1484809	
+mi1p-D	1D-myo-Inositol 1-phosphate	C6H11O9P	-2	Cytosol	C01177		1484840	
+Sfglutth	S-Formylglutathione	C11H16N3O7S	-1	Cytosol	C01031		1485290	
+acac	Acetoacetate	C4H5O3	-1	Cytosol, Extra-organism, Periplasm	C00164	541-50-4	1485291	
+kdo2lipid4p	KDO(2)-lipid IV(A) with palmitoleoyl	C100H176N2O38P2	-6	Cytosol			1485724	
+lipa_cold	cold adapted KDO(2)-lipid (A)	C114H202N2O39P2	-6	Cytosol, Extra-organism, Periplasm			1485766	
+maltpt	Maltopentaose	C30H52O26	0	Cytosol, Extra-organism, Periplasm			1486099	
+malthp	Maltoheptaose	C42H72O36	0	Cytosol			1486100	
+pac	Phenylacetic acid	C8H7O2	-1	Cytosol	C07086	103-82-2	1486426	
+btnso	d-biotin d-sulfoxide	C10H15N2O4S	-1	Cytosol			1486591	
+aconm	E-3-carboxy-2-pentenedioate 6-methyl ester	C7H6O6	-2	Cytosol			1486606	
+adphep-LD	ADP-L-glycero-D-manno-heptose	C17H25N5O16P2	-2	Cytosol	C06398		1488036	
+gmhep1p	D-Glycero-D-manno-heptose 1-phosphate	C7H13O10P	-2	Cytosol	C07838		1488063	
+gmhep17bp	D-Glycero-D-manno-heptose 1,7-bisphosphate	C7H12O13P2	-4	Cytosol	C11472		1488077	
+gmhep7p	D-Glycero-D-manno-heptose 7-phosphate	C7H13O10P	-2	Cytosol	C07836		1488095	
+crncoa	L-Carnitinyl-CoA	C28H46N8O18P3S	-3	Cytosol			1489398	
+ctbtcoa	crotonobetainyl-CoA	C28H44N8O17P3S	-3	Cytosol			1489399	
+bbtcoa	gamma-butyrobetainyl-CoA	C28H46N8O17P3S	-3	Cytosol			1489417	
+gbbtn	gamma-butyrobetaine	C7H15NO2	0	Cytosol, Extra-organism, Periplasm			1489453	
+fmnh2	Reduced FMN	C17H21N4O9P	-2	Cytosol		67-63-0	1489679	
+dhptd	4,5-dihydroxy-2,3-pentanedione	C5H8O4	0	Cytosol	C11838		1494230	
+hmfurn	4-hydroxy-5-methyl-3(2H)-furanone	C5H6O3	0	Cytosol			1494231	
+seramp	L-seryl-AMP	C13H19N6O9P	0	Cytosol			1516588	
+enter	Enterochelin	C30H27N3O15	0	Cytosol, Extra-organism, Periplasm			1516604	
+ascb6p	L-ascorbate-6-phosphate	C6H7O9P	-2	Cytosol			1560786	
+3hoctaACP	(R)-3-Hydroxyoctadecanoyl-[acyl-carrier protein]	C29H55N2O9PRS	-1	Cytosol			1572019	
+3hpalmACP	R-3-hydroxypalmitoyl-[acyl-carrier protein]	C27H51N2O9PRS	-1	Cytosol	C04633		1572107	
+acmum6p	N-acetylmuramate 6-phosphate	C11H17NO11P	-3	Cytosol			1771501	
+manglyc	2(alpha-D-Mannosyl)-D-glycerate	C9H15O9	-1	Extra-organism, Periplasm	C11544		1771707	
+man6pglyc	2(alpha-D-Mannosyl-6-phosphate)-D-glycerate	C9H14O12P	-3	Cytosol			1771713	
+mg2	magnesium	Mg	2	Cytosol, Extra-organism, Periplasm	C00305		1787372	
+cd2	Cadmium	Cd	2	Cytosol, Extra-organism, Periplasm	C01413		1800088	
+3oodcoa	3-Oxooctadecanoyl-CoA	C39H64N7O18P3S	-4	Cytosol			1800302	
+23dhba	(2,3-Dihydroxybenzoyl)adenylate	C17H17N5O10P	-1	Cytosol	C04030		1816866	
+allul6p	Allulose 6-phosphate	C6H11O9P	-2	Cytosol			1837836	
+trnasecys	tRNA(SeCys)	R	0	Cytosol			1899582	
+feoxam	ferroxamine	C25H46FeN6O8	1	Cytosol, Extra-organism, Periplasm			1899884	
+thrp	L-Threonine O-3-phosphate	C4H8NO6P	-2	Extra-organism, Periplasm	C12147		1915272	
+cpgn	coprogen	C35H52N6O13Fe	-1	Cytosol, Extra-organism, Periplasm			1915772	
+tungs	tungstate	O4W1	-2	Cytosol, Extra-organism, Periplasm			1917263	
+frulys	fructoselysine	C12H25N2O7	1	Cytosol, Extra-organism, Periplasm			2212339	
+frulysp	fructoselysine Phosphate	C12H24N2O10P	-1	Cytosol			2213238	
+23dappa	2,3-diaminopropionate	C3H9N2O2	1	Cytosol, Extra-organism, Periplasm	C06393		2213301	
+metsox-R-L	L-methionine-R-sulfoxide	C5H11NO3S	0	Cytosol, Extra-organism, Periplasm			2217370	
+ggptrc	gamma-glutamyl-putrescine	C9H20O3N3	1	Cytosol			2221213	
+ggbutal	gamma-glutamyl-gamma-butyraldehyde	C9H16O4N2	0	Cytosol			2221296	
+gg4abut	gamma-glutamyl-gamma aminobutyric acid	C9H15O5N2	-1	Cytosol			2224952	
+3amp	3'-AMP	C10H12N5O7P	-2	Extra-organism, Periplasm	C01367	84-21-9	2224997	
+3cmp	3'-cmp	C9H12N3O8P	-2	Extra-organism, Periplasm	C05822		2225045	
+acgal1p	N-Acetyl-D-galactosamine 1-phosphate	C8H14NO9P	-2	Extra-organism, Periplasm			2241575	
+fe3hox-un	Fe(III)hydoxamate, unloaded	C9H18O6N3	-3	Cytosol, Extra-organism, Periplasm			2256321	
+fecrm-un	Ferrichrome minus Fe(III)	C27H42N9O12	-3	Cytosol, Extra-organism, Periplasm			2262590	
+arbtn	aerobactin minus Fe3	C22H33N4O13	-3	Cytosol, Extra-organism, Periplasm			2262677	
+feoxam-un	ferroxamine minus Fe(3)	C25H46N6O8	-2	Cytosol, Extra-organism, Periplasm			2262757	
+cu	Cu+	Cu	1	Cytosol, Extra-organism, Periplasm			2323762	
+23dhbzs	2,3-dihydroxybenzoylserine	C10H10NO6	-1	Cytosol			2324010	
+2tpr3dpcoa	2'-(5''-triphosphoribosyl)-3'-dephospho-CoA	C26H40N7O26P5S	-6	Cytosol			2324025	
+2amsa	2-Aminomalonate semialdehyde	C3H5NO3	0	Cytosol	C11822		2325274	
+mso3	methanesulfonate	CH3O3S	-1	Cytosol, Extra-organism, Periplasm			2325303	
+hmgth	hydroxymethylglutathione	C11H18N3O7S	-1	Cytosol			2325420	
+LalaDglu	L-alanine-D-glutamate	C8H13N2O5	-1	Cytosol			2327197	
+LalaDgluMdap	L-alanine-D-glutamate-meso-2,6-diaminoheptanedioate	C15H25N4O8	-1	Cytosol, Extra-organism, Periplasm			2327200	
+LalaDgluMdapDala	L-alanine-D-glutamate-meso-2,6-diaminoheptanedioate-D-alanine	C18H30N5O9	-1	Cytosol, Extra-organism, Periplasm			2327202	
+anhgm	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramic acid	C19H29N2O12	-1	Cytosol, Extra-organism, Periplasm			2327204	
+anhgm3p	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tripeptide	C34H52N6O19	-2	Cytosol, Periplasm			2327207	
+anhgm4p	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide	C37H57N7O20	-2	Cytosol, Periplasm			2327353	
+murein5p5p	two linked disacharide pentapeptide murein units (uncrosslinked, middle of chain)	C80H124N16O42	-4	Periplasm			2327731	
+anhm3p	1,6-anhydrous-N-Acetylmuramyl-tripeptide	C26H39N5O14	-2	Cytosol			2328671	
+anhm4p	1,6-anhydrous-N-Acetylmuramyl-tetrapeptide	C29H44N6O15	-2	Cytosol			2328673	
+anhm	1,6-anhydrous-N-Acetylmuramate	C11H16NO7	-1	Cytosol			2328675	
+um4p	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate-D-alanine	C38H56N8O27P2	-4	Cytosol			2328764	
+LalaLglu	L-alanine-L-glutamate	C8H13N2O5	-1	Cytosol			2329493	
+enlipa	phosphoethanolamine KDO(2)-lipid (A)	C112H202N3O42P3	-6	Extra-organism, Periplasm			2374283	
+udpLa4o	UDP-4-keto-pyranose	C14H18N2O16P2	-2	Cytosol			2374669	
+udpLa4n	uridine 5''-diphospho-{beta}-4-deoxy-4-amino-L-arabinose	C14H22N3O15P2	-1	Cytosol			2374672	
+uLa4n	undecaprenyl phosphate-4-amino-4-deoxy-L-arabinose	C60H100N1O7P1	0	Cytosol, Periplasm			2374674	
+udpLa4fn	uridine 5''-diphospho-{beta}-4-deoxy-4-formamido-L-arabinose	C15H21N3O16P2	-2	Cytosol			2374694	
+uLa4fn	undecaprenyl phosphate-4-amino-4-formyl-L-arabinose	C61H99N1O8P1	-1	Cytosol			2374700	
+hlipa	heptosyl-kdo2-lipidA	C117H208N2O45P2	-6	Cytosol			2374859	
+hhlipa	heptosyl-heptosyl-kdo2-lipidA	C124H220N2O51P2	-6	Cytosol			2374861	
+icolipa	inner core oligosaccharide lipid A (E coli)	C145H251N2O74P4	-11	Cytosol			2374904	
+phhlipa	phospho-heptosyl-heptosyl-kdo2-lipidA	C124H219N2O54P3	-8	Cytosol			2374920	
+hphhlipa	heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	C131H231N2O60P3	-8	Cytosol			2374922	
+phphhlipa	phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	C131H230N2O63P4	-10	Cytosol			2374930	
+kphphhlipa	kdo-phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	C139H241N2O70P4	-11	Cytosol			2374935	
+gicolipa	glucosyl-inner core oligosaccharide lipid A	C151H261N2O79P4	-11	Cytosol			2375061	
+gagicolipa	galactosyl-glucosyl-inner core oligosaccharide lipid A	C157H271N2O84P4	-11	Cytosol			2375062	
+ggagicolipa	glucosyl-galactosyl-glucosyl-inner core oligosaccharide lipid A	C163H281N2O89P4	-11	Cytosol			2375065	
+gggagicolipa	glucosyl-glucosyl-galactosyl-glucosyl-inner core oligosaccharide lipid A	C169H291N2O94P4	-11	Cytosol			2375067	
+colipa	core oligosaccharide lipid A	C176H303N2O100P4	-11	Cytosol, Extra-organism, Periplasm			2375069	
+acolipa	4-Amino-4-deoxy-L-arabinose modified core oligosaccharide lipid A	C181H314N3O103P4	-9	Extra-organism, Periplasm			2376800	
+hacolipa	hepta-acylated core oligosaccharide lipid A (E. coli)	C192H333N2O101P4	-11	Extra-organism			2376980	
+halipa	hepta-acylated KDO(2)-lipid (A)	C126H226N2O40P2	-6	Extra-organism			2376981	
+eca2und	(enterobacterial common antigen)x2 undecaprenyl-diphosphate	C103H162N6O37P2	-4	Periplasm			2377323	
+eca3und	(enterobacterial common antigen)x3 undecaprenyl-diphosphate	C127H198N9O52P2	-5	Periplasm			2377324	
+eca4und	(enterobacterial common antigen)x4 undecaprenyl-diphosphate	C151H234N12O67P2	-6	Periplasm			2377325	
+eca4colipa	(enterobacterial common antigen)x4 core oligosaccharide lipid A	C272H447N14O160P4	-15	Extra-organism, Periplasm			2377382	
+ragund	rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C69H113N1O16P2	-2	Cytosol			2377416	
+aragund	O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C71H115N1O17P2	-2	Cytosol			2377425	
+garagund	glucosyl-O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C77H125N1O22P2	-2	Cytosol			2377434	
+gfgaragund	galactofuranosyl-glucosyl-O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C83H135N1O27P2	-2	Cytosol			2377443	
+o16aund	O16 antigen undecaprenyl diphosphate	C89H145N1O32P2	-2	Cytosol, Periplasm			2377452	
+o16a2und	(O16 antigen)x2 undecaprenyl diphosphate	C123H200N2O57P2	-2	Periplasm			2377475	
+o16a3und	(O16 antigen)x3 undecaprenyl diphosphate	C157H255N3O82P2	-2	Periplasm			2377481	
+o16a4und	(O16 antigen)x4 undecaprenyl diphosphate	C191H310N4O107P2	-2	Periplasm			2377483	
+o16a4colipa	(O16 antigen)x4 core oligosaccharide lipid A	C312H523N6O200P4	-11	Extra-organism, Periplasm			2377506	
+ethso3	ethanesulfonate	C2H5O3S	-1	Cytosol, Extra-organism, Periplasm			2380360	
+butso3	butanesulfonate	C4H9O3S	-1	Cytosol, Extra-organism, Periplasm			2380361	
+sulfac	sulfoacetate	C2H2O5S	-2	Cytosol, Extra-organism, Periplasm			2380362	
+crn-D	D-Carnitine	C7H15NO3	0	Cytosol, Periplasm	C00487		2386130	
+crnDcoa	D-carnitinyl-CoA	C28H46N8O18P3S	-3	Cytosol			2386261	
+14glucan	1,4-alpha-D-glucan	C36H62O31	0	Cytosol, Extra-organism, Periplasm			2387686	
+dhmptp	dihydromonapterin-triphosphate	C9H12N5O13P3	-4	Cytosol			2387745	
+bglycogen	branching glycogen	C6H10O5	0	Cytosol			2387835	
+grxrd	glutaredoxin (reduced)	XH2	0	Cytosol			2388474	
+grxox	glutaredoxin (oxidized)	X	0	Cytosol			2388475	
+fe3dhbzs	ferric 2,3-dihydroxybenzoylserine	C10H10NO6Fe	2	Cytosol, Extra-organism, Periplasm			2388875	
+so2	sulfur dioxide	O2S	0	Cytosol, Extra-organism, Periplasm	C09306		2389303	
+cpgn-un	coprogen unloaded (no Fe(III))	C35H52N6O13	-4	Cytosol, Extra-organism, Periplasm			2391021	
+murein5px4p	two disacharide linked murein units, pentapeptide crosslinked tetrapeptide (A2pm->D-ala) (middle of chain)	C77H117N15O40	-4	Periplasm			2528324	
+murein4px4p	two disacharide linked murein units, tetrapeptide corsslinked tetrapeptide (A2pm->D-ala) (middle of chain)	C74H112N14O39	-4	Periplasm			2528325	
+murein3px4p	two disacharide linked murein units, tripeptide crosslinked tetrapeptide (A2pm->D-ala) (middle of chain)	C71H107N13O38	-4	Periplasm			2528326	
+murein4p4p	two linked disacharide tetrapeptide murein units (uncrosslinked, middle of chain)	C74H114N14O40	-4	Periplasm			2528327	
+murein3p3p	two linked disacharide tripeptide murein units (uncrosslinked, middle of chain)	C68H104N12O38	-4	Periplasm			2528328	
+murein5p5p5p	three linked disacharide pentapeptide murein units (uncrosslinked, middle of chain)	C120H186N24O63	-6	Periplasm			2528329	
+murein5px4px4p	three disacharide linked murein units (pentapeptide crosslinked tetrapeptide (A2pm->D-ala) tetrapeptide corsslinked tetrapeptide (A2pm->D-ala)) (middle of chain)	C114H172N22O59	-6	Periplasm			2528332	
+murein4px4px4p	three disacharide linked murein units (tetrapeptide crosslinked tetrapeptide (A2pm->D-ala) & tetrapeptide corsslinked tetrapeptide (A2pm->D-ala)) (middle of chain)	C111H167N21O58	-6	Periplasm			2528333	
+murein5px3p	two disacharide linked murein units, pentapeptide corsslinked tripeptide (A2pm->A2pm) (middle of chain)	C74H112N14O39	-4	Periplasm			2528334	
+murein3px3p	two disacharide linked murein units, tripeptide crosslinked tripeptide (A2pm->A2pm) (middle of chain)	C68H102N12O37	-4	Periplasm			2528335	
+murein5p4p	two linked disacharide pentapeptide and tetrapeptide murein units (uncrosslinked, middle of chain)	C77H119N15O41	-4	Periplasm			2579529	
+murein4p3p	two linked disacharide tetrapeptide and tripeptide murein units (uncrosslinked, middle of chain)	C71H109N13O39	-4	Periplasm			2579530	
+murein5p3p	two linked disacharide pentapeptide and tripeptide murein units (uncrosslinked, middle of chain)	C74H114N14O40	-4	Periplasm			2596662	
+murein4px4p4p	three disacharide linked murein units (tetrapeptide crosslinked tetrapeptide (A2pm->D-ala), one uncrosslinked tetrapaptide) (middle of chain)	C111H169N21O59	-6	Periplasm			2605686	
+3hoctACP	(R)-3-Hydroxyoctanoyl-[acyl-carrier protein]	C19H35N2O9PRS	-1	Cytosol	C04620		2607648	
+cdec3eACP	cis-dec-3-enoyl-[acyl-carrier protein] (n-C10:1)	C21H37N2O8PRS	-1	Cytosol			2617008	
+cddec5eACP	cis-dodec-5-enoyl-[acyl-carrier protein] (n-C12:1)	C23H41N2O8PRS	-1	Cytosol			2617009	
+3ocddec5eACP	3-oxo-cis-dodec-5-enoyl-[acyl-carrier protein]	C23H39N2O9PRS	-1	Cytosol			2617013	
+3ocmrs7eACP	3-oxo-cis-myristol-7-eoyl-[acyl-carrier protein]	C25H43N2O9PRS	-1	Cytosol			2617014	
+3hcmrs7eACP	(R)-3-hydroxy-cis-myristol-7-eoyl-[acyl-carrier protein]	C25H45N2O9PRS	-1	Cytosol			2617015	
+t3c7mrseACP	trans-3-cis-7-myristoleoyl-[acyl-carrier protein]	C25H43N2O8PRS	-1	Cytosol			2617016	
+3hcddec5eACP	(R)-3-hydroxy-cis-dodec-5-enoyl-[acyl-carrier protein]	C23H41N2O9PRS	-1	Cytosol			2617017	
+3hcpalm9eACP	(R)-3-hydroxy-cis-palm-9-eoyl-[acyl-carrier protein]	C27H49N2O9PRS	-1	Cytosol			2617018	
+3hcvac11eACP	(R)-3-hydroxy-cis-vacc-11-enoyl-[acyl-carrier protein]	C29H53N2O9PRS	-1	Cytosol			2617019	
+3ocpalm9eACP	3-oxo-cis-palm-9-eoyl-[acyl-carrier protein]	C27H47N2O9PRS	-1	Cytosol			2617020	
+3ocvac11eACP	3-oxo-cis-vacc-11-enoyl-[acyl-carrier protein]	C29H51N2O9PRS	-1	Cytosol			2617021	
+t3c5ddeceACP	trans-3-cis-5-dodecenoyl-[acyl-carrier protein]	C23H39N2O8PRS	-1	Cytosol			2617022	
+t3c9palmeACP	trans-3-cis-9-palmitoleoyl-[acyl-carrier protein]	C27H47N2O8PRS	-1	Cytosol			2617023	
+t3c11vaceACP	trans-3-cis-11-vacceoyl-[acyl-carrier protein]	C29H51N2O8PRS	-1	Cytosol			2617024	
+1tdecg3p	1-tetradecanoyl-sn-glycerol 3-phosphate	C17H33O7P1	-2	Cytosol, Periplasm	C00681		2617398	
+1hdecg3p	1-hexadecanoyl-sn-glycerol 3-phosphate	C19H37O7P1	-2	Cytosol, Periplasm	C00681		2617399	
+1odecg3p	1-octadecanoyl-sn-glycerol 3-phosphate	C21H41O7P1	-2	Cytosol, Periplasm	C00681		2617402	
+1tdec7eg3p	1-tetradec-7-enoyl-sn-glycerol 3-phosphate	C17H31O7P1	-2	Cytosol, Periplasm	C00681		2617404	
+1hdec9eg3p	1-hexadec-9-enoyl-sn-glycerol 3-phosphate	C19H35O7P1	-2	Cytosol, Periplasm			2617406	
+1odec11eg3p	1-octadec-11-enoyl-sn-glycerol 3-phosphate	C21H39O7P1	-2	Cytosol, Periplasm			2617407	
+pa140	1,2-ditetradecanoyl-sn-glycerol 3-phosphate	C31H59O8P1	-2	Cytosol, Periplasm	C00416		2617409	
+pa160	1,2-dihexadecanoyl-sn-glycerol 3-phosphate	C35H67O8P1	-2	Cytosol, Periplasm	C00416		2617415	
+pa180	1,2-dioctadecanoyl-sn-glycerol 3-phosphate	C39H75O8P1	-2	Cytosol, Periplasm	C00416		2617421	
+pa141	1,2-ditetradec-7-enoyl-sn-glycerol 3-phosphate	C31H55O8P1	-2	Cytosol, Periplasm	C00416		2617427	
+pa161	1,2-dihexadec-9-enoyl-sn-glycerol 3-phosphate	C35H63O8P1	-2	Cytosol, Periplasm	C00416		2617433	
+pa181	1,2-dioctadec-11-enoyl-sn-glycerol 3-phosphate	C39H71O8P1	-2	Cytosol, Periplasm	C00416		2617439	
+cdpdtdecg	CDP-1,2-ditetradecanoylglycerol	C40H71N3O15P2	-2	Cytosol	C00269		2617598	
+cdpdhdecg	CDP-1,2-dihexadecanoylglycerol	C44H79N3O15P2	-2	Cytosol	C00269		2617620	
+cdpdodecg	CDP-1,2-dioctadecanoylglycerol	C48H87N3O15P2	-2	Cytosol	C00269		2617625	
+cdpdtdec7eg	CDP-1,2-ditetradec-7-enoylglycerol	C40H67N3O15P2	-2	Cytosol	C00269		2617630	
+cdpdhdec9eg	CDP-1,2-dihexadec-9-enoylglycerol	C44H75N3O15P2	-2	Cytosol	C00269		2617635	
+cdpdodec11eg	CDP-1,2-dioctadec-11-enoylglycerol	C48H83N3O15P2	-2	Cytosol	C00269		2617640	
+pgp160	Phosphatidylglycerophosphate (dihexadecanoyl, n-C16:0)	C38H73O13P2	-3	Cytosol, Periplasm	C03892		2617776	
+pgp180	Phosphatidylglycerophosphate (dioctadecanoyl, n-C18:0)	C42H81O13P2	-3	Cytosol, Periplasm	C03892		2617781	
+pgp141	Phosphatidylglycerophosphate (ditetradec-7-enoyl, n-C14:1)	C34H61O13P2	-3	Cytosol, Periplasm	C03892		2617785	
+pgp161	Phosphatidylglycerophosphate (dihexadec-9-enoyl, n-C16:1)	C38H69O13P2	-3	Cytosol, Periplasm			2617791	
+pgp181	Phosphatidylglycerophosphate (dioctadec-11-enoyl, n-C18:1)	C42H77O13P2	-3	Cytosol, Periplasm	C03892		2617795	
+pg140	Phosphatidylglycerol (ditetradecanoyl, n-C14:0)	C34H66O10P1	-1	Cytosol, Periplasm	C00344		2617830	
+pg160	Phosphatidylglycerol (dihexadecanoyl, n-C16:0)	C38H74O10P1	-1	Cytosol, Periplasm	C00344		2617836	
+pg180	Phosphatidylglycerol (dioctadecanoyl, n-C18:0)	C42H82O10P1	-1	Cytosol, Periplasm	C00344		2617842	
+pg141	Phosphatidylglycerol (ditetradec-7-enoyl, n-C14:1)	C34H62O10P1	-1	Cytosol, Periplasm	C00344		2617848	
+pg161	Phosphatidylglycerol (dihexadec-9-enoyl, n-C16:1)	C38H70O10P1	-1	Cytosol, Periplasm	C00344		2617854	
+pg181	Phosphatidylglycerol (dioctadec-11-enoyl, n-C18:1)	C42H78O10P1	-1	Cytosol, Periplasm	C00344		2617860	
+clpn160	cardiolipin (tetrahexadecanoyl, n-C16:0)	C73H140O17P2	-2	Periplasm	C05980		2617921	
+clpn180	cardiolipin (tetraoctadecanoyl, n-C18:0)	C81H156O17P2	-2	Periplasm	C05980		2617925	
+clpn161	cardiolipin (tetrahexadec-9-enoyl, n-C16:1)	C73H132O17P2	-2	Periplasm	C05980		2617929	
+clpn141	cardiolipin (tetratetradec-7-enoyl, n-C14:1)	C65H116O17P2	-2	Periplasm	C05980		2617933	
+clpn181	cardiolipin (tetraoctadec-11-enoyl, n-C18:1)	C81H148O17P2	-2	Periplasm	C05980		2617937	
+ps140	phosphatidylserine (ditetradecanoyl, n-C14:0)	C34H65N1O10P1	-1	Cytosol	C02737		2617965	
+ps160	phosphatidylserine (dihexadecanoyl, n-C16:0)	C38H73N1O10P1	-1	Cytosol	C02737		2617990	
+ps180	phosphatidylserine (dioctadecanoyl, n-C18:0)	C42H81N1O10P1	-1	Cytosol	C02737		2617996	
+ps141	phosphatidylserine (ditetradec-7-enoyl, n-C14:1)	C34H61N1O10P1	-1	Cytosol	C02737		2618002	
+ps161	phosphatidylserine (dihexadec-9-enoyl, n-C16:1)	C38H69N1O10P1	-1	Cytosol	C02737		2618008	
+ps181	phosphatidylserine (dioctadec-11-enoyl, n-C18:1)	C42H77N1O10P1	-1	Cytosol	C02737		2618014	
+pe140	phosphatidylethanolamine (ditetradecanoyl, n-C14:0)	C33H66N1O8P1	0	Cytosol, Periplasm	C00350		2618123	
+pe160	phosphatidylethanolamine (dihexadecanoyl, n-C16:0)	C37H74N1O8P1	0	Cytosol, Periplasm	C00350		2618143	
+pe180	phosphatidylethanolamine (dioctadecanoyl, n-C18:0)	C41H82N1O8P1	0	Cytosol, Periplasm	C00350		2618159	
+pe141	phosphatidylethanolamine (ditetradec-7-enoyl, n-C14:1)	C33H62N1O8P1	0	Cytosol, Periplasm	C00350		2618165	
+pe161	phosphatidylethanolamine (dihexadec-9enoyl, n-C16:1)	C37H70N1O8P1	0	Cytosol, Periplasm	C00350		2618172	
+pe181	phosphatidylethanolamine (dioctadec-11-enoyl, n-C18:1)	C41H78N1O8P1	0	Cytosol, Periplasm	C00350		2618177	
+12dgr140	1,2-Diacyl-sn-glycerol (ditetradecanoyl, n-C14:0)	C31H60O5	0	Cytosol, Periplasm	C00641		2618217	
+12dgr160	1,2-Diacyl-sn-glycerol (dihexadecanoyl, n-C16:0)	C35H68O5	0	Cytosol, Periplasm	C00641		2618257	
+12dgr180	1,2-Diacyl-sn-glycerol (dioctadecanoyl, n-C18:0)	C39H76O5	0	Cytosol, Periplasm	C00641		2618262	
+12dgr141	1,2-Diacyl-sn-glycerol (ditetradec-7-enoyl, n-C14:1)	C31H56O5	0	Cytosol, Periplasm	C00641		2618266	
+12dgr161	1,2-Diacyl-sn-glycerol (dihexadec-9-enoyl, n-C16:1)	C35H64O5	0	Cytosol, Periplasm	C00641		2618273	
+12dgr181	1,2-Diacyl-sn-glycerol (dioctadec-11-enoyl, n-C18:1)	C39H72O5	0	Cytosol, Periplasm	C00641		2618277	
+3ooctdACP	3-Oxooctadecanoyl-[acyl-carrier protein]	C29H53N2O9PRS	-1	Cytosol			2618692	
+toctd2eACP	trans-octadec-2-enoyl-[acyl-carrier protein]	C29H53N2O8PRS	-1	Cytosol			2618694	
+1ddecg3p	1-dodecanoyl-sn-glycerol 3-phosphate	C15H29O7P1	-2	Cytosol, Periplasm	C00681		2618934	
+pa120	1,2-didodecanoyl-sn-glycerol 3-phosphate	C27H51O8P1	-2	Cytosol, Periplasm	C00416		2618936	
+cdpdddecg	CDP-1,2-didodecanoylglycerol	C36H63N3O15P2	-2	Cytosol	C00269		2618942	
+pgp120	Phosphatidylglycerophosphate (didodecanoyl, n-C12:0)	C30H57O13P2	-3	Cytosol, Periplasm	C03892		2618947	
+pg120	Phosphatidylglycerol (didodecanoyl, n-C12:0)	C30H58O10P1	-1	Cytosol, Periplasm	C00344		2618952	
+clpn120	cardiolipin (tetradodecanoyl, n-C12:0)	C57H108O17P2	-2	Periplasm	C05980		2618958	
+ps120	phosphatidylserine (didodecanoyl, n-C12:0)	C30H57N1O10P1	-1	Cytosol	C02737		2618962	
+pe120	phosphatidylethanolamine (didodecanoyl, n-C12:0)	C29H58N1O8P1	0	Cytosol, Periplasm	C00350		2618968	
+12dgr120	1,2-Diacyl-sn-glycerol (didodecanoyl, n-C12:0)	C27H52O5	0	Cytosol, Periplasm	C00641		2618973	
+cpe160	cyclopropane phosphatidylethanolamine (dihexadec-9,10-cyclo-anoyl, n-C16:0 cyclo)	C39H74N1O8P1	0	Cytosol			2634191	
+cpe180	cyclopropane phosphatidylethanolamine (dioctadec-11,12-cyclo-anoyl, n-C18:0 cyclo)	C43H82N1O8P1	0	Cytosol			2634192	
+cpg160	cyclopropane phosphatidylglycerol (dihexadec-9,10-cyclo-anoyl, n-C16:0 cyclo)	C40H74O10P1	-1	Cytosol			2634214	
+cpg180	cyclopropane phosphatidylglycerol (dioctadec-11,12-cyclo-anoyl, n-C18:0 cyclo)	C44H82O10P1	-1	Cytosol			2634215	
+dsbard	periplasmic protein disulfide isomerase I (reduced)	XH2	0	Periplasm			2703929	
+dsbaox	periplasmic protein disulfide isomerase I (oxidized)	X	0	Periplasm			2703931	
+dsbcrd	protein disulfide isomerase II (reduced)	XH2	0	Periplasm			2703933	
+dsbdrd	fused thiol:disulfide interchange protein (reduced)	XH2	0	Cytosol			2703935	
+dsbgrd	periplasmic disulfide isomerase/thiol-disulphide oxidase (reduced)	XH2	0	Periplasm			2703937	
+dsbcox	protein disulfide isomerase II (oxidized)	X	0	Periplasm			2703939	
+dsbdox	fused thiol:disulfide interchange protein (oxidized)	X	0	Cytosol			2703941	
+dsbgox	periplasmic disulfide isomerase/thiol-disulphide oxidase (oxidized)	X	0	Periplasm			2703943	
+progly	L-Prolinylglycine	C7H12N2O3	0	Cytosol, Extra-organism, Periplasm			2704888	
+2agpe120	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0)	C17H36NO7P1	0	Cytosol, Periplasm	C05973		2706648	
+2agpe180	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0)	C23H48NO7P1	0	Cytosol, Periplasm	C05973		2706652	
+2agpe160	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0)	C21H44NO7P1	0	Cytosol, Periplasm	C05973		2706656	
+2agpe140	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0)	C19H40NO7P1	0	Cytosol, Periplasm	C05973		2706660	
+2agpe141	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1)	C19H38NO7P1	0	Cytosol, Periplasm	C05973		2706664	
+2agpe161	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1)	C21H42NO7P1	0	Cytosol, Periplasm	C05973		2706668	
+2agpe181	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1)	C23H46NO7P1	0	Cytosol, Periplasm	C05973		2706672	
+2agpg120	2-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0)	C18H36O9P1	-1	Cytosol, Periplasm			2706688	
+2agpg140	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0)	C20H40O9P1	-1	Cytosol, Periplasm			2706839	
+2agpg160	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0)	C22H44O9P1	-1	Cytosol, Periplasm			2706842	
+2agpg180	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0)	C24H48O9P1	-1	Cytosol, Periplasm			2706845	
+2agpg141	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1)	C20H38O9P1	-1	Cytosol, Periplasm			2706848	
+2agpg161	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1)	C22H42O9P1	-1	Cytosol, Periplasm			2706851	
+2agpg181	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1)	C24H46O9P1	-1	Cytosol, Periplasm			2706854	
+2ddecg3p	2-dodecanoyl-sn-glycerol 3-phosphate	C15H30O7P1	-1	Cytosol, Periplasm	C03974		2706862	
+2tdecg3p	2-tetradecanoyl-sn-glycerol 3-phosphate	C17H34O7P1	-1	Cytosol, Periplasm	C03974		2706870	
+2hdecg3p	2-hexadecanoyl-sn-glycerol 3-phosphate	C19H38O7P1	-1	Cytosol, Periplasm	C03974		2706873	
+2odecg3p	2-octadecanoyl-sn-glycerol 3-phosphate	C21H42O7P1	-1	Cytosol, Periplasm	C03974		2706876	
+2tdec7eg3p	2-tetradec-7-enoyl-sn-glycerol 3-phosphate	C17H32O7P1	-1	Cytosol, Periplasm	C03974		2706879	
+2hdec9eg3p	2-hexadec-9-enoyl-sn-glycerol 3-phosphate	C19H36O7P1	-1	Cytosol, Periplasm	C03974		2706885	
+2odec11eg3p	2-octadec-11-enoyl-sn-glycerol 3-phosphate	C21H40O7P1	-1	Cytosol, Periplasm	C03974		2706888	
+lpp	lipoprotein	XC16H30O1	0	Periplasm	C01834		2707630	
+apg120	acyl phosphatidylglycerol (n-C12:0)	C42H80O11P	-1	Cytosol			2707870	
+apg140	acyl phosphatidylglycerol (n-C14:0)	C48H92O11P	-1	Cytosol			2707888	
+apg160	acyl phosphatidylglycerol (n-C16:0)	C54H104O11P	-1	Cytosol			2707891	
+apg180	acyl phosphatidylglycerol (n-C18:0)	C60H116O11P	-1	Cytosol			2707894	
+apg141	acyl phosphatidylglycerol (n-C14:1)	C48H86O11P	-1	Cytosol			2707897	
+apg161	acyl phosphatidylglycerol (n-C16:1)	C54H98O11P	-1	Cytosol			2707900	
+apg181	acyl phosphatidylglycerol (n-C18:1)	C60H110O11P	-1	Cytosol			2707903	
+1agpg120	1-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0)	C18H36O9P1	-1	Periplasm			2733760	
+1agpg140	1-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0)	C20H40O9P1	-1	Periplasm			2733763	
+1agpg141	1-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1)	C20H38O9P1	-1	Periplasm			2733766	
+1agpg160	1-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0)	C22H44O9P1	-1	Periplasm			2733769	
+1agpg161	1-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1)	C22H42O9P1	-1	Periplasm			2733772	
+1agpg180	1-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0)	C24H48O9P1	-1	Periplasm			2733775	
+1agpg181	1-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1)	C24H46O9P1	-1	Periplasm			2733778	
+1agpe120	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0)	C17H36NO7P1	0	Periplasm	C04438		2733781	
+1agpe140	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0)	C19H40NO7P1	0	Periplasm	C04438		2733785	
+1agpe141	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1)	C19H38NO7P1	0	Periplasm	C04438		2733789	
+1agpe160	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0)	C21H44NO7P1	0	Periplasm	C04438		2733793	
+1agpe161	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1)	C21H42NO7P1	0	Periplasm	C04438		2733805	
+1agpe180	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0)	C23H48NO7P1	0	Periplasm	C04438		2733809	
+1agpe181	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1)	C23H46NO7P1	0	Periplasm	C04438		2733811	
+sertrna(sec)	L-Seryl-tRNA(Sec)	C3H6NO2R	1	Cytosol			2932594	
+5drib	5'-deoxyribose	C5H10O4	0	Cytosol			2979838	
+galctn-L	L-Galactonate	C6H11O7	-1	Cytosol, Extra-organism, Periplasm			3138483	
+psclys	psicoselysine	C12H25N2O7	1	Cytosol, Extra-organism, Periplasm			3241258	
