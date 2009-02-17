@@ -7,8 +7,11 @@ Created by Nikolaus Sonnenschein on 2008-01-07.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
-
 from distutils.core import setup, Extension
+
+TO_INSTALL = ["ifba", "ifba.glpki"]
+# TO_INSTALL = ["ifba","ifba.glpki", "ifba.GlpkWrap", "ifba.distributedFBA", \
+# "ifba.general"]
 
 setup(
     name="ifba", 
@@ -17,19 +20,14 @@ setup(
     author="Nikolaus Sonnenschein",
     author_email="niko.sonnenschein@googlemail.com",
     url="",
+    
     # install only the swig library
-    # packages=["ifba","ifba.glpki"],
-    packages=["ifba","ifba.glpki", "ifba.GlpkWrap", "ifba.distributedFBA", 
-    "ifba.general"],
-
-    ext_modules=[Extension("_glpki", [("ifba/glpki/glpki.i",)],
-                 include_dirs=["/Users/niko/arbeit/Software/glpk-4.32/include",
-                 "/people/home/nsonnensch/downloads/glpk-4.32/include"],
-                 library_dirs=["/usr/local/lib",
-                 "/people/home/nsonnensch/software/lib"],
-                 libraries=['glpk'],
-                 extra_linker_args=['-arch i386'])
-                 ]
+    packages=TO_INSTALL,
+    
+    ext_modules=[Extension( "_glpki", ["ifba/glpki/glpki.i",], 
+        include_dirs=["./glpk-4.36/include",], 
+        library_dirs=["/usr/local/lib", "/people/home/nsonnensch/software/lib"], 
+        libraries=['glpk'] )]
     )
 
 # include_dirs=["/home/engineer/software/glpk-4.32/include",

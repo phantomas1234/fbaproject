@@ -9,7 +9,6 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 
 from ifba.glpki.glpki import *
 
-
 class glpk(object):
     """docstring for GlpkWrapper"""
     def __init__(self, lp):
@@ -18,7 +17,7 @@ class glpk(object):
         is allowed. The lp gets also indexed so that string ids of rows and
         columns can be used."""
         self.lp = lp
-        lpx_scale_prob(self.lp)
+        glp_scale_prob(self.lp, GLP_SF_AUTO)
         self.smcp = glp_smcp()
         glp_init_smcp(self.smcp)
         self.smcp.msg_lev = GLP_MSG_OFF
@@ -48,6 +47,7 @@ class glpk(object):
         presolveMapping = {0:'Off', 1:'On'}
         info = (
         """Some info:
+        The current glpk version: %s
         The current Optimiztion direction: %s
         The current objective value: %f
         The number of Columns: %d
@@ -55,7 +55,7 @@ class glpk(object):
         The number of undoable steps: %d
         The current verbosity level: %s
         Presolver: %s
-        """ % (optMappint[self.getOptFlag()], self.getObjVal(),
+        """ % (glp_version() ,optMappint[self.getOptFlag()], self.getObjVal(),
         self.getNumCols(), self.getNumRows(),
         len(self.history), verbMapping[self.smcp.msg_lev],
         # presolveMapping[self.smcp.presolve])

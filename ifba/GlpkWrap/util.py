@@ -20,16 +20,16 @@ def ImportCplex(file_path, terminal="OFF"):
         glpki.glp_term_out(glpki.GLP_ON)
     else:
         raise Exception, 'wrong option specified.'        
-    return glpki.lpx_read_cpxlp(file_path)
+    glpki.glp_read_lp(glpki.glp_create_prob() ,None, file_path)
 
-def ImportFreeMPS(file_path):
+def ImportMPS(file_path):
     """Returns a lp struct which can be us by"""
     glpki.glp_term_out(glpki.GLP_OFF)
-    return glpki.lpx_read_freemps(file_path)
+    return glpki.glp_read_freemps(file_path)
 
 def WriteCplex(lp, file_path='debug.lp'):
     """Returns a lp struct which can be us by"""
-    glpki.lpx_write_cpxlp(lp.lp, file_path)
+    glpki.glp_write_lp(lp.lp, file_path)
 
 
 # =====================

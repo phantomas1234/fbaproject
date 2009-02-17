@@ -1,2 +1,3 @@
 .gitignore:
     *.pyc
+    glpki_wrap.c
