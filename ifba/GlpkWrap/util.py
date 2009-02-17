@@ -19,8 +19,11 @@ def ImportCplex(file_path, terminal="OFF"):
     elif terminal == "ON":
         glpki.glp_term_out(glpki.GLP_ON)
     else:
-        raise Exception, 'wrong option specified.'        
-    glpki.glp_read_lp(glpki.glp_create_prob() ,None, file_path)
+        raise Exception, 'wrong option specified.'
+    prob = glpki._glp_lpx_create_prob()
+    glpki.glp_read_lp(prob ,None, file_path)
+    return prob
+    # return glpki._glp_lpx_read_cpxlp(file_path)
 
 def ImportMPS(file_path):
     """Returns a lp struct which can be us by"""

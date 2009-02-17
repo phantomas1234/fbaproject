@@ -22,11 +22,6 @@ class glpk(object):
         glp_init_smcp(self.smcp)
         self.smcp.msg_lev = GLP_MSG_OFF
         self.smcp.presolve = GLP_OFF
-        lpx_set_int_parm(self.lp, LPX_K_PRESOL, self.smcp.presolve)
-        lpx_set_int_parm(self.lp, LPX_K_DUAL, 1)
-        lpx_set_int_parm(self.lp, LPX_K_BFTYPE, 3)
-        # lpx_set_int_parm(self.lp, LPX_K_MSGLEV, self.smcp.msg_lev)
-        lpx_set_int_parm(self.lp, LPX_K_MSGLEV, 3)
         glp_create_index(self.lp)
         self.history = []
         self.errDict = {
@@ -58,8 +53,7 @@ class glpk(object):
         """ % (glp_version() ,optMappint[self.getOptFlag()], self.getObjVal(),
         self.getNumCols(), self.getNumRows(),
         len(self.history), verbMapping[self.smcp.msg_lev],
-        # presolveMapping[self.smcp.presolve])
-        presolveMapping[lpx_get_int_parm(self.lp, LPX_K_PRESOL)])
+        presolveMapping[self.smcp.presolve])
         )
         return str(info)
     
@@ -133,17 +127,9 @@ class glpk(object):
     def simplex(self):
         """Solves the lp using the glpk simplex function. Returns the return
         value of the glpk method."""
-        lpx_warm_up(self.lp)
-        # ret = glp_simplex(self.lp, self.smcp)
-        # iterationCount = lpx_get_int_parm(self.lp, LPX_K_ITCNT)
-        # if iterationCount > 10000:
-        #     print "a fresh basis is computed"
-        #     lpx_std_basis(self.lp)
-        #     lpx_set_int_parm(self.lp, LPX_K_ITCNT, 0)
-        # lpx_std_basis(self.lp)
         glp_simplex(self.lp, self.smcp)
         status = glp_get_status(self.lp)
-        if status != 5:
+        if status != GLP_OPT:
             raise Exception, str(self.errDict[status])
         return status
     
@@ -152,13 +138,9 @@ class glpk(object):
         return value of the glpk function."""
         lpx_exact(self.lp)
         status = glp_get_status(self.lp)
-        if status != 5:
+        if status != GLP_OPT:
             raise Exception, str(self.errDict[status])
         return status
-    
-    def simplexOLD(self):
-        """Solves the lp using the glpk simplex function. No return value."""
-        glp_simplex(self.lp, self.smcp)
     
     def interiorPoint(self):
         """Solves the lp using the glpk primal-dual interior-point method."""
@@ -450,7 +432,7 @@ class DeleteColumnsCommand(Command):
         memory = dict()
         for elem in self.colIndexes:
             # get column id
-            identifier = lpx_get_col_name(self.reciever.lp, elem)
+            identifier = glp_get_col_name(self.reciever.lp, elem)
             # get lower and upper bounds
             lb = glp_get_col_lb(self.reciever.lp, elem)
             ub = glp_get_col_ub(self.reciever.lp, elem)
@@ -488,7 +470,7 @@ class DeleteRowsCommand(Command):
         memory = dict()
         for elem in self.rowsIndexes:
             # get row id
-            identifier = lpx_get_row_name(self.reciever.lp, elem)
+            identifier = glp_get_row_name(self.reciever.lp, elem)
             # get lower and upper bounds
             lb = glp_get_row_lb(self.reciever.lp, elem)
             ub = glp_get_row_ub(self.reciever.lp, elem)
@@ -610,21 +592,22 @@ if __name__ == '__main__':
     import util
     import pprint
     lp = util.ImportCplex('test_data/model.lp')
+    print glp_get_num_cols(lp)
     glp = glpk(lp)
     print glp
-    # glp._setColumnBound(1474, 0., 0.)
-    # glp._setRowBound(905, 0., 0.)
-    print glp.translateColumnIndices([1473])
-    try:
-        glp.translateColumnIndices([0])
-    except IndexError, e:
-        print e
-    try:
-        glp.translateRowIndices([0])
-    except IndexError, e:
-        print e
-    print glp.translateColumnNames(['R("R_BiomassEcoli")'])
-    print glp.translateColumnNames(['R("R_BiomassEcoli2")'])
+    # # glp._setColumnBound(1474, 0., 0.)
+    # # glp._setRowBound(905, 0., 0.)
+    # print glp.translateColumnIndices([1473])
+    # try:
+    #     glp.translateColumnIndices([0])
+    # except IndexError, e:
+    #     print e
+    # try:
+    #     glp.translateRowIndices([0])
+    # except IndexError, e:
+    #     print e
+    # print glp.translateColumnNames(['R("R_BiomassEcoli")'])
+    # print glp.translateColumnNames(['R("R_BiomassEcoli2")'])
     
     # glp.exact()
     # print glp.getObjVal()
