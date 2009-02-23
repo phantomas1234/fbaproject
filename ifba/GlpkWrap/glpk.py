@@ -7,8 +7,10 @@ Created by Nikolaus Sonnenschein on 2008-02-12.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
+import os
 from ifba.glpki.glpki import *
 from ifba.GlpkWrap import util
+from ifba.general.util import randomString
 
 class glpk(object):
     """docstring for GlpkWrapper"""
@@ -107,18 +109,21 @@ class glpk(object):
             glp_set_obj_coef(lpCopy, c, i)
             c += 1
         return glpk(lpCopy)
-        
+    
     def __getstate__(self):
-        """docstring for __getstate__"""
-        util.WriteCplex(self, 'pickleTmp.txt')
-        f = open('pickleTmp.txt').read()
-        # print f
+        """How to pickle."""
+        rndFileStr = randomString(10)
+        util.WriteCplex(self, rndFileStr)
+        f = open(rndFileStr).read()
+        os.remove(rndFileStr)
         return f
         
     def __setstate__(self, stuff):
-        """docstring for __setstate__"""
-        open('pickleTmp.txt', 'w').write(stuff)
-        self.__init__(util.ImportCplex('pickleTmp.txt')) 
+        """How to unpickle."""
+        rndFileStr = randomString(10)
+        open(rndFileStr, 'w').write(stuff)
+        self.__init__(util.ImportCplex(rndFileStr))
+        os.remove(rndFileStr)
     
     def toggleVerbosity(self):
         """Toggles the verbosity level of glpk.
@@ -216,7 +221,7 @@ class glpk(object):
             boundsDict[elem] = (glp_get_col_lb(self.lp, elem),
                 glp_get_col_ub(self.lp, elem))
         return boundsDict
-        
+    
     def getColumnIDs(self):
         """Return a tuple of columnIDs"""
         num = self.getNumCols()
@@ -344,7 +349,7 @@ class glpk(object):
         """Returns a list of all current dual values."""
         num = self.getNumCols()
         return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
-
+    
 
 class Command(object):
     """Command pattern stub. Defines only the interface."""
@@ -458,7 +463,7 @@ class DeleteColumnsCommand(Command):
         l = len(self.colIndexes)
         num = intArray(l)
         for inc, i in enumerate(self.colIndexes):
-           num[inc + 1] = i
+            num[inc + 1] = i
         glp_del_cols(self.reciever.lp, l, num)
         self.reciever.history.insert(0, self)
     
@@ -467,6 +472,7 @@ class DeleteColumnsCommand(Command):
         # The next line prevents that the undo step itself is recordes as an
         # undoable step
         self.reciever.history.pop(0)
+
 
 class DeleteRowsCommand(Command):
     """Set new optimization flag.
@@ -505,6 +511,7 @@ class DeleteRowsCommand(Command):
         # The next line prevents that the undo step itself is recordes as an
         # undoable step
         self.reciever.history.pop(0)
+
 
 class AddColumnsCommand(Command):
     """Adds new columns to the lp.
@@ -547,6 +554,7 @@ class AddColumnsCommand(Command):
         # undoable step
         self.reciever.history.pop(0)
 
+
 class AddRowsCommand(Command):
     """Adds new rows to the lp.
     Allows undoable modifications.
@@ -588,6 +596,7 @@ class AddRowsCommand(Command):
         # undoable step
         self.reciever.history.pop(0)
 
+
 class sparseList(dict):
     
     def __init__(self, l):
@@ -601,6 +610,7 @@ class sparseList(dict):
                 tmp.append((index + 1, val))
         return tmp
 
+
 if __name__ == '__main__':
     import util
     import pprint
@@ -608,6 +618,9 @@ if __name__ == '__main__':
     print glp_get_num_cols(lp)
     glp = glpk(lp)
     print glp
+    glp.__getstate__()
+
+
     # # glp._setColumnBound(1474, 0., 0.)
     # # glp._setRowBound(905, 0., 0.)
     # print glp.translateColumnIndices([1473])
