@@ -21,7 +21,7 @@ def ImportCplex(file_path, terminal="OFF"):
     else:
         raise Exception, 'wrong option specified.'
     prob = glpki._glp_lpx_create_prob()
-    glpki.glp_read_lp(prob ,None, file_path)
+    glpki.glp_read_lp(prob, None, file_path)
     return prob
     # return glpki._glp_lpx_read_cpxlp(file_path)
 
@@ -32,7 +32,7 @@ def ImportMPS(file_path):
 
 def WriteCplex(lp, file_path='debug.lp'):
     """Returns a lp struct which can be us by"""
-    glpki.glp_write_lp(lp.lp, file_path)
+    glpki.glp_write_lp(lp.lp, None, file_path)
 
 
 # =====================

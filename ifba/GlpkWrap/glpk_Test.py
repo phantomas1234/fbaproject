@@ -13,6 +13,7 @@ import glpk
 import sys
 import copy
 import random
+import pickle
 
 class test_glpk(unittest.TestCase):
     def setUp(self):
@@ -45,6 +46,14 @@ class test_glpk(unittest.TestCase):
         self.glp.simplex()
         obj = self.glp.getObjVal()
         self.assertAlmostEqual(obj, 0.9259122)
+        
+    def testPickle(self):
+        """Tests pickleability of glpk objects."""
+        pickledLP = pickle.dumps(self.glp)
+        unpickledLP = pickle.loads(pickledLP)
+        self.glp.simplex()
+        unpickledLP.simplex()
+        self.assertAlmostEqual(self.glp.getObjVal(), unpickledLP.getObjVal())
     
     def testCopy(self):
         """Tests if the the magic __copy__ methods is used correctly by the

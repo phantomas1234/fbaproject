@@ -8,6 +8,7 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
 from ifba.glpki.glpki import *
+from ifba.GlpkWrap import util
 
 class glpk(object):
     """docstring for GlpkWrapper"""
@@ -106,6 +107,18 @@ class glpk(object):
             glp_set_obj_coef(lpCopy, c, i)
             c += 1
         return glpk(lpCopy)
+        
+    def __getstate__(self):
+        """docstring for __getstate__"""
+        util.WriteCplex(self, 'pickleTmp.txt')
+        f = open('pickleTmp.txt').read()
+        # print f
+        return f
+        
+    def __setstate__(self, stuff):
+        """docstring for __setstate__"""
+        open('pickleTmp.txt', 'w').write(stuff)
+        self.__init__(util.ImportCplex('pickleTmp.txt')) 
     
     def toggleVerbosity(self):
         """Toggles the verbosity level of glpk.
