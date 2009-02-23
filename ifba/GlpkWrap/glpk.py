@@ -117,7 +117,7 @@ class glpk(object):
         f = open(rndFileStr).read()
         os.remove(rndFileStr)
         return f
-        
+    
     def __setstate__(self, stuff):
         """How to unpickle."""
         rndFileStr = randomString(10)
@@ -349,7 +349,7 @@ class glpk(object):
         """Returns a list of all current dual values."""
         num = self.getNumCols()
         return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
-    
+
 
 class Command(object):
     """Command pattern stub. Defines only the interface."""
@@ -620,7 +620,7 @@ if __name__ == '__main__':
     print glp
     glp.__getstate__()
 
-
+    
     # # glp._setColumnBound(1474, 0., 0.)
     # # glp._setRowBound(905, 0., 0.)
     # print glp.translateColumnIndices([1473])

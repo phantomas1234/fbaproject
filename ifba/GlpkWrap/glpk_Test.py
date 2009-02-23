@@ -46,7 +46,7 @@ class test_glpk(unittest.TestCase):
         self.glp.simplex()
         obj = self.glp.getObjVal()
         self.assertAlmostEqual(obj, 0.9259122)
-        
+    
     def testPickle(self):
         """Tests pickleability of glpk objects."""
         pickledLP = pickle.dumps(self.glp)
@@ -186,30 +186,33 @@ class test_glpk(unittest.TestCase):
         """Check if an IndexError is raised if an column or row index is out
         of range."""
         self.assertRaises(IndexError, self.glp._setColumnBound, 1474, 0., 0.)
-        self.assertRaises(IndexError, self.glp._setColumnBound, 0, 0., 0.)        
+        self.assertRaises(IndexError, self.glp._setColumnBound, 0, 0., 0.)
         self.assertRaises(IndexError, self.glp._setRowBound, 905, 0., 0.)
         self.assertRaises(IndexError, self.glp._setRowBound, 0, 0., 0.)
         self.assertRaises(IndexError, self.glp.translateColumnIndices, [0])
         self.assertRaises(IndexError, self.glp.translateColumnIndices, [1474])
         self.assertRaises(IndexError, self.glp.translateRowIndices, [0])
         self.assertRaises(IndexError, self.glp.translateRowIndices, [905])
-
+    
     def testTranslateRowColumnNames(self):
         """docstring for testTranslateRowColumnNames"""
-        self.assertEqual(self.glp.translateColumnNames(['R("R_BiomassEcoli")', 
+        self.assertEqual(self.glp.translateColumnNames(['R("R_BiomassEcoli")',
         'R("R_XYLI1_Rev")']), [1,1473])
         self.assertRaises(Exception, self.glp.translateColumnNames, ['R("R_Stub")'])
         self.assertEqual(self.glp.translateRowNames(['Matpc', 'MglcDb']), [223, 430])
         self.assertRaises(Exception, self.glp.translateRowNames, ['Mstubc'])
-        
-        
+    
+
+
 class test_sparseList(unittest.TestCase):
     def setUp(self):
         self.spL = glpk.sparseList([1, -3, 0, 0, -6., 0, 3, 0, 0, 0, 0., 3.])
-        
+    
     def testIt(self):
         self.assertEqual(self.spL, {1:1,2:-3,5:-6.,7:3,12:3.})
-        
+    
+
+
 if __name__ == '__main__':
     # unittest.main()
     suite = unittest.TestLoader().loadTestsFromTestCase(test_glpk)
