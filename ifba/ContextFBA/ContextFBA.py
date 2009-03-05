@@ -11,7 +11,7 @@ import sys
 import os
 from ifba.GlpkWrap import util, metabolism, randomMedia, fluxdist, glpk
 from ifba.general.util import sumDicts, filterDict, dict2mathematica, dict2tsv
-from ifba.combinatorics.combinatorics import SetCombine
+from ifba.general.combinatorics import SetCombine
 import copy
 import random
 

@@ -7,7 +7,7 @@ Created by Nikolaus Sonnenschein on 2008-02-08.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
-
+import os
 import string
 import re
 from ifba.glpki import glpki
@@ -20,10 +20,12 @@ def ImportCplex(file_path, terminal="OFF"):
         glpki.glp_term_out(glpki.GLP_ON)
     else:
         raise Exception, 'wrong option specified.'
-    prob = glpki._glp_lpx_create_prob()
-    glpki.glp_read_lp(prob, None, file_path)
-    return prob
-    # return glpki._glp_lpx_read_cpxlp(file_path)
+    if os.path.exists(file_path):
+        prob = glpki._glp_lpx_create_prob()
+        glpki.glp_read_lp(prob, None, file_path)
+        return prob
+    else:
+        raise IOError, 'no such file: ' + file_path
 
 def ImportMPS(file_path):
     """Returns a lp struct which can be us by"""
