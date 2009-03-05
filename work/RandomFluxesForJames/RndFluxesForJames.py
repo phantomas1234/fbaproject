@@ -7,14 +7,18 @@ Created by Nikolaus Sonnenschein on 2009-01-23.
 Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.
 """
 
-from ifba.GlpkWrap import metabolism, randomMedia, util
 import copy
+import gzip
+from ifba.GlpkWrap import metabolism, randomMedia, util
+from multiprocessing import Pool
 
+def helpIterator(lp, r):
+    for i in range(r):
+        yield (lp, i)
 
-def main(path2template, resultsPath, runs):
-    import gzip
-    tmpLP = metabolism.Metabolism(util.ImportCplex(path2template))
-    tmpLP.setReactionObjectiveMinimizeRest('R("R_Ec_biomass_iAF1260_core_59p81M")')
+def mainStub(args): return main(*args)
+
+def main(lp, stub):
     include = ('R("Mhb_Transp")',
              'R("Mna1b_Transp")',
              'R("Mkb_Transp")',
@@ -28,18 +32,16 @@ def main(path2template, resultsPath, runs):
              'R("Mcobalt2b_Transp")',
              'R("Mmn2b_Transp")',
              'R("Mclb_Transp")')
-    lp = randomMedia.Almaas(copy.copy(tmpLP), alwaysInc=include)
-    print lp.lp
+    lp = randomMedia.Almaas(lp, alwaysInc=include)
     f = lp.generateFluxdist()
-    for item in range(runs):
-        f = lp.generateFluxdist()
-        stringDump = randomMedia.dict2tsv(lp.currDict) + "\n" + f.tsv()
-        print stringDump
-        path = resultsPath + "iAf1260_fluxDist_" + str(item) + ".tsv.gz"
-        lp.lp.initialize()
-        gzip.open(path, 'w').write(stringDump)
+    stringDump = randomMedia.dict2tsv(lp.currDict) + "\n" + f.active_tsv()
+    path = "/Users/niko/tmp/" + "iAf1260_fluxDist_" + str(stub) + ".tsv.gz"
+    gzip.open(path, 'w').write(stringDump)
+    del(lp)
+    return stub
 
 if __name__ == '__main__':
-	main("../models/iAF1260template2.lp", 
-	"/Users/niko/arbeit/Publishing/MetabolicControlPaper2/data/RandomFluxDistributions/", 500)
-
+    pool = Pool(processes=2)
+    tmpLP = metabolism.Metabolism(util.ImportCplex("../../ifba/models/iAF1260template2.lp"))
+    tmpLP.setReactionObjectiveMinimizeRest('R("R_Ec_biomass_iAF1260_core_59p81M")')
+    result = pool.map(mainStub, helpIterator(tmpLP, 100000))

@@ -75,6 +75,13 @@ class FluxDist(object):
             string = string + "%s\t%.16f\n" % i
         return string
 
+    def active_tsv(self):
+        string = str()
+        for i in self.getActiveFluxDist():
+            string = string + "%s\t%.16f\n" % i
+        return string
+
+
 if __name__ == '__main__':
     from ifba.GlpkWrap import util, metabolism
     def main():
@@ -87,5 +94,6 @@ if __name__ == '__main__':
         # print f.getActiveReactions()
         # print f.getActiveColumns()
         print f.getActiveMetabolites()
+        print f.active_tsv()
 
     main()
