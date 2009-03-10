@@ -15,16 +15,6 @@ from ifba.general.combinatorics import SetCombine
 import copy
 import random
 
-class ExpressionData2ContextData(object):
-    """Translates a set of expression probabilities into a weighted reaction
-    set. It can be used for ContextFBA. It needs a logical mapping between 
-    reactions and probe IDs.
-    """
-    def __init__(self, logical_rxn_probeID_map):
-        super(ExpressionData2ContextData, self).__init__()
-        self.logical_rxn_probeID_map = logical_rxn_probeID_map
-        
-
 
 class ContextFBA(metabolism.Metabolism):
     """Implementation of Context-specific FBA.
@@ -47,7 +37,6 @@ class ContextFBA(metabolism.Metabolism):
     def _partA(self, level=None):
         """docstring for _partA"""
         self.setObjectiveFunction({self.rmfID : 1.})
-        print self.getObjectiveFunction()
         rmfFlux = self.fba()[self.rmfID]
         leveledRmf = rmfFlux * level
         self.modifyColumnBounds({self.rmfID:(leveledRmf, rmfFlux)})
@@ -63,10 +52,13 @@ class ContextFBA(metabolism.Metabolism):
     
     def computeInconsistency(self, contxtObjective, contextFluxDist):
         """docstring for _computeInconsistency"""
-        inconsistency = 0.
-        for key, val in contxtObjective.items():
-            inconsistency += contxtObjective[key] * contextFluxDist[key]
-        return inconsistency
+        # inconsistency = 0.
+        # for key, val in contxtObjective.items():
+        #     inconsistency += contxtObjective[key] * contextFluxDist[key]
+        # return inconsistency
+        iterator = (contxtObjective[key] * contextFluxDist[key] \
+                    for key, val in contxtObjective.items())
+        return sum(iterator)
     
     def contextFBA(self, expData, cutoff=None):
         """Uses an weighted reaction set in form of a dictionary """
@@ -83,6 +75,7 @@ def loadReactionData(path):
     data = []
     for line in file:
         data.append(tuple(line.rstrip().split('\t')))
+    file.close()
     return dict([(reac.replace('[', '(').replace(']', ')'), float(val)) for (reac, val) in data])
 
 def main():
@@ -121,7 +114,7 @@ def main2():
         # print "ContextFBA fluxDist: ", cntxtFluxDist.getActiveFluxDist()
         print "Inconsistency Score: ", incon
         
-def main3(path, outpath):
+def cntxtAnalysis(path, outpath):
     dataPaths = tuple([file.rstrip() for file in os.popen("ls "+path+"*.tsv")])
     print dataPaths
     outputFile = open(outpath, 'w').close()
@@ -129,12 +122,11 @@ def main3(path, outpath):
     model_path = '../../work/HumanFBA/validHumanFBAmodel.lp'
     stdFBAfluxDist = metabolism.Metabolism(util.ImportCplex(model_path)).fba()
     print "Standard FBA fluxDist: ", stdFBAfluxDist.getActiveFluxDist()
-    
     print 2*"\n"
     reactionSets = list()
+    lp = util.ImportCplex(model_path)
+    cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
     for path in dataPaths:
-        cntxtFBA = ContextFBA(util.ImportCplex(model_path), \
-        rmfID='R("R_Obj")', level=.8)
         (cntxtFluxDist, incon) = cntxtFBA.contextFBA(loadReactionData(path), \
         cutoff=.8)
         print "results for: ", path
@@ -144,15 +136,12 @@ def main3(path, outpath):
         reactionSets.append(set(cntxtFluxDist.getActiveReactions()))
         outputFile.write(path + '\t'+ str(incon) + "\n")
     outputFile.close()
-    # for i in range(0, 3):
-    #     for j in range(0,3):
-    #         print dataPaths[i], dataPaths[j]
-    #         print float(len(reactionSets[i].intersection(reactionSets[j])))/float(max(len(reactionSets[i]),len(reactionSets[j])))
-
 
 
 if __name__ == '__main__':
-    print main3("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/", \
+    print cntxtAnalysis("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/", \
     "/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/eberResults.tsv")
+    print cntxtAnalysis("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/WT/", \
+    "/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/wtResults.tsv")
     
 
