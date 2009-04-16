@@ -12,7 +12,7 @@ import os
 from ifba.GlpkWrap import util, metabolism
 from ifba.expressFBA.ContextFBA import ContextFBA, loadReactionData
 
-def cntxtAnalysis(path, outpath):
+def cntxtAnalysis(path, outpath, level=.8, cutoff=.5):
     dataPaths = tuple([file.rstrip() for file in os.popen("ls "+path+"*.tsv")])
     print dataPaths
     outputFile = open(outpath, 'w').close()
@@ -23,20 +23,22 @@ def cntxtAnalysis(path, outpath):
     print 2*"\n"
     reactionSets = list()
     lp = util.ImportCplex(model_path)
-    cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
+    cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=level)
     for path in dataPaths:
         (cntxtFluxDist, incon) = cntxtFBA.contextFBA(loadReactionData(path), \
-        cutoff=.8)
+        cutoff=cutoff)
         print "results for: ", path
         print "ContextFBA fluxDist: ", cntxtFluxDist.getActiveFluxDist()
         print "Inconsistency Score: ", incon
         print 2*'\n'
-        reactionSets.append(set(cntxtFluxDist.getActiveReactions()))
-        outputFile.write(path + '\t'+ str(incon) + "\n")
+        stuff = "\t".join(cntxtFluxDist.getActiveReactions())
+        outputFile.write(path + '\t'+ str(incon) + "\t" + stuff + "\n")
     outputFile.close()
 
 
 if __name__ == '__main__':
     cntxtAnalysis("~/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/", \
-    "/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/eberResults2.tsv")
+    "/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/eberResults_level.8_cutoff.5.tsv")
+    cntxtAnalysis("~/arbeit/Publishing/Arndt_Colab/data/contextData/WT/", \
+    "/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/wtResults_level.8_cutoff.5.tsv")
 
