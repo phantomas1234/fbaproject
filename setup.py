@@ -10,6 +10,8 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 from distutils.core import setup, Extension
 
 TO_INSTALL = ["ifba", ]
+import os
+print os.system("swig -version")
 # TO_INSTALL = ["ifba","ifba.glpki", "ifba.GlpkWrap", "ifba.distributedFBA", \
 # "ifba.general"]
 
