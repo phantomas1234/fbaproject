@@ -5,6 +5,14 @@ installMaria.py
 
 Created by Nikolaus Sonnenschein on 2008-01-16.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
+
+# Necessary modification in .bashrc or .bash_profile
+LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+PYTHONPATH=$HOME/%%%YourPath2fbaproject%%%/fbaproject:$PYTHONPATH
+
+export PYTHONPATH
+export LD_LIBRARY_PATH
+
 """
 
 import sys
