@@ -14,6 +14,7 @@ from ifba.general.util import sumDicts, filterDict, dict2mathematica, dict2tsv
 from ifba.general.combinatorics import SetCombine
 import copy
 import random
+import numpy
 
 
 class ContextFBA(metabolism.Metabolism):
@@ -33,11 +34,14 @@ class ContextFBA(metabolism.Metabolism):
         self.level = level
         self._partA(level=self.level)
         self.history = []
-    
+            
     def _partA(self, level=None):
         """docstring for _partA"""
         self.setObjectiveFunction({self.rmfID : 1.})
-        rmfFlux = self.fba()[self.rmfID]
+        # print self.getObjective()
+        # rmfFlux = self.fba()[self.rmfID]
+        self.simplex()
+        rmfFlux = self.getObjVal()
         leveledRmf = rmfFlux * level
         self.modifyColumnBounds({self.rmfID:(leveledRmf, rmfFlux)})
     
@@ -50,11 +54,16 @@ class ContextFBA(metabolism.Metabolism):
                 expData[iD] = cutoff - val
         return expData
     
+    # def computeInconsistency(self, contxtObjective, contextFluxDist):
+    #     """docstring for _computeInconsistency"""
+    #     stuff = contxtObjective.items()
+    #     iterator = (val * contextFluxDist[key] for key, val in stuff)
+    #     # print contxtObjective
+    #     return sum(iterator)
+
     def computeInconsistency(self, contxtObjective, contextFluxDist):
         """docstring for _computeInconsistency"""
-        iterator = (contxtObjective[key] * contextFluxDist[key] \
-                    for key, val in contxtObjective.items())
-        return sum(iterator)
+        return sum(numpy.array(contxtObjective) * numpy.array(contextFluxDist.getFluxArray()))
     
     def contextFBA(self, expData, cutoff=None):
         """Uses an weighted reaction set in form of a dictionary """
@@ -62,7 +71,8 @@ class ContextFBA(metabolism.Metabolism):
         self.setObjectiveFunction(contxtObj)
         self.setOptFlag("Min")
         contextFluxDist = self.fba()
-        return (contextFluxDist, self.computeInconsistency(contxtObj, contextFluxDist))
+        return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist))        
+        # return (contextFluxDist, self.computeInconsistency(self.getObjectiveFunction(), contextFluxDist))
 
 
 def loadReactionData(path):
@@ -76,4 +86,9 @@ def loadReactionData(path):
 
 
 if __name__ == '__main__':
-    pass
+    model_path = '../../work/HumanFBA/validHumanFBAmodel.lp'
+    lp = util.ImportCplex(model_path)
+    cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
+    print loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv")
+    (cntxtFluxDist, incon) = cntxtFBA.contextFBA(loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv"), .5)
+    print incon
