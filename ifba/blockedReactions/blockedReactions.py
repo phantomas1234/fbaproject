@@ -22,22 +22,26 @@ def openAllDoors(lp, defaulBound=1000.):
 def blockedQ(lp, reaction):
     """A predicate function that returns true if a reactions is blocked."""
     returnValue = None
-    lp.setObjectiveFunction(reaction)
+    print reaction
+    lp.setReactionObjective(reaction)
     lp.getObjectiveFunction()
-    lp.simplex()
-    objVal = lp.getObjVal()
-    print objVal
-    if -1e-6 < objVal < 1e-6:
-        lp.setOptFlag('MiN')
+    try:
         lp.simplex()
         objVal = lp.getObjVal()
         print objVal
         if -1e-6 < objVal < 1e-6:
-            returnValue = True
+            lp.setOptFlag('MiN')
+            lp.simplex()
+            objVal = lp.getObjVal()
+            print objVal
+            if -1e-6 < objVal < 1e-6:
+                returnValue = True
+            else:
+                returnValue = False
         else:
             returnValue = False
-    else:
-        returnValues = False
+    except:
+        returnValue = True
     lp.initialize()
     return returnValue
 
