@@ -45,10 +45,11 @@ def blockedQ(lp, reaction):
     lp.initialize()
     return returnValue
 
-def analyseBlockedReactions(lp):
+def analyseBlockedReactions(lp, reactions=None):
     """Returns a list of blocked reactions in the lp model."""
     blockedReactions = list()
-    reactions = lp.getColumnIDs()
+    if not reactions:
+        reactions = lp.getColumnIDs()
     for reaction in reactions:
         if blockedQ(lp, reaction):
             blockedReactions.append(reaction)
