@@ -67,7 +67,7 @@ class ContextFBA(metabolism.Metabolism):
     
     def contextFBA(self, expData, cutoff=None):
         """Uses an weighted reaction set in form of a dictionary """
-        contxtObj = self._generateContextObjective(expData, cutoff)
+        contxtObj = self._generateContextObjective(copy.copy(expData), cutoff)
         self.setObjectiveFunction(contxtObj)
         self.setOptFlag("Min")
         contextFluxDist = self.fba()
