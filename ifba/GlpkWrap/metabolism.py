@@ -10,8 +10,9 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 import re
 import types
 import copy
-from ifba.GlpkWrap import glpk, util, fluxdist
+from ifba.GlpkWrap import glpk, util
 from ifba.glpki import glpki
+import ifba.GlpkWrap.fluxdist
 
 class Metabolism(glpk.glpk):
     def __init__(self, lp):
@@ -98,7 +99,7 @@ class Metabolism(glpk.glpk):
         """Solve the Flux Balance Model and return a flux distribution
         instance."""
         eval("self."+method+"()")
-        return fluxdist.FluxDist(self)
+        return ifba.GlpkWrap.fluxdist.FluxDist(self)
         
     def deleteReactions(self, listOfReactions):
         "Takes a list of reactions and constrains them to no flux."
