@@ -7,6 +7,7 @@ Created by Nikolaus Sonnenschein on 2008-02-12.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
+from ifba.glpki import glpki
 import unittest
 import util
 import glpk
@@ -182,6 +183,24 @@ class test_glpk(unittest.TestCase):
         self.assertEqual(self.glp.getNumRows(), 904)
         self.assertEqual(len(self.glp.history), 0)
     
+    def testSetColumnsKinds(self):
+        """Tests the setColumnKinds command functionality and if it is undoable"""
+        self.assertEqual(set(self.glp.getColumnKinds().values()), set([1]))
+        for i in range(1, self.glp.getNumCols() + 1, 50):
+            colBounds = self.glp.getColumnBounds()[i]
+            self.glp.setColumnKinds({i:glpki.GLP_BV})
+            self.assertEqual(self.glp.getColumnKinds([i]),{i:glpki.GLP_BV})
+            self.assertEqual(self.glp.getColumnBounds()[i], (0., 1.))
+            self.glp.initialize()
+            self.assertEqual(self.glp.getColumnKinds([i]),{i:glpki.GLP_CV})
+            self.assertEqual(self.glp.getColumnBounds()[i], colBounds)
+            self.glp.setColumnKinds({i:glpki.GLP_IV})
+            self.assertEqual(self.glp.getColumnKinds([i]),{i:glpki.GLP_IV})
+            self.assertEqual(self.glp.getColumnBounds()[i], colBounds)
+            self.glp.initialize()
+            self.assertEqual(self.glp.getColumnKinds([i]),{i:glpki.GLP_CV})
+            self.assertEqual(self.glp.getColumnBounds()[i], colBounds)
+    
     def testCheckIndexValidities(self):
         """Check if an IndexError is raised if an column or row index is out
         of range."""
@@ -210,7 +229,7 @@ class test_sparseList(unittest.TestCase):
     
     def testIt(self):
         self.assertEqual(self.spL, {1:1,2:-3,5:-6.,7:3,12:3.})
-    
+
 
 
 if __name__ == '__main__':

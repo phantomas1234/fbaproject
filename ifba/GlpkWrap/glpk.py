@@ -285,6 +285,24 @@ class glpk(object):
         command = AddColumnsCommand(self, columns)
         command.execute()
     
+    def setColumnKinds(self, kindsDict):
+        """Sets kinds of columns specified in kindsDict
+        
+        kindsDict has the fomr
+        """
+        command = SetColumnKindsCommand(self, kindsDict)
+        command.execute()
+    
+    def getColumnKinds(self, colIndexes=None):
+        columnKinds = dict()
+        if not colIndexes:
+            colIndexes = xrange(1, self.getNumCols() + 1)
+        for index in colIndexes:
+            self._checkColumnIndexValidity(index)
+        for i in colIndexes:
+            columnKinds[i] = glp_get_col_kind(self.lp, i)
+        return columnKinds
+    
     def addRows(self, rows):
         """Adds new rows to the lp.
         rows is a dictionary of the form {rowID : (lb, ub, coeffList)}
@@ -349,7 +367,7 @@ class glpk(object):
         """Returns a list of all current dual values."""
         num = self.getNumCols()
         return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
-
+    
 
 class Command(object):
     """Command pattern stub. Defines only the interface."""
@@ -555,6 +573,30 @@ class AddColumnsCommand(Command):
         self.reciever.history.pop(0)
 
 
+class SetColumnKindsCommand(Command):
+    """Sets the kinds of columns
+    Allows undoable modifications.
+    kindsDict is dictionary of the form {columnIndex : columnKind, ...}
+    """
+    def __init__(self, reciever, kindsDict):
+        super(SetColumnKindsCommand, self).__init__(reciever)
+        self.kindsDict = kindsDict
+        self.memory = (self.reciever.getColumnKinds(kindsDict.keys()), self.reciever.getColumnBounds())
+    
+    def execute(self):
+        for i in self.kindsDict:
+            glp_set_col_kind(self.reciever.lp, i, self.kindsDict[i])
+        self.reciever.history.insert(0, self)
+    
+    def undo(self):
+        self.reciever.setColumnKinds(self.memory[0])
+        # The next line prevents that the undo step itself is recorded as an
+        # undoable step
+        self.reciever.history.pop(0)
+        self.reciever.modifyColumnBounds(self.memory[1])
+        self.reciever.history.pop(0)
+
+
 class AddRowsCommand(Command):
     """Adds new rows to the lp.
     Allows undoable modifications.
@@ -609,17 +651,29 @@ class sparseList(dict):
             if val != 0:
                 tmp.append((index + 1, val))
         return tmp
+    
 
 
 if __name__ == '__main__':
     import util
     import pprint
-    lp = util.ImportCplex('test_data/model.lp')
-    print glp_get_num_cols(lp)
-    glp = glpk(lp)
-    print glp
-    glp.__getstate__()
+    lp = glpk(util.ImportCplex('test_data/model.lp'))
+    print lp.getColumnKinds((1,))
+    lp.setColumnKinds({1:GLP_BV})
+    print lp.getColumnKinds((1,))
+    lp.initialize()
+    print lp.getColumnKinds((1,))
+    print lp.getColumnBounds()
+    lp.setColumnKinds({1:1})
+    print lp.getColumnKinds((1,))
+    lp.initialize()
+    print lp.getColumnKinds((1,))
 
+
+    # glp = glpk(lp)
+    # print glp
+    # glp.__getstate__()
+    
     
     # # glp._setColumnBound(1474, 0., 0.)
     # # glp._setRowBound(905, 0., 0.)
