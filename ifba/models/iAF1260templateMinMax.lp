@@ -7795,7 +7795,7 @@ Bounds
  0 <= R("R_CMPtex") <= 999999
  0 <= R("R_CMPtex_Rev") <= 999999
  0 <= R("R_NTD4pp") <= 999999
- -999999 <= R("Mco2b_Transp") <= 999999
+ -999999 <= R("Mco2b_Transp") <= 0
  0 <= R("R_EX_co2_e_") <= 999999
  0 <= R("R_EX_co2_e__Rev") <= 999999
  0 <= R("R_CO2tpp") <= 999999
