@@ -44,8 +44,11 @@ class rndMedKnocks(object):
         for reac in targets:
             print "reaction", reac, "gets knocked out"
             self.lp.modifyColumnBounds({reac : (0,0)})
-            self.lp.simplex()
-            objVal = self.lp.getObjVal()
+            try:
+                self.lp.simplex()
+                objVal = self.lp.getObjVal()
+            except:
+                objVal = 0.
             print "Growth: ", objVal
             if (objVal / wt) < self.threshold:
                 print 'mutant: ', objVal, ' wildtyp: ', wt, ' threshold: ', (wt * self.threshold)
@@ -90,8 +93,7 @@ def extractCondition(path):
     
 
 if __name__ == '__main__':
-    path = '../models/iAF1260template.lp'
-    path = '../models/iJR904template.lp'
+    path = '../../ifba/models/iJR904template.lp'
     lp = metabolism.Metabolism(util.ImportCplex(path))
     lp.setReactionObjectiveMinimizeRest('R("R_BiomassEcoli")')
     #     # test_without_networking(copy.copy(lp))
