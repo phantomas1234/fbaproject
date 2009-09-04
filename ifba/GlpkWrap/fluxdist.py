@@ -66,7 +66,7 @@ class FluxDist(object):
         
     def getFluxArray(self):
         """Returns a array of all fluxes"""
-        return numpy.array(self.fluxes)
+        return numpy.array(self.fluxes, dtype=numpy.float32)
         
     def tsv(self):
         string = str()
