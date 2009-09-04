@@ -83,6 +83,7 @@ class Almaas(object):
             except Exception, msg:
                 print msg
                 growth = 0.
+                self.lp.initialize()
         return fluxdist.FluxDist(self.lp)
 
 
