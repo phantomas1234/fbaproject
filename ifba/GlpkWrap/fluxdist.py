@@ -10,6 +10,7 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 import gzip
 import time
 import array
+import numpy
 
 def gzipDump(outPutStr, head, ending):
     """docstring for gzipDump"""
@@ -65,9 +66,7 @@ class FluxDist(object):
         
     def getFluxArray(self):
         """Returns a array of all fluxes"""
-        ar = array.array('f')
-        ar.fromlist(self.fluxes)
-        return ar
+        return numpy.array(self.fluxes)
         
     def tsv(self):
         string = str()
