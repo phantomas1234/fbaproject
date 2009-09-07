@@ -10,7 +10,7 @@ Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.
 from tables import *
 from ifba.GlpkWrap.fluxdist import FBAsimulationResult
 
-def h5Container(fileName, lp, title="", compressionLevel=0, expectedrows=1000000):
+def h5Container(fileName, lp, title="", complevel=5, expectedrows=1000000):
     """Constructs a h5 file container that is suitable for the storage of FBAsimulationResult objects."""
     numReacs = lp.getNumCols()
     class FBAsimulations(IsDescription):
