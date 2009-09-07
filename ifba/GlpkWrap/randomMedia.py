@@ -15,12 +15,33 @@ import time
 import copy
 
 from ifba.GlpkWrap import fluxdist, metabolism, util
+from ifba.GlpkWrap.fluxdist import FBAsimulationResult
 from ifba.glpki.glpki import *
 from ifba.general.util import sumDicts, randomString
 
 # random.seed(100)
 # random.seed(101)
 # TODO: Remove if not needed
+
+class RandomMediaSimulations(object):
+    """A class simplifying random media simulations."""
+    def __init__(self, path2template, objective, includes, h5container, minimizeRest=True):
+        self.path2template = path2template
+        self.objective = objective
+        self.includes = includes
+        self.h5container = h5container
+        tmpLP = metabolism.Metabolism(util.ImportCplex(self.path2template))
+        if minimizeRest:
+            tmpLP.setReactionObjectiveMinimizeRest(self.objective)
+        else:
+            tmpLP.setReactionObjecive(self.objective)
+        self.almaas = Almaas(copy.copy(tmpLP), alwaysInc=self.includes)
+    
+    def run(self, *args, **kwargs):
+        """Run one random medium simulation and return a FBAsimulationResult object."""
+        f = self.almaas.generateFluxdist()
+        return FBAsimulationResult(f, self.almaas.lp.getColumnBounds(), self.almaas.lp.getObjectiveFunction(), time.time(), self.path2template)
+
 
 def dict2tsv(condDict):
     """Convert a dict into TSV format."""
@@ -81,7 +102,7 @@ class Almaas(object):
                 growth = self.lp.getObjVal()
                 self.lp.initialize()
             except Exception, msg:
-                print msg
+                # print msg
                 growth = 0.
                 self.lp.initialize()
         return fluxdist.FluxDist(self.lp)

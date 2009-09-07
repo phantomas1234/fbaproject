@@ -11,6 +11,7 @@ import gzip
 import time
 import array
 import numpy
+import pprint
 
 def gzipDump(outPutStr, head, ending):
     """docstring for gzipDump"""
@@ -23,7 +24,7 @@ class FluxDist(object):
         self.reactions = lp.getColumnIDs()
         self.prec = prec
         self.fluxes = [self._chop(i) for i in lp.primalValues()]
-        self.lp = lp
+        self.lp = lp # TODO: I don't know if it is a good a idea to reference an outside lp object
 
     def _chop(self, value):
         if -1 * self.prec < value < self.prec:
@@ -43,7 +44,7 @@ class FluxDist(object):
     def getActiveFluxDist(self):
         return [i for i in zip(self.reactions, self.fluxes) 
                 if self._chop(i[1]) > 0. or self._chop(i[1]) < 0.]
-        # CHANGED: Needs a better threshold
+        # FIXME: Needs a better threshold
 
     def getActiveReactions(self):
         return [i[0] for i in self.getActiveFluxDist()]
@@ -79,6 +80,41 @@ class FluxDist(object):
         for i in self.getActiveFluxDist():
             string = string + "%s\t%.16f\n" % i
         return string
+
+class FBAsimulationResult(object):
+    """A class that stores parameters and results of FBAsimulations."""
+    def __init__(self, fluxDist, columnBounds, objective, timeStamp, modelPath):
+        self.fluxDist = fluxDist
+        self.columnBounds = columnBounds
+        self.fluxactivity = self.fluxDist.getFluxArray()
+        self.constraints = self.__getValuesByKeys(self.columnBounds, self.fluxDist.reactions)
+        self.lowerBounds = [l for l, u in self.constraints]
+        self.upperBounds = [u for l, u in self.constraints]
+        self.objective = self.__getValuesByKeys(objective, self.fluxDist.reactions)
+        self.timeStamp = timeStamp
+        self.modelPath = modelPath
+
+    def __getValuesByKeys(self, dictionary, keys):
+        """Stupid function that returns values from a dict in the order specified by keys."""
+        tmpList = list()
+        for key in dictionary:
+            tmpList.append(dictionary[key])
+        return tuple(tmpList)
+
+    def __str__(self):
+        """Print information about simulation result."""
+        print "Timestamp (localtime):\n", time.asctime(time.localtime(self.timeStamp))
+        print "\n"
+        print "Model path:\n", self.modelPath
+        print "\n"
+        print "Constraints:\n\n"
+        pprint.pprint(self.columnBounds)
+        print "\n"
+        print "Objective:\n"
+        pprint.pprint(self.objective)
+        print "\n"
+        print "Active Fluxdistribution:\n", self.fluxDist.active_tsv()
+        return ""
 
 
 if __name__ == '__main__':

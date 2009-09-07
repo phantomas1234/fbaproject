@@ -8,6 +8,7 @@ Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.
 """
 
 from tables import *
+from ifba.GlpkWrap.fluxdist import FBAsimulationResult
 
 def h5Container(fileName, lp, title=""):
     """Constructs a h5 file container that is suitable for the storage of FBAsimulationResult objects."""
@@ -59,42 +60,6 @@ class SimulationDB(object):
         self.h5container.close()
         print "bye bye"
         
-
-class FBAsimulationResult(object):
-    """A class that stores parameters and results of FBAsimulations."""
-    def __init__(self, fluxDist, columnBounds, objective, timestamp, modelPath):
-        self.fluxDist = fluxDist
-        self.columnBounds = columnBounds
-        self.fluxactivity = self.fluxDist.getFluxArray()
-        self.constraints = self.__getValuesByKeys(self.columnBounds, self.fluxDist.reactions)
-        self.lowerBounds = [l for l, u in self.constraints]
-        self.upperBounds = [u for l, u in self.constraints]
-        self.objective = self.__getValuesByKeys(objective, self.fluxDist.reactions)
-        self.timeStamp = timestamp
-        self.modelPath = modelPath
-        
-    def __getValuesByKeys(self, dictionary, keys):
-        """Stupid function that returns values from a dict in the order specified by keys."""
-        tmpList = list()
-        for key in dictionary:
-            tmpList.append(dictionary[key])
-        return tuple(tmpList)
-
-    def __str__(self):
-        """Print information about simulation result."""
-        print "Timestamp (localtime):\n", time.asctime(time.localtime(self.timestamp))
-        print "\n"
-        print "Model path:\n", self.modelPath
-        print "\n"
-        print "Constraints:\n\n"
-        pprint.pprint(self.columnBounds)
-        print "\n"
-        print "Objective:\n"
-        pprint.pprint(self.objective)
-        print "\n"
-        print "Active Fluxdistribution:\n", self.fluxDist.active_tsv()
-        return ""
-
 
 if __name__ == '__main__':
     pass

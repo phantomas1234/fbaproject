@@ -53,6 +53,27 @@ class ContextFBA(metabolism.Metabolism):
             else:
                 expData[iD] = cutoff - val
         return expData
+        
+    def _generate_milp_context_objective(self):
+        """docstring for _generate_milp_context_objective"""
+        pass
+    
+    def _prep_for_switches(self):
+        """docstring for _prep_for_switches"""
+        pass
+
+    def _add_switches(self, reacs):
+        """Adds new columns to the lp.
+        columns is a dictionary of the form {columnID : (lb, ub, coeffList)}
+        """
+        cols = dict()
+        switches = ["switch_"+r for r in reacs]
+        for r in switches:
+            cols[r] = (0., 1., [0. for m in xrange(self.getNumCols())])
+        self.addColumns(cols)
+        colKinds = dict()
+        # for r in switches
+        # self.setColumnKinds()
     
     # def computeInconsistency(self, contxtObjective, contextFluxDist):
     #     """docstring for _computeInconsistency"""
@@ -66,13 +87,19 @@ class ContextFBA(metabolism.Metabolism):
         return sum(numpy.array(contxtObjective) * numpy.array(contextFluxDist.getFluxArray()))
     
     def contextFBA(self, expData, cutoff=None):
-        """Uses an weighted reaction set in form of a dictionary """
+        """Uses a weighted reaction set in form of a dictionary """
         contxtObj = self._generateContextObjective(copy.copy(expData), cutoff)
         self.setObjectiveFunction(contxtObj)
         self.setOptFlag("Min")
         contextFluxDist = self.fba()
         return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist))        
         # return (contextFluxDist, self.computeInconsistency(self.getObjectiveFunction(), contextFluxDist))
+        
+    def milp_context_fba(self):
+        """docstring for milp_context_fba"""
+        contxtObj = self._generateContextObjective(copy.copy(expData), cutoff)
+        self.setObjectiveFunction(contxtObj)
+
 
 
 def loadReactionData(path):
@@ -89,6 +116,10 @@ if __name__ == '__main__':
     model_path = '../../work/HumanFBA/validHumanFBAmodel.lp'
     lp = util.ImportCplex(model_path)
     cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
-    print loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv")
-    (cntxtFluxDist, incon) = cntxtFBA.contextFBA(loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv"), .5)
-    print incon
+    import random
+    reacs = random.sample(cntxtFBA.getReactions(), 7)
+    print reacs
+    # cntxtFBA._add_switches()
+    # print loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv")
+    # (cntxtFluxDist, incon) = cntxtFBA.contextFBA(loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv"), .5)
+    # print incon

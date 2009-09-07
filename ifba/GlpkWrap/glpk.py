@@ -162,7 +162,7 @@ class glpk(object):
     
     def interiorPoint(self):
         """Solves the lp using the glpk primal-dual interior-point method."""
-        # FIXME Problems with numerical instabilities
+        # FIXME Problems with numerical instabilities -> To large bounds could be the problem
         return lpx_interior(self.lp)
     
     def getObjVal(self):

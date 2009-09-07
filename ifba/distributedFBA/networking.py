@@ -122,7 +122,6 @@ class Transaction(Networking):
         # fromClient = self.recv_end()
         fromClient = self.recv_pickle()
         self.outputQueue.put(fromClient)
-        self.sock.shutdown(0)
         self.sock.close()
 
 
@@ -241,7 +240,7 @@ class Client(Networking):
             self.sock.close()
         try:
             # stuff = self.recv_end()
-            stuff = self.recv_pickle()            
+            stuff = self.recv_pickle()
         except socket.error, e:
             print e
             self.sock.close()

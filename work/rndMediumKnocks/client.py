@@ -9,7 +9,7 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 
 import sys
 import copy
-import ifba.distFBA.networking as nw
+import ifba.distributedFBA.networking as nw
 from ifba.GlpkWrap import util, metabolism, randomMedia, knockouts
 import rndMedKnocks as rn
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
             client.run()
 
     # path = '../models/iAF1260template.lp'
-    path = '../models/iJR904template.lp'
+    path = '../../ifba/models/iJR904template.lp'
     lp = metabolism.Metabolism(util.ImportCplex(path))
     lp.setReactionObjectiveMinimizeRest('R("R_BiomassEcoli")')
     print lp.getObjective()

@@ -7,7 +7,7 @@ Created by Nikolaus Sonnenschein on 2008-05-02.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
-import ifba.distFBA.networking as nw
+import ifba.distributedFBA.networking as nw
 import sys
 import random
 import Queue
