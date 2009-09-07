@@ -1,4 +1,4 @@
-path: /Users/niko/arbeit/GitRepo/fbaproject/ifba/models/iAF1260templateMinMax.lp
+path: ../models/iAF1260templateMinMax.lp
 include:
 - R("Mhb_Transp")
 - R("Mna1b_Transp")
