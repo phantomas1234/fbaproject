@@ -22,7 +22,7 @@ def readYamlConfig(path):
     config = yaml.load(open(path))
     return config
 
-def generateRandomMediaObject(path=None, include=None, objective=None, minimizeRest=True):
+def generateRandomMediaObject(path=None, include=None, objective=None, minimizerest=True):
     """Generate the RandomMediaSimulations object"""
     return RandomMediaSimulations(path, objective, include, '')
 
@@ -31,12 +31,14 @@ def generateStorageObject(path, config):
     randomSimulationsObj = generateRandomMediaObject(**config)
     return SimulationDB(h5Container(path, randomSimulationsObj.almaas.lp))
 
-def basicFunctionality(outputfile, config):
+def basicFunctionality(outputfile, configpath, runs):
     """Perform random media simulations and store them in a hdf5 file"""
+    config = readYamlConfig(configpath)
     randomSimulationsObj = generateRandomMediaObject(**config)
     simulationStorage = generateStorageObject(outputfile, config)
-    simulResult = randomSimulationsObj.run()
-    simulationStorage.writeSimulationResult(simulResult)
+    for i in range(runs):
+        simulResult = randomSimulationsObj.run()
+        simulationStorage.writeSimulationResult(simulResult)
     simulationStorage.close()
 
 def client(serverip, configfile):
@@ -68,7 +70,6 @@ def server(outputfile='test.h5', config='parameters.yaml'):
     s.run()
 
 if __name__ == '__main__':
-    # basicFunctionality()
     # print readYamlConfig('parameters.yaml')
     try:
         sys.argv[1]
@@ -76,9 +77,14 @@ if __name__ == '__main__':
         sys.argv.append('server')
         sys.argv.append('test.h5')
     
-    usage = 'Usage:\npython RandomMediaSimulations.py server storagefile configfile --> server mode\npython iAF1260simulations.py client serverip configfile --> client mode'
+    usage = """Usage:
+python RandomMediaSimulations.py standalone storagefile configfile runs --> standalone mode
+python RandomMediaSimulations.py server storagefile configfile --> server mode
+python iAF1260simulations.py client serverip configfile --> client mode"""
     try:
-        if sys.argv[1] == 'server':
+        if sys.argv[1] == 'standalone':
+            basicFunctionality(sys.argv[2], sys.argv[3], int(sys.argv[4]))
+        elif sys.argv[1] == 'server':
             server(sys.argv[2], sys.argv[3])
         elif sys.argv[1] == 'client':
             client(sys.argv[2], sys.argv[3])

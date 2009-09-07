@@ -10,7 +10,7 @@ Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.
 from tables import *
 from ifba.GlpkWrap.fluxdist import FBAsimulationResult
 
-def h5Container(fileName, lp, title=""):
+def h5Container(fileName, lp, title="", compressionLevel=0, expectedrows=1000000):
     """Constructs a h5 file container that is suitable for the storage of FBAsimulationResult objects."""
     numReacs = lp.getNumCols()
     class FBAsimulations(IsDescription):
@@ -22,7 +22,8 @@ def h5Container(fileName, lp, title=""):
         modelPath = StringCol(100, pos=5)
     h5 = openFile(fileName, 'w')
     h5.createArray(where=h5.root, name='rxnMapping', object=lp.getColumnIDs(), title='Index - ReactionID mapping')
-    h5.createTable(where=h5.root, description=FBAsimulations, name='simulations', title='Table containing the activities and media conditions for FBA simulations.')
+    filters = Filters(complevel=5, complib='zlib', fletcher32=True, shuffle=True)
+    h5.createTable(where=h5.root, description=FBAsimulations, name='simulations', title='Table containing the activities and media conditions for FBA simulations.', filters=filters, expectedrows=expectedrows)
     h5.flush()
     print h5
     h5.close()
