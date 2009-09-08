@@ -12,6 +12,7 @@ import os
 from ifba.GlpkWrap import util, metabolism, randomMedia, fluxdist, glpk
 from ifba.general.util import sumDicts, filterDict, dict2mathematica, dict2tsv
 from ifba.general.combinatorics import SetCombine
+from ifba.glpki import glpki
 import copy
 import random
 import numpy
@@ -27,6 +28,9 @@ class ContextFBA(metabolism.Metabolism):
     
     Becker und Palsson. Context-specific metabolic networks are consistent
     with experiments. PLoS Comput Biol (2008) vol. 4 (5) pp. e1000082
+    
+    Furthermore it implements a new approach where the number of (and not the flux
+    through) unexpressed reactions is minimized.
     """
     def __init__(self, lp, rmfID=None, level=.9):
         metabolism.Metabolism.__init__(self, lp)
@@ -34,7 +38,7 @@ class ContextFBA(metabolism.Metabolism):
         self.level = level
         self._partA(level=self.level)
         self.history = []
-            
+    
     def _partA(self, level=None):
         """docstring for _partA"""
         self.setObjectiveFunction({self.rmfID : 1.})
@@ -53,35 +57,38 @@ class ContextFBA(metabolism.Metabolism):
             else:
                 expData[iD] = cutoff - val
         return expData
-        
-    def _generate_milp_context_objective(self):
-        """docstring for _generate_milp_context_objective"""
-        pass
     
-    def _prep_for_switches(self):
-        """docstring for _prep_for_switches"""
-        pass
-
+    def _generate_milp_context_objective(self, reacs):
+        """docstring for _generate_milp_context_objective"""
+        milpObjective = dict()
+        for r in reacs:
+            milpObjective["switch_"+r] = 1.
+        return milpObjective
+    
     def _add_switches(self, reacs):
         """Adds new columns to the lp.
         columns is a dictionary of the form {columnID : (lb, ub, coeffList)}
         """
         cols = dict()
-        switches = ["switch_"+r for r in reacs]
-        for r in switches:
-            cols[r] = (0., 1., [0. for m in xrange(self.getNumCols())])
+        for r in reacs:
+            cols["switch_"+r] = (0., 1., dict())
         self.addColumns(cols)
         colKinds = dict()
-        # for r in switches
-        # self.setColumnKinds()
+        for r in reacs:
+            colKinds[self.translateColumnNames(("switch_"+r,))[0]] = glpki.GLP_BV
+        self.setColumnKinds(colKinds)
+        colBounds = self.getColumnBounds()
+        newRows = dict()
+        for r in reacs:
+            print "processing ", r
+            viPos = self.translateColumnNames((r,))[0]
+            yPos = self.translateColumnNames(("switch_"+r,))[0]
+            coefUb = {viPos:1., yPos:-colBounds[r][1]}
+            coefLb = {viPos:1., yPos:-colBounds[r][0]}
+            newRows["Ub_switch_"+r] = ('inf', 0., coefUb)
+            newRows["Lb_switch_"+r] = (0., 'inf', coefLb)
+        self.addRows(newRows)
     
-    # def computeInconsistency(self, contxtObjective, contextFluxDist):
-    #     """docstring for _computeInconsistency"""
-    #     stuff = contxtObjective.items()
-    #     iterator = (val * contextFluxDist[key] for key, val in stuff)
-    #     # print contxtObjective
-    #     return sum(iterator)
-
     def computeInconsistency(self, contxtObjective, contextFluxDist):
         """docstring for _computeInconsistency"""
         return sum(numpy.array(contxtObjective) * numpy.array(contextFluxDist.getFluxArray()))
@@ -92,14 +99,27 @@ class ContextFBA(metabolism.Metabolism):
         self.setObjectiveFunction(contxtObj)
         self.setOptFlag("Min")
         contextFluxDist = self.fba()
-        return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist))        
+        return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist))
         # return (contextFluxDist, self.computeInconsistency(self.getObjectiveFunction(), contextFluxDist))
-        
-    def milp_context_fba(self):
+    
+    def milpContextFBA(self, expData, cutoff=None):
         """docstring for milp_context_fba"""
-        contxtObj = self._generateContextObjective(copy.copy(expData), cutoff)
-        self.setObjectiveFunction(contxtObj)
+        bannedReacs = self._generateContextObjective(copy.copy(expData), cutoff).keys()
+        self._add_switches(bannedReacs)
+        milpContxtObj = self._generate_milp_context_objective(bannedReacs)
+        self.setObjectiveFunction(milpContxtObj)
+        self.setOptFlag("Min")
+        contextFluxDist = self.fba(method='intopt')
+        return (contextFluxDist, self.mipValues())
 
+    def milpContextFBAdebug(self, bannedReacs):
+        """docstring for milp_context_fba"""
+        self._add_switches(bannedReacs)
+        milpContxtObj = self._generate_milp_context_objective(bannedReacs)
+        self.setObjectiveFunction(milpContxtObj)
+        self.setOptFlag("Min")
+        contextFluxDist = self.fba(method='intopt')
+        return (contextFluxDist, self.mipValues())
 
 
 def loadReactionData(path):
@@ -113,13 +133,37 @@ def loadReactionData(path):
 
 
 if __name__ == '__main__':
+    testReacs = ('R("R_GHMT2r")','R("R_GHMT2r_Rev")', 'R("R_GHMT2rm")', 'R("R_GHMT2rm_Rev")')
     model_path = '../../work/HumanFBA/validHumanFBAmodel.lp'
+    # lp = util.ImportCplex(model_path)
+    # cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
+    # import random
+    # reacs = random.sample(cntxtFBA.getReactions(), 1)
+    # print reacs
+    # # cntxtFBA._add_switches(reacs)
+    # cntxtFBA.milpContextFBAdebug(testReacs)
+    # util.WriteCplex(cntxtFBA, 'withSwitches.lp')
+
+    # lp = util.ImportCplex(model_path)
+    # cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
+    # print cntxtFBA
+    # import random
+    # reacs = random.sample(cntxtFBA.getReactions(), 1)
+    # print reacs
+    # # cntxtFBA._add_switches(reacs)
+    # print cntxtFBA.milpContextFBAdebug(('R("R_Obj")',))[0]
+    # util.WriteCplex(cntxtFBA, 'withSwitches.lp')
+    # print cntxtFBA.mipValues()
+
+    reactionData = loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv")
     lp = util.ImportCplex(model_path)
     cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
-    import random
-    reacs = random.sample(cntxtFBA.getReactions(), 7)
-    print reacs
-    # cntxtFBA._add_switches()
+    result = cntxtFBA.milpContextFBA(reactionData, cutoff=5.)
+    print result[0]
+    print result[1]
+    util.WriteCplex(cntxtFBA, 'withSwitches.lp')
+
+
     # print loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv")
     # (cntxtFluxDist, incon) = cntxtFBA.contextFBA(loadReactionData("/Users/niko/arbeit/Publishing/Arndt_Colab/data/contextData/EBER/HB004PO_EBER0_6.tsv"), .5)
     # print incon

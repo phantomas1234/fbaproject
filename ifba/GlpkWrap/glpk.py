@@ -22,9 +22,13 @@ class glpk(object):
         self.lp = lp
         glp_scale_prob(self.lp, GLP_SF_AUTO)
         self.smcp = glp_smcp()
+        self.iocp = glp_iocp()
         glp_init_smcp(self.smcp)
+        glp_init_iocp(self.iocp)
         self.smcp.msg_lev = GLP_MSG_OFF
+        self.iocp.msg_lev = GLP_MSG_ON
         self.smcp.presolve = GLP_OFF
+        self.iocp.presolve = GLP_OFF
         glp_create_index(self.lp)
         self.history = []
         self.errDict = {
@@ -50,11 +54,13 @@ class glpk(object):
         The current objective value: %f
         The number of Columns: %d
         The number of Rows: %d
+        The number of Integer Columns: %d
+        The number of Binary Columns: %d
         The number of undoable steps: %d
         The current verbosity level: %s
         Presolver: %s
         """ % (glp_version() ,optMappint[self.getOptFlag()], self.getObjVal(),
-        self.getNumCols(), self.getNumRows(),
+        self.getNumCols(), self.getNumRows(), glp_get_num_int(self.lp), glp_get_num_bin(self.lp),
         len(self.history), verbMapping[self.smcp.msg_lev],
         presolveMapping[self.smcp.presolve])
         )
@@ -154,7 +160,7 @@ class glpk(object):
     def exact(self):
         """Solves the lp with exact arithmetic using lpx_exact. Return the
         return value of the glpk function."""
-        lpx_exact(self.lp)
+        glp_exact(self.lp, self.smcp)
         status = glp_get_status(self.lp)
         if status != GLP_OPT:
             raise Exception, str(self.errDict[status])
@@ -164,7 +170,16 @@ class glpk(object):
         """Solves the lp using the glpk primal-dual interior-point method."""
         # FIXME Problems with numerical instabilities -> To large bounds could be the problem
         return lpx_interior(self.lp)
-    
+        
+    def intopt(self):
+        """Solves a milp using glp_intopt."""
+        print 'Hey the intopt solver is used'
+        glp_intopt(self.lp, None)
+        status = glp_mip_status(self.lp)
+        if status != GLP_OPT:
+            raise Exception, str(self.errDict[status])
+        return status
+        
     def getObjVal(self):
         """Returns the current objective value."""
         return glp_get_obj_val(self.lp)
@@ -177,10 +192,10 @@ class glpk(object):
             raise IndexError, errorString + errorString2
     
     def _checkRowIndexValidity(self, index):
-        numCols = self.getNumRows()
-        if index < 1 or index > numCols:
+        numRows = self.getNumRows()
+        if index < 1 or index > numRows:
             errorString = "Row index "+str(index)+" out of range.\n"
-            errorString2 = "The valid range is: 1 - " + repr(numCols)
+            errorString2 = "The valid range is: 1 - " + repr(numRows)
             raise IndexError, errorString + errorString2
     
     def _setColumnBound(self, index, lb, ub):
@@ -196,8 +211,14 @@ class glpk(object):
         """Sets a column bound.
         Determines the appropriate column type by itself."""
         self._checkRowIndexValidity(index)
-        if lb == ub:
+        if lb == 'inf' and ub == 'inf':
+            glp_set_row_bnds(self.lp, index, GLP_FR, lb, ub)
+        elif lb == ub:
             glp_set_row_bnds(self.lp, index, GLP_FX, lb, ub)
+        elif lb == 'inf':
+            glp_set_row_bnds(self.lp, index, GLP_UP, 0., ub) # 0. is ignored
+        elif ub == 'inf':
+            glp_set_row_bnds(self.lp, index, GLP_LO, lb, 0.) # 0. is ignored
         else:
             glp_set_row_bnds(self.lp, index, GLP_DB, lb, ub)
     
@@ -362,6 +383,18 @@ class glpk(object):
         """Returns a list of all current primal values."""
         num = self.getNumCols()
         return [glp_get_col_prim(self.lp, i) for i in range(1, num + 1)]
+    
+    def getColumnsOfType(self, desiredKind):
+        "Returns a list of column indices that have"
+        return [index for index, kind in self.getColumnKinds().items() if kind == desiredKind]
+    
+    def mipValues(self):
+        mipIndices = self.getColumnsOfType(GLP_BV)
+        mipIndices.extend(self.getColumnsOfType(GLP_IV))
+        mipVals = dict()
+        for index in mipIndices:
+            mipVals[self.translateColumnIndices((index,))[0]] = glp_mip_col_val(self.lp, index)
+        return mipVals
     
     def dualValues(self):
         """Returns a list of all current dual values."""

@@ -23,6 +23,7 @@ def ImportCplex(file_path, terminal="OFF"):
     if os.path.exists(file_path):
         prob = glpki._glp_lpx_create_prob()
         glpki.glp_read_lp(prob, None, file_path)
+        glpki.glp_term_out(glpki.GLP_ON)
         return prob
     else:
         raise IOError, 'no such file: ' + file_path

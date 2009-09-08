@@ -183,8 +183,9 @@ class test_glpk(unittest.TestCase):
         self.assertEqual(self.glp.getNumRows(), 904)
         self.assertEqual(len(self.glp.history), 0)
     
-    def testSetColumnsKinds(self):
+    def testSetColumnKinds(self):
         """Tests the setColumnKinds command functionality and if it is undoable"""
+        # Check if setColumnsKinds works for already available reacations
         self.assertEqual(set(self.glp.getColumnKinds().values()), set([1]))
         for i in range(1, self.glp.getNumCols() + 1, 50):
             colBounds = self.glp.getColumnBounds()[i]
@@ -200,6 +201,7 @@ class test_glpk(unittest.TestCase):
             self.glp.initialize()
             self.assertEqual(self.glp.getColumnKinds([i]),{i:glpki.GLP_CV})
             self.assertEqual(self.glp.getColumnBounds()[i], colBounds)
+        
     
     def testCheckIndexValidities(self):
         """Check if an IndexError is raised if an column or row index is out
