@@ -691,17 +691,18 @@ if __name__ == '__main__':
     import util
     import pprint
     lp = glpk(util.ImportCplex('test_data/model.lp'))
-    print lp.getColumnKinds((1,))
-    lp.setColumnKinds({1:GLP_BV})
-    print lp.getColumnKinds((1,))
-    lp.initialize()
-    print lp.getColumnKinds((1,))
-    print lp.getColumnBounds()
-    lp.setColumnKinds({1:1})
-    print lp.getColumnKinds((1,))
-    lp.initialize()
-    print lp.getColumnKinds((1,))
-
+    # print lp.getColumnKinds((1,))
+    #     lp.setColumnKinds({1:GLP_BV})
+    #     print lp.getColumnKinds((1,))
+    #     lp.initialize()
+    #     print lp.getColumnKinds((1,))
+    #     print lp.getColumnBounds()
+    #     lp.setColumnKinds({1:1})
+    #     print lp.getColumnKinds((1,))
+    #     lp.initialize()
+    #     print lp.getColumnKinds((1,))
+    lp.addRows({'R("R_HansWurs")': (0., 99999., {})})
+    
 
     # glp = glpk(lp)
     # print glp
@@ -732,7 +733,7 @@ if __name__ == '__main__':
     # print glp.getObjVal()
     
     
-    # print help(glp.addRows({'R("R_HansWurs")': (0., 99999., newColumArray)}))
+
     
     # glp.simplex()
     # print glp.getObjVal()

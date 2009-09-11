@@ -25,11 +25,10 @@ from ifba.general.util import sumDicts, randomString
 
 class RandomMediaSimulations(object):
     """A class simplifying random media simulations."""
-    def __init__(self, path2template, objective, includes, h5container, minimizeRest=True):
+    def __init__(self, path2template, objective, includes, minimizeRest=True):
         self.path2template = path2template
         self.objective = objective
         self.includes = includes
-        self.h5container = h5container
         tmpLP = metabolism.Metabolism(util.ImportCplex(self.path2template))
         if minimizeRest:
             tmpLP.setReactionObjectiveMinimizeRest(self.objective)

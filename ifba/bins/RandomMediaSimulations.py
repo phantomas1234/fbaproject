@@ -24,7 +24,7 @@ def readYamlConfig(path):
 
 def generateRandomMediaObject(path=None, include=None, objective=None, minimizerest=True):
     """Generate the RandomMediaSimulations object"""
-    return RandomMediaSimulations(path, objective, include, '')
+    return RandomMediaSimulations(path, objective, include, minimizerest)
 
 def generateStorageObject(path, config):
     """docstring for generateStorageObject"""
