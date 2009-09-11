@@ -14,7 +14,8 @@ from ifba.GlpkWrap.fluxdist import FBAsimulationResult
 
 def h5Container(fileName, lp, title="", complevel=5, expectedrows=1000000):
     """Constructs a h5 file container that is suitable for the storage of FBAsimulationResult objects."""
-    if os.path.exists('fileName'):
+    if os.path.exists(fileName):
+        print 'file already exists -  will not construct new one'
         return fileName
     h5 = openFile(fileName, 'w')
     numReacs = lp.getNumCols()
