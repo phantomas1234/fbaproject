@@ -33,7 +33,7 @@ class RandomMediaSimulations(object):
         if minimizeRest:
             tmpLP.setReactionObjectiveMinimizeRest(self.objective)
         else:
-            tmpLP.setReactionObjecive(self.objective)
+            tmpLP.setReactionObjective(self.objective)
         self.almaas = Almaas(copy.copy(tmpLP), alwaysInc=self.includes)
     
     def run(self, *args, **kwargs):
