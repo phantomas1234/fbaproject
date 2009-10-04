@@ -154,5 +154,11 @@ def main2(path2template, resultsPath, runs):
 
 if __name__ == '__main__':
     # main('../models/iAF1260template2.lp', "/Volumes/Rudi1/Niko/20080926_NewRandomMediaSimulations_iAF1260/", 100000)
-    main2('../models/iJR904_rev_template.lp', '', 1)
+    # main2('../models/iJR904_rev_template.lp', '', 1)
+    lp = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', [], minimizeRest=True)
+    print lp.almaas.lp.getObjective()
+    lp = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', [], minimizeRest=False)
+    print lp.almaas.lp.getObjectiveFunction()
+    simul = lp.run()
+    print simul.objective
     

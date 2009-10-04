@@ -96,8 +96,13 @@ class FBAsimulationResult(object):
     def __getValuesByKeys(self, dictionary, keys):
         """Stupid function that returns values from a dict in the order specified by keys."""
         tmpList = list()
-        for key in dictionary:
-            tmpList.append(dictionary[key])
+        # for key in dictionary:
+        #     tmpList.append(dictionary[key])
+        for key in keys:
+            if key in dictionary:
+                tmpList.append(dictionary[key])
+            else:
+                tmpList.append(0.)
         return tuple(tmpList)
 
     def __str__(self):

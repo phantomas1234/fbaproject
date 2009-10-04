@@ -185,7 +185,7 @@ number of active threads -> %s
     def run(self):
         """Mainloop of the server."""
         self.open_socket()
-        input = [self.server,sys.stdin]
+        input = [self.server]
         running = 1
         print "I am starting the server mainloop ... waiting for connections"
         while running:
