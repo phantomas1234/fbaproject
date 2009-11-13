@@ -23,6 +23,21 @@ from ifba.general.util import sumDicts, randomString
 # random.seed(101)
 # TODO: Remove if not needed
 
+INCLUDE = ('R("Mhb_Transp")',
+         'R("Mna1b_Transp")',
+         'R("Mkb_Transp")',
+         'R("Mca2b_Transp")',
+         'R("Mcu2b_Transp")',
+         'R("Mmg2b_Transp")',
+         'R("Mzn2b_Transp")',
+         'R("Mmobdb_Transp")',
+         'R("Mfe2b_Transp")',
+         'R("Mfe3b_Transp")',
+         'R("Mcobalt2b_Transp")',
+         'R("Mmn2b_Transp")',
+         'R("Mclb_Transp")')
+
+
 class RandomMediaSimulations(object):
     """A class simplifying random media simulations."""
     def __init__(self, path2template, objective, includes, minimizeRest=True):

@@ -16,6 +16,7 @@ from ifba.glpki import glpki
 import copy
 import random
 import numpy
+import pickle
 
 
 class ContextFBA(metabolism.Metabolism):
@@ -66,7 +67,9 @@ class ContextFBA(metabolism.Metabolism):
         obj = self.getObjectiveFunction()
         contribs = dict()
         for reac in obj:
-            contribs[reac] = fluxDist[reac]
+            flux = fluxDist[reac]
+            if flux != 0:
+                contribs[reac] = fluxDist[reac]
         return contribs
     
     def contextFBA(self, expData, cutoff=None):
@@ -75,8 +78,8 @@ class ContextFBA(metabolism.Metabolism):
         self.setObjectiveFunction(contxtObj)
         self.setOptFlag("Min")
         contextFluxDist = self.fba()
-        return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist), self.getContributors(contextFluxDist))
-    
+        # return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist), self.getContributors(contextFluxDist))
+        return (contextFluxDist, self.computeInconsistency(self.getObjective(), contextFluxDist))
 
 
 class MilpContextFBA(ContextFBA):
@@ -123,7 +126,9 @@ class MilpContextFBA(ContextFBA):
 
     def milpContextFBA(self, expData, cutoff=None):
         """docstring for milp_context_fba"""
+        print expData['R("R_GLNS")']
         bannedReacs = self._generateContextObjective(copy.copy(expData), cutoff).keys()
+        print bannedReacs
         milpContxtObj = self._generate_milp_context_objective(bannedReacs)
         self.setObjectiveFunction(milpContxtObj)
         self.setOptFlag("Min")
@@ -169,11 +174,20 @@ if __name__ == '__main__':
     print data
     lp = util.ImportCplex(model_path)
     milpCntxtFBA = MilpContextFBA(lp, rmfID='R("R_Obj")', level=.8)
+    util.WriteCplex(milpCntxtFBA, file_path='milpCntxtFBA.lp')
+    # f = open('milpCntxtFBA.pickle', 'w')
+    # pickle.dump(milpCntxtFBA, f)
+    # f.close()
+    # f = open('milpCntxtFBA.pickle', 'r')
+    # milpCntxtFBA = pickle.load(f)
+    # f.close()
     lp = util.ImportCplex(model_path)
     cntxtFBA = ContextFBA(lp, rmfID='R("R_Obj")', level=.8)
     for dat in data:
-        print milpCntxtFBA.milpContextFBA(loadReactionData(data[0]), cutoff=5.)[-1]
-        print cntxtFBA.milpContextFBA(loadReactionData(data[0]), cutoff=5.)[-1]
+        print dat
+        tmpDat = loadReactionData(dat)
+        print milpCntxtFBA.milpContextFBA(tmpDat, cutoff=0.)[-1]
+        print cntxtFBA.contextFBA(tmpDat, cutoff=0.)[-1]
 
     # print result[0]
     # print result[1]
