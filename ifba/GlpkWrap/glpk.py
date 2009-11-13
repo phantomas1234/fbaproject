@@ -19,17 +19,18 @@ class glpk(object):
         smcp: simplex parameters. The default message level is that all output
         is allowed. The lp gets also indexed so that string ids of rows and
         columns can be used."""
+        glp_term_out(GLP_OFF)
         self.lp = lp
-        glp_scale_prob(self.lp, GLP_SF_AUTO)
         self.smcp = glp_smcp()
         self.iocp = glp_iocp()
         glp_init_smcp(self.smcp)
         glp_init_iocp(self.iocp)
         self.smcp.msg_lev = GLP_MSG_OFF
-        self.iocp.msg_lev = GLP_MSG_ON
+        self.iocp.msg_lev = GLP_MSG_OFF
         self.smcp.presolve = GLP_OFF
         self.iocp.presolve = GLP_OFF
         glp_create_index(self.lp)
+        glp_scale_prob(self.lp, GLP_SF_AUTO)
         self.history = []
         self.errDict = {
         GLP_UNDEF:"/* solution is undefined */",
@@ -78,7 +79,11 @@ class glpk(object):
         for undoObj in self.history:
             undoObj.undo()
         self.history = []
-    
+        
+    def eraseHistory(self):
+        """Erases all stored modifications."""
+        self.history = []
+        
     def __fillMatrix(self, lpCopy, num, identifier):
         """A utility method for the __copy__ method."""
         ia = intArray(num+1)
@@ -691,6 +696,7 @@ if __name__ == '__main__':
     import util
     import pprint
     lp = glpk(util.ImportCplex('test_data/model.lp'))
+    # lp.toggleVerbosity()
     # print lp.getColumnKinds((1,))
     #     lp.setColumnKinds({1:GLP_BV})
     #     print lp.getColumnKinds((1,))
@@ -702,6 +708,8 @@ if __name__ == '__main__':
     #     lp.initialize()
     #     print lp.getColumnKinds((1,))
     lp.addRows({'R("R_HansWurs")': (0., 99999., {})})
+    lp.simplex()
+    print lp.getObjVal()
     
 
     # glp = glpk(lp)
