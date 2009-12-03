@@ -225,7 +225,7 @@ def fluxCouplingMain():
     lp = metabolism.Metabolism(util.ImportCplex(path, terminal="ON"))
     lp.modifyColumnBounds({'R("R_ATPM")':(0,9999999)})
     print lp.getObjectiveFunction()
-    openAllDoors(lp, 999999)
+    lp = openAllDoors(lp, 999999)
     print lp.getObjectiveFunction()
     # fluxDist = lp.fba()
     # print lp.getObjVal()
