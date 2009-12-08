@@ -9,7 +9,7 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 
 import os
 from ifba.glpki.glpki import *
-from ifba.GlpkWrap import util
+from ifba.GlpkWrap import util, exceptions
 from ifba.general.util import randomString
 
 class glpk(object):
@@ -19,7 +19,7 @@ class glpk(object):
         smcp: simplex parameters. The default message level is that all output
         is allowed. The lp gets also indexed so that string ids of rows and
         columns can be used."""
-        glp_term_out(GLP_OFF)
+        glp_term_out(GLP_ON)
         self.lp = lp
         self.smcp = glp_smcp()
         self.iocp = glp_iocp()
@@ -66,7 +66,10 @@ class glpk(object):
         presolveMapping[self.smcp.presolve])
         )
         return str(info)
-    
+
+    def writeSolution(self, file="/dev/stdout"):
+        glp_write_sol(self.lp, file)
+        
     def undo(self):
         """Reverts the last modification."""
         try:
@@ -104,22 +107,9 @@ class glpk(object):
         """Special method defined for usage with copy module.
         copy.copy(lp) yields a copy of lp.
         """
-        numCols = self.getNumCols()
-        numRows = self.getNumRows()
-        lpCopy = glp_create_prob()
-        glp_set_prob_name(lpCopy, "copy")
-        glp_set_obj_name(lpCopy, glp_get_obj_name(self.lp))
-        glp_set_obj_dir(lpCopy, glp_get_obj_dir(self.lp));
-        glp_add_cols(lpCopy, numCols)
-        glp_add_rows(lpCopy, numRows)
-        self.__fillMatrix(lpCopy, numCols, "col")
-        self.__fillMatrix(lpCopy, numRows, "row")
-        objList = self.getObjective()
-        c = 1
-        for i in objList:
-            glp_set_obj_coef(lpCopy, c, i)
-            c += 1
-        return glpk(lpCopy)
+        newProb = glp_create_prob()
+        glp_copy_prob(newProb, self.lp, GLP_ON)
+        return glpk(newProb)
     
     def __getstate__(self):
         """How to pickle."""
@@ -156,10 +146,20 @@ class glpk(object):
     def simplex(self):
         """Solves the lp using the glpk simplex function. Returns the return
         value of the glpk method."""
+        self.smcp.meth = GLP_PRIMAL
         glp_simplex(self.lp, self.smcp)
         status = glp_get_status(self.lp)
         if status != GLP_OPT:
-            raise Exception, str(self.errDict[status])
+            if status == GLP_UNBND:
+                raise exceptions.SolutionUnbounded, str(self.errDict[status])
+            elif status == GLP_INFEAS:
+                raise exceptions.SolutionInfeasible, str(self.errDict[status])
+            elif status == GLP_NOFEAS:
+                raise exceptions.NoFeasibleSolution, str(self.errDict[status])
+            elif status == GLP_UNDEF:
+                raise exceptions.SolutionUndefined, str(self.errDict[status])
+            else:
+                raise Exception, str(self.errDict[status])
         return status
     
     def exact(self):
@@ -174,7 +174,7 @@ class glpk(object):
     def interiorPoint(self):
         """Solves the lp using the glpk primal-dual interior-point method."""
         # FIXME Problems with numerical instabilities -> To large bounds could be the problem
-        return lpx_interior(self.lp)
+        return glp_interior(self.lp, None)
         
     def intopt(self):
         """Solves a milp using glp_intopt."""
@@ -186,6 +186,10 @@ class glpk(object):
         return status
         
     def getObjVal(self):
+        """Returns the current objective value."""
+        return glp_get_obj_val(self.lp)
+
+    def getInteriorObjVal(self):
         """Returns the current objective value."""
         return glp_get_obj_val(self.lp)
     
@@ -207,10 +211,18 @@ class glpk(object):
         """Sets a column bound.
         Determines the appropriate column type by itself."""
         self._checkColumnIndexValidity(index)
-        if lb == ub:
+        if lb == '-inf' and ub == 'inf':
+            glp_set_col_bnds(self.lp, index, GLP_FR, 0., 0.) # 0.'s are ignored
+        elif lb == '-inf':
+            glp_set_col_bnds(self.lp, index, GLP_UP, 0., ub)
+        elif ub == 'inf':
+            glp_set_col_bnds(self.lp, index, GLP_LO, lb, 0.)
+        elif lb == ub:
             glp_set_col_bnds(self.lp, index, GLP_FX, lb, ub)
-        else:
+        elif lb != ub:
             glp_set_col_bnds(self.lp, index, GLP_DB, lb, ub)
+        else:
+            raise Exception, "Something is wrong with the provided bounds " + str(lb) + " " + str(ub)
     
     def _setRowBound(self, index, lb, ub):
         """Sets a column bound.
@@ -388,6 +400,11 @@ class glpk(object):
         """Returns a list of all current primal values."""
         num = self.getNumCols()
         return [glp_get_col_prim(self.lp, i) for i in range(1, num + 1)]
+
+    def dualValues(self):
+        """Returns a list of all current primal values."""
+        num = self.getNumCols()
+        return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
     
     def getColumnsOfType(self, desiredKind):
         "Returns a list of column indices that have"
