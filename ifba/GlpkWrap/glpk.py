@@ -86,22 +86,6 @@ class glpk(object):
     def eraseHistory(self):
         """Erases all stored modifications."""
         self.history = []
-        
-    def __fillMatrix(self, lpCopy, num, identifier):
-        """A utility method for the __copy__ method."""
-        ia = intArray(num+1)
-        da = doubleArray(num+1)
-        for elem in range(1, num + 1):
-            (eval("glp_set_"+identifier+"_name")(lpCopy, elem,
-            eval("glp_get_"+identifier+"_name")(self.lp, elem)))
-            lb = eval("glp_get_"+identifier+"_lb")(self.lp, elem)
-            ub = eval("glp_get_"+identifier+"_ub")(self.lp, elem)
-            if lb == ub:
-                eval("glp_set_"+identifier+"_bnds")(lpCopy, elem, GLP_FX, lb, ub)
-            else:
-                eval("glp_set_"+identifier+"_bnds")(lpCopy, elem, GLP_DB, lb, ub)
-            length = eval("glp_get_mat_"+identifier)(self.lp, elem, ia, da)
-            eval("glp_set_mat_"+identifier)(lpCopy, elem, length, ia, da)
     
     def __copy__(self):
         """Special method defined for usage with copy module.
