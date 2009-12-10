@@ -89,13 +89,13 @@ class Almaas(object):
     
     def _randomPercantage(self):
         # inc = 10
-        num = len(self.lp.transporters)
+        num = len(self.lp.getTransporters())
         # val = range(self.percRange[0], self.percRange[1] + inc , inc)
         # return (num/100) * random.choice(val)
         return (num/100) * random.randrange(self.percRange[0], self.percRange[1])
     
     def generateRandCond(self, num):
-        transp = self.lp.transporters
+        transp = self.lp.getTransporters()
         sample = set(random.sample(transp, num)).union(self.alwaysInc)
         dict = self._rndBndDict(sample)
         self.lp.modifyColumnBounds(dict)

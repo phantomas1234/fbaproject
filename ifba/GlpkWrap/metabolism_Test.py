@@ -9,7 +9,9 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 
 import unittest
 from ifba.GlpkWrap import metabolism, util
+from ifba.glpki import glpki
 import copy
+import random
 
 class test_ConstraintModelling(unittest.TestCase):
     def setUp(self):
@@ -109,7 +111,27 @@ class test_ConstraintModelling(unittest.TestCase):
         self.assertEqual(self.glp.getObjectiveFunction(), referenceDict)
         self.glp.initialize()
         self.assertEqual(self.glp.getObjectiveFunction(), {'R("R_BiomassEcoli")' : 1.})
-
+        
+    def testGetSubstratesAndProducts(self):
+        """Test if getSubstratesAndProducts(rxn) returns the correct substrates and products"""
+        (substrates, products) = self.glp.getSubstratesAndProducts('R("R_PGK")')
+        self.assertEqual(substrates, ('M3pgc', 'Matpc'))
+        self.assertEqual(products, ('M13dpgc', 'Madpc'))
+        
+    def testAddMetaboliteDrains(self):
+        """Test if getSubstratesAndProducts(rxn) returns the correct substrates and products"""
+        # pass
+        sampleMetabolites = random.sample(self.glp.getMetabolites(), 100)
+        newBounds = dict()
+        for met in sampleMetabolites:
+            newBounds[met] = ('-inf', 'inf')
+        self.glp.modifyRowBounds(newBounds)
+        for met in sampleMetabolites:
+            self.assertEqual(glpki.glp_get_row_type(self.glp.lp, self.glp.translateRowNames([met])[0]), glpki.GLP_FR)
+        self.glp.undo()
+        for met in sampleMetabolites:
+            self.assertEqual(glpki.glp_get_row_type(self.glp.lp, self.glp.translateRowNames([met])[0]), glpki.GLP_FX)
+        
     
 if __name__ == '__main__':
     # unittest.main()

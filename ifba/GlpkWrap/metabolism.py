@@ -17,8 +17,6 @@ import ifba.GlpkWrap.fluxdist
 class Metabolism(glpk.glpk):
     def __init__(self, lp):
         super(Metabolism, self).__init__(lp)
-        self.reactions = self.getColumnIDs()
-        self.transporters = self.getTransporters()
     
     # def __str__(self):
     #     """Print some information regarding the lp model."""
@@ -34,8 +32,22 @@ class Metabolism(glpk.glpk):
     
     def getMetabolites(self):
         """Returns a list of all metabolite ids in the model."""
-        num = self.getNumRows()
-        return list([glpki.glp_get_row_name(self.lp, i) for i in range(1, num+1)])
+        return self.getRowIDs()
+        # num = self.getNumRows()
+        # return list([glpki.glp_get_row_name(self.lp, i) for i in range(1, num+1)])
+        
+    def getSubstratesAndProducts(self, reaction):
+        """Return a tuple containing the substrates and products of reaction"""
+        colIndex = self.translateColumnNames([reaction])[0]
+        coeff = self.getColumnCoef(colIndex)
+        substratesIndices = list()
+        productsIndices = list()
+        for i, elem in enumerate(coeff):
+            if elem > 0.:
+                productsIndices.append(i + 1)
+            elif elem < 0.:
+                substratesIndices.append(i + 1)
+        return (tuple(self.translateRowIndices(substratesIndices)), tuple(self.translateRowIndices(productsIndices)))
     
     def getTransporters(self, postfix='_Transp'):
         """Returns a list of all available transporters in the model. The
@@ -59,18 +71,36 @@ class Metabolism(glpk.glpk):
             elif type(i) == types.StringType:
                 convDict[self.translateColumnNames([i])[0]] = boundDict[i]
             else:
-                raise TypeError
+                raise TypeError, "Only integers or string identifiers are allowed"
         super(Metabolism, self).modifyColumnBounds(convDict)
-        
+    
+    def modifyRowBounds(self, boundDict):
+        """Adds dictionary of bounds, e.g. {'Matpc':(0, 20),
+        'Madpc':(0, 20)}, to lp. Uses the memory of lp."""
+        convDict = {}
+        for i in boundDict:
+            if type(i) == types.IntType:
+                convDict[i] = boundDict[i]
+            elif type(i) == types.StringType:
+                convDict[self.translateRowNames([i])[0]] = boundDict[i]
+            else:
+                raise TypeError, "Only integers or string identifiers are allowed"
+        super(Metabolism, self).modifyRowBounds(convDict)
+    
     def getColumnBounds(self):
         """docstring for getColumnBounds"""
         bDict = super(Metabolism, self).getColumnBounds()
         return dict(zip(self.translateColumnIndices(bDict.keys()), bDict.values()))
+
+    def getRowBounds(self):
+        """docstring for getColumnBounds"""
+        bDict = super(Metabolism, self).getRowBounds()
+        return dict(zip(self.translateRowIndices(bDict.keys()), bDict.values()))
     
     def getObjectiveFunction(self):
         """Returns the current Objective function."""
         objList = super(Metabolism, self).getObjective()
-        reacs = self.reactions
+        reacs = self.getColumnIDs()
         tmp = [(reacs[i], coef) for i, coef in enumerate(objList) if coef != 0.]
         return dict(tmp)
     
@@ -85,7 +115,7 @@ class Metabolism(glpk.glpk):
     def setReactionObjective(self, reaction, coeff=1.):
         """docstring for setReactionAsObjective"""
         self.setObjectiveFunction({reaction : coeff})
-
+    
     def setReactionObjectiveMinimizeRest(self, reaction, coeff=1.):
         """docstring for setReactionAsObjective"""
         rest = self.getColumnIDs()
@@ -94,20 +124,20 @@ class Metabolism(glpk.glpk):
             reactionDict[reac] = -1.e-8
         reactionDict[reaction] = coeff 
         self.setObjectiveFunction(reactionDict)
-
+    
     def fba(self, method='simplex'):
         """Solve the Flux Balance Model and return a flux distribution
         instance."""
         eval("self."+method+"()")
         return ifba.GlpkWrap.fluxdist.FluxDist(self)
-        
+    
     def deleteReactions(self, listOfReactions):
         "Takes a list of reactions and constrains them to no flux."
         reactions = dict()
         for reaction in listOfReactions:
             reactions[reaction] = (0,0)
         self.modifyColumnBounds(reactions)
-        
+    
     def deleteMetabolites(self, listOfMetabolites):
         "Takes a list of metabolites and removes them from the model."
         reactions = dict()
@@ -117,6 +147,22 @@ class Metabolism(glpk.glpk):
                 if (reaction != 0.0):
                     reactions[self.translateColumnIndices([index + 1]).pop()] = (0,0)
         self.modifyColumnBounds(reactions)
+    
+    def getFluxDict(self):
+        return dict([(r, self.primalValues()[i]) for i, r in enumerate(self.getColumnIDs())])
+    
+    def getShadowPriceDict(self):
+        dualVal = self.dualValues()
+        return dict([(r, dualVal[i]) for i, r in enumerate(self.getColumnIDs())])
+        
+    def addMetaboliteDrains(self, metabolites):
+        """Frees the row boundaries for metabolites"""
+        boundDict = dict()
+        for met in metabolites:
+            boundDict[met] = ('-inf', 'inf')
+        self.modifyRowBounds(boundDict)
+    
+
 
 if __name__ == '__main__':
     def main():
@@ -267,8 +313,11 @@ if __name__ == '__main__':
         # print len(f2)
         # print f1 == f2
 
-    testFBAfunction()
+    # testFBAfunction()
 
     # testAddColumn()
     # testDeleteColumn()
     # testDeleteRow()
+    
+    lp = Metabolism(util.ImportCplex('test_data/model.lp'))
+    print lp.translateRowNames(['Macg5sac'])[0]

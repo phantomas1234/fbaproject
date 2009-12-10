@@ -19,7 +19,7 @@ class glpk(object):
         smcp: simplex parameters. The default message level is that all output
         is allowed. The lp gets also indexed so that string ids of rows and
         columns can be used."""
-        glp_term_out(GLP_ON)
+        glp_term_out(GLP_OFF)
         self.lp = lp
         self.smcp = glp_smcp()
         self.iocp = glp_iocp()
@@ -66,7 +66,7 @@ class glpk(object):
         presolveMapping[self.smcp.presolve])
         )
         return str(info)
-
+    
     def writeSolution(self, file="/dev/stdout"):
         glp_write_sol(self.lp, file)
         
@@ -198,9 +198,9 @@ class glpk(object):
         if lb == '-inf' and ub == 'inf':
             glp_set_col_bnds(self.lp, index, GLP_FR, 0., 0.) # 0.'s are ignored
         elif lb == '-inf':
-            glp_set_col_bnds(self.lp, index, GLP_UP, 0., ub)
+            glp_set_col_bnds(self.lp, index, GLP_UP, 0., ub) # 0. is ignored
         elif ub == 'inf':
-            glp_set_col_bnds(self.lp, index, GLP_LO, lb, 0.)
+            glp_set_col_bnds(self.lp, index, GLP_LO, lb, 0.) # 0. is ignored
         elif lb == ub:
             glp_set_col_bnds(self.lp, index, GLP_FX, lb, ub)
         elif lb != ub:
@@ -212,29 +212,44 @@ class glpk(object):
         """Sets a column bound.
         Determines the appropriate column type by itself."""
         self._checkRowIndexValidity(index)
-        if lb == 'inf' and ub == 'inf':
-            glp_set_row_bnds(self.lp, index, GLP_FR, lb, ub)
-        elif lb == ub:
-            glp_set_row_bnds(self.lp, index, GLP_FX, lb, ub)
-        elif lb == 'inf':
+        if lb == '-inf' and ub == 'inf':
+            glp_set_row_bnds(self.lp, index, GLP_FR, 0., 0.) # 0.'s are ignored
+        elif lb == '-inf':
             glp_set_row_bnds(self.lp, index, GLP_UP, 0., ub) # 0. is ignored
         elif ub == 'inf':
             glp_set_row_bnds(self.lp, index, GLP_LO, lb, 0.) # 0. is ignored
-        else:
+        elif lb == ub:
+            glp_set_row_bnds(self.lp, index, GLP_FX, lb, ub)
+        elif lb != ub:
             glp_set_row_bnds(self.lp, index, GLP_DB, lb, ub)
+        else:
+            raise Exception, "Something is wrong with the provided bounds " + str(lb) + " " + str(ub)
     
     def _modifyColumnBoundsNoMemory(self, boundDict):
-        """Modifies bounds in lp without using the memory of lp."""
+        """Modifies column bounds in lp without using the memory of lp."""
         for elem in boundDict:
             bnds = boundDict[elem]
             self._setColumnBound(elem, bnds[0], bnds[1])
     
     def modifyColumnBounds(self, boundDict):
-        """Adds dictionary of bounds, e.g. {1:(0, 20), 44:(0, 20)}, to lp.
+        """Modifies column bounds of lp according to dictionary of bounds, e.g. {1:(0, 20), 44:(0, 20)}, to lp.
         Uses the memory of lp.
         """
-        command = SetBoundsCommand(self, boundDict)
+        command = SetColumnBoundsCommand(self, boundDict)
         command.execute()
+        
+    def modifyRowBounds(self, boundDict):
+        """Modifies row bounds of lp according to dictionary of bounds, e.g. {1:(0, 20), 44:(0, 20)}, to lp.
+        Uses the memory of lp.
+        """
+        command = SetRowBoundsCommand(self, boundDict)
+        command.execute()
+
+    def _modifyRowBoundsNoMemory(self, boundDict):
+        """Modifies row bounds in lp without using the memory of lp."""
+        for elem in boundDict:
+            bnds = boundDict[elem]
+            self._setRowBound(elem, bnds[0], bnds[1])
     
     def getColumnBounds(self):
         """Return a dict of bounds."""
@@ -243,11 +258,24 @@ class glpk(object):
             boundsDict[elem] = (glp_get_col_lb(self.lp, elem),
                 glp_get_col_ub(self.lp, elem))
         return boundsDict
+
+    def getRowBounds(self):
+        """Return a dict of bounds."""
+        boundsDict = dict()
+        for elem in xrange(1, self.getNumRows() + 1):
+            boundsDict[elem] = (glp_get_row_lb(self.lp, elem),
+                glp_get_row_ub(self.lp, elem))
+        return boundsDict
     
     def getColumnIDs(self):
         """Return a tuple of columnIDs"""
         num = self.getNumCols()
         return tuple([glp_get_col_name(self.lp, i) for i in range(1, num+1)])
+
+    def getRowIDs(self):
+        """Return a tuple of columnIDs"""
+        num = self.getNumRows()
+        return tuple([glp_get_row_name(self.lp, i) for i in range(1, num+1)])
     
     def translateColumnIndices(self, indices):
         """Translates a list of column numbers to the corresponding column
@@ -406,7 +434,7 @@ class glpk(object):
         """Returns a list of all current dual values."""
         num = self.getNumCols()
         return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
-    
+
 
 class Command(object):
     """Command pattern stub. Defines only the interface."""
@@ -423,13 +451,13 @@ class Command(object):
         pass
 
 
-class SetBoundsCommand(Command):
+class SetColumnBoundsCommand(Command):
     """Set bounds on reciever.
     
     Allows undoable modifications.
     """
     def __init__(self, reciever, boundDict):
-        super(SetBoundsCommand, self).__init__(reciever)
+        super(SetColumnBoundsCommand, self).__init__(reciever)
         self.boundDict = boundDict
         self.lp = self.reciever.lp
         for elem in self.boundDict:
@@ -443,6 +471,28 @@ class SetBoundsCommand(Command):
     
     def undo(self):
         self.reciever._modifyColumnBoundsNoMemory(self.memory)
+
+
+class SetRowBoundsCommand(Command):
+    """Set bounds on reciever.
+    
+    Allows undoable modifications.
+    """
+    def __init__(self, reciever, boundDict):
+        super(SetRowBoundsCommand, self).__init__(reciever)
+        self.boundDict = boundDict
+        self.lp = self.reciever.lp
+        for elem in self.boundDict:
+            self.memory[elem] = (glp_get_row_lb(self.lp, elem),
+                glp_get_row_ub(self.lp, elem))
+    
+    def execute(self):
+        """docstring for execute"""
+        self.reciever._modifyRowBoundsNoMemory(self.boundDict)
+        self.reciever.history.insert(0, self)
+    
+    def undo(self):
+        self.reciever._modifyRowBoundsNoMemory(self.memory)
 
 
 class SetObjectiveCommand(Command):

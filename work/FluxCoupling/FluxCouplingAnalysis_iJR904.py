@@ -9,12 +9,13 @@ Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.
 
 import sys
 import os
-
+from ifba.GlpkWrap import metabolism, util, randomMedia, fluxdist, glpk
+# from ifba.fluxVariability.fluxVariablity import 
 
 def main():
-	pass
+    pass
 
 
 if __name__ == '__main__':
-	main()
+    main()
 

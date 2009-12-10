@@ -36,7 +36,7 @@ class test_glpk(unittest.TestCase):
         obj2 = self.glp.getObjVal()
         self.assertAlmostEqual(obj, obj2)
     
-    def testModifyBounds(self):
+    def testModifyColumnBounds(self):
         """Tests if the modifiyBounds method operates correctly and if the
         modifications are reversible using the glpk history."""
         self.glp.modifyColumnBounds({1 : (0, 0.5)})
@@ -47,6 +47,24 @@ class test_glpk(unittest.TestCase):
         self.glp.simplex()
         obj = self.glp.getObjVal()
         self.assertAlmostEqual(obj, 0.9259122)
+
+    def testModifyRowBounds(self):
+        """Tests if the modifiyBounds method operates correctly and if the
+        modifications are reversible using the glpk history."""
+        self.glp.modifyRowBounds({1 : (0, 0.5)})
+        rowType = glpki.glp_get_row_type(self.glp.lp, 1)
+        rowUb = glpki.glp_get_row_ub(self.glp.lp, 1)
+        rowLb = glpki.glp_get_row_lb(self.glp.lp, 1)
+        self.assertEqual(self.glp.getRowBounds()[1], (rowLb, rowUb))
+        self.assertEqual(rowType, glpki.GLP_DB)
+        self.assertEqual(self.glp.getRowBounds()[1], (0, 0.5))
+        self.glp.undo()
+        rowType = glpki.glp_get_row_type(self.glp.lp, 1)
+        rowUb = glpki.glp_get_row_ub(self.glp.lp, 1)
+        rowLb = glpki.glp_get_row_lb(self.glp.lp, 1)
+        self.assertEqual(rowType, glpki.GLP_FX)
+        self.assertEqual(self.glp.getRowBounds()[1], (0, 0.))
+
     
     def testPickle(self):
         """Tests pickleability of glpk objects."""
