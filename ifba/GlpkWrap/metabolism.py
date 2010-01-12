@@ -138,6 +138,11 @@ class Metabolism(glpk.glpk):
             reactions[reaction] = (0,0)
         self.modifyColumnBounds(reactions)
     
+    def deleteReactionsFromStoich(self, listOfReactions):
+        "Takes a list of reactions and removes them from the stoichiometry matrix."
+        colIndexes = self.translateColumnNames(listOfReactions)
+        self.deleteColumns(colIndexes)
+    
     def deleteMetabolites(self, listOfMetabolites):
         "Takes a list of metabolites and removes them from the model."
         reactions = dict()
@@ -159,7 +164,8 @@ class Metabolism(glpk.glpk):
         """Frees the row boundaries for metabolites"""
         boundDict = dict()
         for met in metabolites:
-            boundDict[met] = ('-inf', 'inf')
+            # boundDict[met] = ('-inf', 'inf')
+            boundDict[met] = (0., 'inf')
         self.modifyRowBounds(boundDict)
     
 

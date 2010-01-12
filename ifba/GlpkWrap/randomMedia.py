@@ -84,7 +84,7 @@ class Almaas(object):
         rnd = random.uniform
         for i in list:
             boundDict[i] = (-rnd(0, self.def_bnd), rnd(0, self.def_bnd)) # TODO Fix it
-            # boundDict[i] = (-rnd(0, self.def_bnd), rnd(0, self.def_bnd))
+            # boundDict[i] = (-100000., 100000.)
         return boundDict
     
     def _randomPercantage(self):
@@ -98,6 +98,7 @@ class Almaas(object):
         transp = self.lp.getTransporters()
         sample = set(random.sample(transp, num)).union(self.alwaysInc)
         dict = self._rndBndDict(sample)
+        # print len(dict)
         self.lp.modifyColumnBounds(dict)
         self.currDict = dict
         # TODO: Caution! Debug stuff follows
@@ -114,6 +115,7 @@ class Almaas(object):
             try:
                 self.lp.simplex()
                 growth = self.lp.getObjVal()
+                # print growth
                 self.lp.initialize()
             except Exception, msg:
                 # print msg

@@ -17,10 +17,12 @@ from termcolor import colored
 
 class Variability(object):
     """docstring for Variability"""
-    def __init__(self, lp, threshold=10**-16):
+    def __init__(self, lp, threshold=1e-10, presolve=True):
         super(Variability, self).__init__()
         self.lp = lp
-        self.theshold = threshold
+        self.threshold = threshold
+        if presolve:
+            self.lp.smcp.presolve = glpk.GLP_ON
     
     def _lowerLimit(self):
         """Returns the lower flux limit of reaction."""
@@ -56,12 +58,13 @@ class Variability(object):
         self.lp.initialize()
         return var
     
-    def variabilityGenerator(self):
+    def variabilityGenerator(self, reactions2check=None):
         """Returns a generator that iterates over all active reactions in the
         initial flux distribution. Every iteration produces a tuple like this:
         (analysedReactionID, lowerLimit, upperLimit)."""
-        for reaction in self.lp.getReactions():
-            print reaction
+        if not reactions2check:
+            reactions2check = self.lp.getReactions()
+        for reaction in reactions2check:
             revFlag = 0
             if re.search(".*_Rev", reaction):
                 revFlag = 1
@@ -78,16 +81,17 @@ class Variability(object):
             print reaction, lowLimit, upperLimit
             yield (reaction, (lowLimit, upperLimit))
     
-    def getBlocked(self):
+    def getBlocked(self, reactions2check=None):
         """Returns a list of blocked reactions"""
-        gen = self.variabilityGenerator()
+        if not reactions2check:
+            reactions2check = self.lp.getReactions()
+        gen = self.variabilityGenerator(reactions2check=reactions2check)
         blocked = list()
         for var in gen:
-            if var[1][1] < self.theshold:
+            if var[1][0] > -self.threshold and var[1][1] < self.threshold:
                 print 'Blocked!!!', var[0]
                 blocked.append(var[0])
         return blocked
-    
 
 
 class FluxCoupling(object):
@@ -101,39 +105,88 @@ class FluxCoupling(object):
         """Computes the the ration of v1/v2."""
         fishyFlag = 0
         self.lp.setReactionObjective(v_i)
-        # print lp.fba().getActiveFluxDist()
         self.lp.modifyColumnBounds({v_j : (1., 1.)})
+        # print self.lp.fba().getActiveFluxDist()
         self.lp.setOptFlag('min')
+        revFlag = 0
+        if re.search(".*_Rev", v_i):
+            revFlag = 1
+            try:
+                self.lp.modifyColumnBounds({v_i.replace('_Rev',''):(0., 0.)})
+            except:
+                pass
+        if not revFlag:
+            try:
+                self.lp.modifyColumnBounds({v_i.split('")')[0] + "_Rev" + '")':(0., 0.)}) # TODO _Rev does not imply not _Rev
+            except:
+                pass
+        if re.search(".*_Rev", v_j):
+            revFlag = 1
+            try:
+                self.lp.modifyColumnBounds({v_j.replace('_Rev',''):(0., 0.)})
+            except:
+                pass
+        if not revFlag:
+            try:
+                self.lp.modifyColumnBounds({v_j.split('")')[0] + "_Rev" + '")':(0., 0.)})
+            except:
+                pass
         try:
             self.lp.simplex()
             minRatio = self.lp.getObjVal()
-            dualDict = lp.getShadowPriceDict()
+            dualDict = self.lp.getShadowPriceDict()
             (rxn1minShadow, rxn2minShadow) = (dualDict[v_i], dualDict[v_j])
         except Exception, msg:
-            minRatio = self.lp.getObjVal()
+            minRatio = self.lp.getObjVal()            
+            dualDict = self.lp.getShadowPriceDict()
+            (rxn1minShadow, rxn2minShadow) = (dualDict[v_i], dualDict[v_j])
             fishyFlag = 1
+        # fdTmp = fluxdist.FluxDist(self.lp).getActiveFluxDist()
+        # print fdTmp
+        # print '\n'
+        # for elem in fdTmp:
+        #     (sub, prod) = self.lp.getSubstratesAndProducts(elem[0])
+        #     if "Mppic" in sub:
+        #         print "sub", elem[0], elem[1],sub
+        #     if "Mppic" in prod:
+        #         print "prod", elem[0], elem[1],prod
         self.lp.setOptFlag('max')
         try:
             self.lp.simplex()
-            maxRatio = self.lp.getObjVal()
-            dualDict = lp.getShadowPriceDict()
-            (rxn1maxShadow, rxn2maxShadow) = (dualDict[v_i], dualDict[v_j])
+        except exceptions.SolutionUnbounded:
+            maxRatio = 'inf'
         except Exception, msg:
+            print msg
             maxRatio = self.lp.getObjVal()
             fishyFlag = 1
+        else:
+            maxRatio = self.lp.getObjVal()
+        finally:
+            dualDict = self.lp.getShadowPriceDict()
+            (rxn1maxShadow, rxn2maxShadow) = (dualDict[v_i], dualDict[v_j])
+        # fdTmp = fluxdist.FluxDist(self.lp).getActiveFluxDist()
+        # print fdTmp
+        # print '\n'
+        # for elem in fdTmp:
+        #     (sub, prod) = self.lp.getSubstratesAndProducts(elem[0])
+        #     if "Mppic" in sub:
+        #         print "sub", elem[0], elem[1], sub
+        #     if "Mppic" in prod:
+        #         print "prod", elem[0], elem[1], prod
         self.lp.initialize()
         return (minRatio, maxRatio, rxn1maxShadow, rxn1minShadow, rxn2maxShadow, rxn2minShadow, fishyFlag)
 
-    def fluxCouplingFinder(self, reacs=None):
-        if not reacs:
-            reacs=self.lp.getReactions()
-        reacs = [r for r in reacs if not re.search('R_EX.*', r)]
-        print len(reacs)
+    def fluxCouplingFinder(self, rxns=None, printUncoupled=False):
+        if not rxns:
+            print "No reactions specified. Checking all reactions!"
+            rxns=self.lp.getReactions()
+        reacs = [r for r in rxns if not re.search('R_EX.*', r)]
+        print "No. of reactions to check: ", len(reacs)
         bounds = self.lp.getColumnBounds()
         uncoupled = list()
         blocked = list()
         directionallyCoupled = list()
-        fullCoupled= list()
+        fullyCoupled= list()
         partiallyCoupled = list()
         allreadyCoupled = list()
         for i, rxn1 in enumerate(reacs):
@@ -141,7 +194,7 @@ class FluxCoupling(object):
                 continue
             if i in blocked:
                 continue
-            print rxn1
+            print "Reaction ", rxn1, " is being checked!"
             self.lp.setReactionObjective(rxn1)
             self.lp.setOptFlag('max')
             self.lp.simplex()
@@ -154,9 +207,9 @@ class FluxCoupling(object):
             self.lp.initialize()
             print maxObjVal
             print "still ", len(reacs) - i - len(allreadyCoupled) - len(blocked), " to check"
-            print "directionallyCoupled: ", directionallyCoupled
-            print "fullCoupled: ", fullCoupled
-            print "partiallyCoupled: ", partiallyCoupled
+            print "directionallyCoupled: ", len(directionallyCoupled)
+            print "fullyCoupled: ", len(fullyCoupled)
+            print "partiallyCoupled: ", len(partiallyCoupled)
             for j, rxn2 in enumerate(reacs):
                 if j <= i:
                     continue
@@ -184,8 +237,9 @@ class FluxCoupling(object):
                     # sys.exit(-1)
                     continue
                 if chop(rxn2maxShadow) <= 0. and chop(rxn2minShadow) == 0.:
-                    print "uncoupled: ", rxn1, rxn2
-                    print info
+                    if printUncoupled:
+                        print "uncoupled: ", rxn1, rxn2
+                        print info
                     uncoupled.append((rxn1, rxn2))
                     continue
                 elif chop(rxn2maxShadow) > 0. and chop(rxn2minShadow) == 0.:
@@ -193,24 +247,32 @@ class FluxCoupling(object):
                     print colored("directionallyCoupled: ", 'red'), rxn1, rxn2
                     print info
                     continue
-                elif chop(rxn2maxShadow) == 0. and chop(rxn2minShadow) > 0.:
-                    directionallyCoupled.append((rxn1,rxn2))
+                elif chop(rxn2maxShadow) <= 0. and chop(rxn2minShadow) > 0.:
+                    directionallyCoupled.append((rxn2,rxn1))
                     print colored("reverse directionallyCoupled: ", 'red'), rxn1, rxn2
                     print info
                     continue
-                elif chop(rxn2maxShadow) == chop(rxn2minShadow):
+                elif chop(rxn2maxShadow - rxn2minShadow) == 0. and chop(r_min - r_max) == 0.:
                     allreadyCoupled.append(j)
-                    fullCoupled.append((rxn1, rxn2))
+                    fullyCoupled.append((rxn1, rxn2))
                     print colored("fullycoupled: ", 'red'), rxn1, rxn2
                     print info
                     continue
-                elif chop(rxn2maxShadow) != chop(rxn2minShadow):
-                    allreadyCoupled.append(j)
-                    partiallyCoupled.append((rxn1, rxn2))
+                elif chop(r_min - r_max) != 0.:
                     print colored("partiallycoupled: ", 'red'), rxn1, rxn2
                     print info
+                    (r_min, r_max, rxn1maxShadow, rxn1minShadow, rxn2maxShadow, rxn2minShadow, fishy) = self.computeFluxRatio(rxn2, rxn1)
+                    info = ' '.join(("------> minRatio: ", str(chop(r_min)), "maxRatio: ", str(chop(r_max)), "rxn1maxShadow: ", str(chop(rxn1maxShadow)), "rxn1minShadow: ", str(chop(rxn1minShadow)), "rxn2maxShadow: ", str(chop(rxn2maxShadow)), "rxn2minShadow: ", str(chop(rxn2minShadow))))
+                    print info
+                    if chop(rxn2maxShadow) > 0. and chop(rxn2minShadow) == 0.:
+                        print colored("!!!directionallyCoupled: ", 'red'), rxn2, rxn1
+                        directionallyCoupled.append((rxn1, rxn2))
+                    else:
+                        allreadyCoupled.append(j)
+                        partiallyCoupled.append((rxn1, rxn2))
                 else:
                     raise Exception, ' '.join('Coupling for', rxn1, 'and', rxn2, 'could not be determined!')
+        return {"fullyCoupled":tuple(fullyCoupled), "partiallyCoupled":tuple(partiallyCoupled), "directionallyCoupled":tuple(directionallyCoupled)}
 
 def chop(val, cutoff=1e-10):
     if (val <= cutoff) and (val >= -cutoff):
@@ -225,21 +287,6 @@ def openAllDoors(lp, defaulBound=1000.):
     lp.modifyColumnBounds(boundsDict)
     return copy.copy(lp)
 
-def fluxVariabilityMain(lp):
-    varGenerator = Variability(lp).variabilityGenerator()
-    vResult = []
-    for var in varGenerator:
-        print var
-        vResult.append(var)
-    # open('VariabilityAnalysis.txt', 'w').write(repr(vResult))
-    return vResult
-
-def freeBounds(lp):
-    lp.modifyColumnBounds(dict([(r, ('-inf', 1000000.))for r in lp.getTransporters()]))
-    lp.modifyColumnBounds(dict([(r, (0., 1000000.))for r in lp.getReactions()]))
-    # util.WriteCplex(lp, 'iAF1260_template_for_FluxCouplingAnalysis.lp')
-    return copy.copy(lp)
-    
 def scaleColumnBounds(lp, scale=1.):
     rxns = lp.getColumnIDs()
     columnBounds = lp.getColumnBounds()
@@ -250,32 +297,58 @@ def scaleColumnBounds(lp, scale=1.):
     lp.modifyColumnBounds(newBounds)
     return copy.copy(lp)
 
-def fluxCouplingMain2(lp):
-    blocked = Variability(lp).getBlocked()
-    lp.initialize()
-    print len(lp.getMetabolites())
-    lp.deleteReactions(['R("R_Ec_biomass_iAF1260_core_59p81M")'])
-    (sub, prod) = lp.getSubstratesAndProducts('R("R_Ec_biomass_iAF1260_core_59p81M")')
-    list(sub).extend(list(prod))
+def fluxVariabilityMain(lp):
+    varGenerator = Variability(lp).variabilityGenerator()
+    vResult = []
+    for var in varGenerator:
+        print var
+        vResult.append(var)
+    # open('VariabilityAnalysis.txt', 'w').write(repr(vResult))
+    return vResult
+
+def prepareLP(lp, biomRxn=None):
+    if not biomRxn:
+        biomRxn = 'R("R_Ec_biomass_iAF1260_core_59p81M")'
+    lp.modifyColumnBounds(dict([(r, ('-inf', 10000000.))for r in lp.getTransporters()]))
+    lp.modifyColumnBounds(dict([(r, (0., 10000000.))for r in lp.getReactions()]))
+    lp.deleteReactions([biomRxn])
+    (sub, prod) = lp.getSubstratesAndProducts(biomRxn)
     bioMets = sub + prod
-    print bioMets
-    print len(lp.getMetabolites())
     lp.addMetaboliteDrains(bioMets)
-    print len(lp.getMetabolites())
     lp.eraseHistory()
-    blocked = open('blocked.tsv', 'r').read().split('\n')
-    reactions = list(set(lp.getReactions()) - set(blocked))
+    return lp
+
+def fluxCouplingMain(lp, rxns=None):
+    if not rxns:
+        rxns = lp.getReactions()
+    print lp
+    # blocked = Variability(lp).getBlocked(rxns)
+    blocked = Variability(lp).getBlocked()
+    print blocked
+    reactions = list(set(rxns) - set(blocked))
+    print reactions
+    lp.deleteReactionsFromStoich(blocked)
+    lp.eraseHistory()
     varObject = Variability(lp)
-    for r in reactions[0:20]:
+    print "\n"
+    print "Checking if every reaction can reach a flux of 1!"
+    for r in reactions:
         var = varObject.variabilityQ(r)
         if var[1] <= 1.:
             print r, var
+            raise Exception, "Reaction " + r + " cannot exceed a flux >=1"
     lp.initialize()
-    FluxCoupling(lp).fluxCouplingFinder(reacs=reactions[0:1000])
+    print '\n'
+    print 'Starting flux coupling analysis!'
+    print '\n'
+    lp.smcp.presolve = glpk.GLP_OFF
+    print lp
+    
+    return FluxCoupling(lp).fluxCouplingFinder(rxns=reactions)
 
 if __name__ == '__main__':
     path = 'iAF1260templateFluxCoupling.lp'
-    lp = freeBounds(metabolism.Metabolism(util.ImportCplex(path, terminal="OFF")))
-    lp = copy.copy(lp)
-    fluxCouplingMain2(lp)
+    lp = prepareLP(metabolism.Metabolism(util.ImportCplex(path, terminal="OFF")))
+    # print fluxCouplingMain(lp, rxns=lp.getReactions())
+    print fluxCouplingMain(lp, rxns=('R("R_AACPS7")', 'R("R_GMHEPK")'))
 
