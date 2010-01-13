@@ -120,6 +120,7 @@ class FluxCoupling(object):
                 self.lp.modifyColumnBounds({v_i.split('")')[0] + "_Rev" + '")':(0., 0.)}) # TODO _Rev does not imply not _Rev
             except:
                 pass
+        revFlag = 0
         if re.search(".*_Rev", v_j):
             revFlag = 1
             try:
