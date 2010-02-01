@@ -42,11 +42,13 @@ class Metabolism(glpk.glpk):
         coeff = self.getColumnCoef(colIndex)
         substratesIndices = list()
         productsIndices = list()
-        for i, elem in enumerate(coeff):
+        for i, elem in coeff.items():
             if elem > 0.:
-                productsIndices.append(i + 1)
+                productsIndices.append(i)
             elif elem < 0.:
-                substratesIndices.append(i + 1)
+                substratesIndices.append(i)
+        substratesIndices.sort()
+        productsIndices.sort()
         return (tuple(self.translateRowIndices(substratesIndices)), tuple(self.translateRowIndices(productsIndices)))
     
     def getTransporters(self, postfix='_Transp'):

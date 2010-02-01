@@ -8,7 +8,7 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
 import unittest
-from ifba.distFBA import networking
+from ifba.distributedFBA import networking
 
 class test_Networking(unittest.TestCase):
     def setUp(self):

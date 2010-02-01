@@ -184,6 +184,7 @@ class test_glpk(unittest.TestCase):
         newColumArray = self.glp.getColumnCoef(1)
         self.glp.addColumns({'R("R_HansWurs")': (0., 99999., newColumArray)})
         self.assertEqual(self.glp.getNumCols(), 1474)
+        self.assertEqual(self.glp.getColumnCoef(1), self.glp.getColumnCoef(1474))
         # now we check if this can be undone
         self.glp.undo()
         self.assertEqual(self.glp.getNumCols(), 1473)
@@ -196,6 +197,7 @@ class test_glpk(unittest.TestCase):
         newColumArray = self.glp.getRowCoef(1)
         self.glp.addRows({'Mwurstb': (0., 99999., newColumArray)})
         self.assertEqual(self.glp.getNumRows(), 905)
+        self.assertEqual(self.glp.getRowCoef(1), self.glp.getRowCoef(905))
         # now we check if this can be undone
         self.glp.undo()
         self.assertEqual(self.glp.getNumRows(), 904)

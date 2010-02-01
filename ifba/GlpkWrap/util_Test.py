@@ -21,7 +21,7 @@ class testCplexImporter(testImporter):
     def setUp(self):
         # self.lp = util.ImportCplex('../models/iJR904template.lp')
         # print len(Metabolism(self.lp).getReactions())
-        self.lp = util.ImportCplex('./test_data/model.lp')
+        self.lp = util.ImportCplex('test_data/model.lp')
     
     def testNumCols(self):
         self.assertEqual(glpki.glp_get_num_cols(self.lp), 1473)
