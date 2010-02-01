@@ -217,7 +217,10 @@ class FluxCoupling(object):
                 if j in blocked:
                     continue
                 self.lp.setReactionObjective(rxn2)
-                self.lp.simplex()
+                try:
+                    self.lp.simplex()
+                except:
+                    continue
                 if self.lp.getObjVal() < 1.:
                     print colored(rxn2, 'red'), " is blocked"
                     blocked.append(j)
@@ -308,14 +311,13 @@ def fluxVariabilityMain(lp):
     return vResult
 
 def prepareLP(lp, biomRxn=None):
-    if not biomRxn:
-        biomRxn = 'R("R_Ec_biomass_iAF1260_core_59p81M")'
+    if biomRxn:
+        lp.deleteReactions([biomRxn])
+        (sub, prod) = lp.getSubstratesAndProducts(biomRxn)
+        bioMets = sub
+        lp.addMetaboliteDrains(bioMets)
     lp.modifyColumnBounds(dict([(r, ('-inf', 10000000.))for r in lp.getTransporters()]))
     lp.modifyColumnBounds(dict([(r, (0., 10000000.))for r in lp.getReactions()]))
-    lp.deleteReactions([biomRxn])
-    (sub, prod) = lp.getSubstratesAndProducts(biomRxn)
-    bioMets = sub + prod
-    lp.addMetaboliteDrains(bioMets)
     lp.eraseHistory()
     return lp
 

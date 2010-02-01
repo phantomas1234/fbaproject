@@ -70,7 +70,7 @@ class Almaas(object):
     Adds the necessary functionality to the metabolism class.
     """
     def __init__(self, lp, default_bound=20, percRange=(10, 100), alwaysInc=set()):
-        super(Almaas, self).__init__(lp)
+        super(Almaas, self).__init__()
         self.lp = lp
         self.def_bnd = default_bound
         # self.lp.smcp.presolve = GLP_ON #TODO: I don't know if this is correct
