@@ -96,7 +96,7 @@ class glpk(object):
         return glpk(newProb)
     
     def __getstate__(self):
-        """How to pickle."""
+        """How to pickle.""" #TODO implement without temporary file workaround. Must use some pipes and stdout
         rndFileStr = randomString(10)
         util.WriteCplex(self, rndFileStr)
         f = open(rndFileStr).read()
@@ -369,7 +369,7 @@ class glpk(object):
         colCoefList = [0. for i in range(self.getNumRows())]
         for i in range(1, numNonZero + 1):
             colCoefList[ia[i] - 1] = da[i]
-        return colCoefList
+        return sparseList(colCoefList)
     
     def getRowCoef(self, rowIndex):
         """Returns a list of the row coefficients specified by rowIndex."""
@@ -380,7 +380,7 @@ class glpk(object):
         rowCoefList = [0. for i in range(self.getNumCols())]
         for i in range(1, numNonZero + 1):
             rowCoefList[ia[i] - 1] = da[i]
-        return rowCoefList
+        return sparseList(rowCoefList)
     
     def changeColumn(self):
         """docstring for changeColumn"""
@@ -562,7 +562,7 @@ class DeleteColumnsCommand(Command):
             lb = glp_get_col_lb(self.reciever.lp, elem)
             ub = glp_get_col_ub(self.reciever.lp, elem)
             colCoefList = self.reciever.getColumnCoef(elem)
-            memory[identifier] = (lb, ub, sparseList(colCoefList))
+            memory[identifier] = (lb, ub, colCoefList)
         return memory
     
     def execute(self):
@@ -601,7 +601,7 @@ class DeleteRowsCommand(Command):
             lb = glp_get_row_lb(self.reciever.lp, elem)
             ub = glp_get_row_ub(self.reciever.lp, elem)
             rowCoefList = self.reciever.getRowCoef(elem)
-            memory[identifier] = (lb, ub, sparseList(rowCoefList))
+            memory[identifier] = (lb, ub, rowCoefList)
         return memory
     
     def execute(self):
