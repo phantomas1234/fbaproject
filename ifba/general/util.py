@@ -69,6 +69,12 @@ def dict2mathematica(dict):
     out = string.replace(out, "(", "[")
     out = string.replace(out, ")", "]")
     return out
+    
+def chop(val, cutoff=1e-10):
+    if (val <= cutoff) and (val >= -cutoff):
+        return 0.
+    else:
+        return val
 
 if __name__ == '__main__':
     testDict = dict()

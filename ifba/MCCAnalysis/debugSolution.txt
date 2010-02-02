@@ -1,0 +1,272 @@
+Problem:    
+Rows:       105
+Columns:    77
+Non-zeros:  336
+Status:     OPTIMAL
+Objective:  obj = 0 (MAXimum)
+
+   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 R("R_Biomass_Ecoli_core_N__w_GAM_")
+                    NS             0             0             =     0.0925515
+     2 R("R_GAPD")  NS             0             0             =    -0.0119391
+     3 R("R_PGK")   NS             0             0             =     0.0119391
+     4 R("R_ENO")   NS             0             0             =     -0.150396
+     5 R("R_PGM")   NS             0             0             =      0.150396
+     6 R("R_GND")   NS             0             0             =       1.14991
+     7 R("R_PGL")   NS             0             0             =       1.14991
+     8 R("R_G6PDH2r")
+                    NS             0             0             =       1.14991
+     9 R("Macb_Transp")
+                    B              0             0             = 
+    10 R("R_EX_ac_e_")
+                    NS             0             0             =         < eps
+    11 R("R_ACKr")  NS             0             0             =         < eps
+    12 R("R_ACt2r") NS             0             0             =         < eps
+    13 R("R_ADHEr") NS             0             0             =      0.266197
+    14 R("R_CS")    NS             0             0             =     -0.613061
+    15 R("R_MALS")  B              0             0             = 
+    16 R("R_PDH")   B              0             0             = 
+    17 R("R_PFL")   B              0             0             = 
+    18 R("R_PTAr")  B              0             0             = 
+    19 R("Mace_Transp")
+                    NS             0             0             =         < eps
+    20 R("R_ADK1")  NS             0             0             =         < eps
+    21 R("R_ATPM")  NS             0             0             =      -5.16733
+    22 R("R_ATPS4r")
+                    B              0             0             = 
+    23 R("R_PFK")   B              0             0             = 
+    24 R("R_PPCK")  B              0             0             = 
+    25 R("R_PYK")   B              0             0             = 
+    26 R("R_SUCOAS")
+                    NS             0             0             =         < eps
+    27 R("Makgb_Transp")
+                    B              0             0             = 
+    28 R("R_EX_akg_e_")
+                    NS             0             0             =         < eps
+    29 R("R_AKGDH") B              0             0             = 
+    30 R("R_AKGt2r")
+                    NS             0             0             =      0.712915
+    31 R("R_ICDHyr")
+                    NS             0             0             =     -0.613061
+    32 R("Makge_Transp")
+                    NS             0             0             =      0.356457
+    33 R("R_PPS")   B              0             0             = 
+    34 R("R_ACONT") NS             0             0             =     -0.613061
+    35 R("Mco2b_Transp")
+                    B              0             0             = 
+    36 R("R_EX_co2_e_")
+                    NS             0             0             =         < eps
+    37 R("R_CO2t")  NS             0             0             =       -1.2006
+    38 R("R_ME1")   NS             0             0             =     -0.676718
+    39 R("R_ME2")   B              0             0             = 
+    40 R("R_PPC")   NS             0             0             =      -1.34047
+    41 R("Mco2e_Transp")
+                    NS             0             0             =     -0.600298
+    42 R("R_FBA")   NS             0             0             =         < eps
+    43 R("R_TPI")   B              0             0             = 
+    44 R("R_TALA")  NS             0             0             =     0.0334111
+    45 R("R_TKT2")  B              0             0             = 
+    46 R("Metohb_Transp")
+                    B              0             0             = 
+    47 R("R_EX_etoh_e_")
+                    NS             0             0             =         < eps
+    48 R("R_ETOHt2r")
+                    NS             0             0             =     -0.266197
+    49 R("Metohe_Transp")
+                    NS             0             0             =     -0.133098
+    50 R("R_FBP")   NS             0             0             =         < eps
+    51 R("R_PGI")   NS             0             0             =    -0.0268492
+    52 R("R_FRD")   NS             0             0             =         < eps
+    53 R("R_SUCD1i")
+                    B              0             0             = 
+    54 R("R_SUCD4") NS             0             0             =         < eps
+    55 R("Mforb_Transp")
+                    B              0             0             = 
+    56 R("R_EX_for_e_")
+                    NS             0             0             =         < eps
+    57 R("R_FORt")  NS             0             0             =         < eps
+    58 R("Mfore_Transp")
+                    NS             0             0             =         < eps
+    59 R("Mfumb_Transp")
+                    B              0             0             = 
+    60 R("R_EX_fum_e_")
+                    NS             0             0             =         < eps
+    61 R("R_FUM")   NS             0             0             =      0.216052
+    62 R("R_FUMt2_2")
+                    NS             0             0             =      0.216052
+    63 R("Mfume_Transp")
+                    NS             0             0             =      0.108026
+    64 R("R_TKT1")  NS             0             0             =     0.0334111
+    65 R("R_GLCpts")
+                    NS             0             0             =       1.14203
+    66 R("MglcDb_Transp")
+                    B              0             0             = 
+    67 R("R_EX_glc_e_")
+                    NS             0             0             =         < eps
+    68 R("MglcDe_Transp")
+                    NS             0             0             =      0.571015
+    69 R("R_ICL")   NS             0             0             =         < eps
+    70 R("Mh2ob_Transp")
+                    B              0             0             = 
+    71 R("R_EX_h2o_e_")
+                    NS             0             0             =         < eps
+    72 R("R_CYTBD") B              0             0             = 
+    73 R("R_H2Ot")  NS             0             0             =     -0.449115
+    74 R("Mh2oe_Transp")
+                    NS             0             0             =     -0.224558
+    75 R("Mhb_Transp")
+                    B              0             0             = 
+    76 R("R_EX_h_e_")
+                    NS             0             0             =         < eps
+    77 R("R_D_LACt2")
+                    NS             0             0             =         < eps
+    78 R("R_LDH_D") B              0             0             = 
+    79 R("R_MDH")   NS             0             0             =       0.89277
+    80 R("R_NADH11")
+                    B              0             0             = 
+    81 R("R_PYRt2r")
+                    NS             0             0             =     -0.203132
+    82 R("R_SUCCt2_2")
+                    NS             0             0             =         < eps
+    83 R("R_SUCCt2b")
+                    B              0             0             = 
+    84 R("R_THD2")  B              0             0             = 
+    85 R("Mhe_Transp")
+                    NS             0             0             =     0.0519762
+    86 R("MlacDb_Transp")
+                    B              0             0             = 
+    87 R("R_EX_lac_D_e_")
+                    NS             0             0             =         < eps
+    88 R("MlacDe_Transp")
+                    NS             0             0             =         < eps
+    89 R("R_NADTRHD")
+                    B              0             0             = 
+    90 R("Mo2b_Transp")
+                    B              0             0             = 
+    91 R("R_EX_o2_e_")
+                    NS             0             0             =         < eps
+    92 R("R_O2t")   NS             0             0             =         < eps
+    93 R("Mo2e_Transp")
+                    NS             0             0             =         < eps
+    94 R("Mpib_Transp")
+                    B              0             0             = 
+    95 R("R_EX_pi_e_")
+                    NS             0             0             =         < eps
+    96 R("R_PIt")   NS             0             0             =      -1.34047
+    97 R("Mpie_Transp")
+                    NS             0             0             =      0.670235
+    98 R("Mpyrb_Transp")
+                    B              0             0             = 
+    99 R("R_EX_pyr_e_")
+                    NS             0             0             =         < eps
+   100 R("Mpyre_Transp")
+                    NS             0             0             =     -0.101566
+   101 R("R_RPI")   NS             0             0             =      -1.11649
+   102 R("R_RPE")   NS             0             0             =     0.0334111
+   103 R("Msuccb_Transp")
+                    B              0             0             = 
+   104 R("R_EX_succ_e_")
+                    NS             0             0             =         < eps
+   105 R("Msucce_Transp")
+                    NS             0             0             =         < eps
+
+   No. Column name  St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 Mr5pc        B              0             0         10000 
+     2 Mpyrc        B              0             0         10000 
+     3 Mpic         B              0             0         10000 
+     4 Mpepc        B              0             0         10000 
+     5 Moaac        B              0             0         10000 
+     6 Mnadphc      NL             0             0         10000         < eps
+     7 Mnadpc       B              0             0         10000 
+     8 Mnadhc       NL             0             0         10000         < eps
+     9 Mnadc        B              0             0         10000 
+    10 Mhc          B              0             0         10000 
+    11 Mh2oc        B              0             0         10000 
+    12 Mg6pc        B              0             0         10000 
+    13 Mg3pc        B              0             0         10000 
+    14 Mf6pc        B              0             0         10000 
+    15 Me4pc        B              0             0         10000 
+    16 Mcoac        NL             0             0         10000         < eps
+    17 Matpc        NL             0             0         10000         < eps
+    18 Makgc        B              0             0         10000 
+    19 Madpc        B              0             0         10000 
+    20 Maccoac      B              0             0         10000 
+    21 M3pgc        B              0             0         10000 
+    22 M13dpgc      B              0             0         10000 
+    23 M2pgc        B              0             0         10000 
+    24 Mru5pDc      B              0             0         10000 
+    25 Mco2c        B              0             0         10000 
+    26 M6pgcc       B              0             0         10000 
+    27 M6pglc       B              0             0         10000 
+    28 Macb         B              0             0         10000 
+    29 Mace         B              0             0         10000 
+    30 Mactpc       B              0             0         10000 
+    31 Macc         B              0             0         10000 
+    32 Mhe          B              0             0         10000 
+    33 Metohc       B              0             0         10000 
+    34 Mcitc        B              0             0         10000 
+    35 MmalLc       B              0             0         10000 
+    36 Mglxc        B              0             0         10000 
+    37 Mforc        B              0             0         10000 
+    38 Mampc        B              0             0         10000 
+    39 Mfdpc        B              0             0         10000 
+    40 Msuccoac     B              0             0         10000 
+    41 Msuccc       B              0             0         10000 
+    42 Makgb        B              0             0         10000 
+    43 Makge        B              0             0         10000 
+    44 Micitc       B              0             0         10000 
+    45 Mco2b        B              0             0         10000 
+    46 Mco2e        B              0             0         10000 
+    47 Mdhapc       B              0             0         10000 
+    48 Ms7pc        B              0             0         10000 
+    49 Mxu5pDc      B              0             0         10000 
+    50 Metohb       B              0             0         10000 
+    51 Metohe       B              0             0         10000 
+    52 Mfumc        B              0             0         10000 
+    53 Mfadh2c      NL             0             0         10000         < eps
+    54 Mfadc        B              0             0         10000 
+    55 Mq8h2c       NL             0             0         10000         < eps
+    56 Mq8c         B              0             0         10000 
+    57 Mforb        B              0             0         10000 
+    58 Mfore        B              0             0         10000 
+    59 Mfumb        B              0             0         10000 
+    60 Mfume        B              0             0         10000 
+    61 MglcDe       B              0             0         10000 
+    62 MglcDb       B              0             0         10000 
+    63 Mh2ob        B              0             0         10000 
+    64 Mh2oe        B              0             0         10000 
+    65 Mo2c         B              0             0         10000 
+    66 Mhb          B              0             0         10000 
+    67 MlacDe       B              0             0         10000 
+    68 MlacDc       B              0             0         10000 
+    69 Mpyre        B              0             0         10000 
+    70 Msucce       B              0             0         10000 
+    71 MlacDb       B              0             0         10000 
+    72 Mo2b         B              0             0         10000 
+    73 Mo2e         B              0             0         10000 
+    74 Mpib         B              0             0         10000 
+    75 Mpie         B              0             0         10000 
+    76 Mpyrb        B              0             0         10000 
+    77 Msuccb       B              0             0         10000 
+
+Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+KKT.DE: max.abs.err. = 2.22e-16 on column 1
+        max.rel.err. = 2.22e-16 on column 4
+        High quality
+
+KKT.DB: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+End of output

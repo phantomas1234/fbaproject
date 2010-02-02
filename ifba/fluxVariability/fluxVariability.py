@@ -203,7 +203,7 @@ class FluxCoupling(object):
             if maxObjVal <= 0:
                 print colored(rxn1, 'red'), " is blocked"
                 blocked.append(i)
-                self.lp.initialize
+                self.lp.initialize()
                 continue
             self.lp.initialize()
             print maxObjVal
@@ -217,6 +217,7 @@ class FluxCoupling(object):
                 if j in blocked:
                     continue
                 self.lp.setReactionObjective(rxn2)
+                self.lp.setOptFlag('max')
                 try:
                     self.lp.simplex()
                 except:
@@ -224,7 +225,7 @@ class FluxCoupling(object):
                 if self.lp.getObjVal() < 1.:
                     print colored(rxn2, 'red'), " is blocked"
                     blocked.append(j)
-                    self.lp.initialize
+                    self.lp.initialize()
                     continue
                 self.lp.initialize
                 (r_min, r_max, rxn1maxShadow, rxn1minShadow, rxn2maxShadow, rxn2minShadow, fishy) = self.computeFluxRatio(rxn1, rxn2)

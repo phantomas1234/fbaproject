@@ -95,7 +95,7 @@ class Metabolism(glpk.glpk):
         return dict(zip(self.translateColumnIndices(bDict.keys()), bDict.values()))
 
     def getRowBounds(self):
-        """docstring for getColumnBounds"""
+        """docstring for getRowBounds"""
         bDict = super(Metabolism, self).getRowBounds()
         return dict(zip(self.translateRowIndices(bDict.keys()), bDict.values()))
     
