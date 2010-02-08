@@ -7,8 +7,6 @@ Created by Nikolaus Sonnenschein on 2010-02-01.
 Copyright (c) 2010 Jacobs University of Bremen. All rights reserved.
 """
 
-import sys
-import os
 import re
 import copy
 import time
@@ -196,7 +194,7 @@ class MCCA(AnalysisOfConservedPools):
                     print info
                     if chop(met2maxShadow) > 0. and chop(met2minShadow) == 0.:
                         print colored("!!!directionallyCoupled: ", 'red'), met2, met1
-                        directionallyCoupled.append((met1, met2))
+                        directionallyCoupled.append((met2, met1))
                     else:
                         allreadyCoupled.append(j)
                         partiallyCoupled.append((met1, met2))
@@ -219,16 +217,17 @@ class MCPI(AnalysisOfConservedPools):
 
 if __name__ == '__main__':
     import pickle
+    import sys
     # mcpiObj = MCCA(util.ImportCplex("../models/Ecoli_Core_template.lp"))
-    mcpiObj = MCCA(util.ImportCplex("../models/Ecoli_Core_template_rev.lp"))
+    # mcpiObj = MCCA(util.ImportCplex("../models/Ecoli_Core_template_rev.lp"))
     # mcpiObj = MCCA(util.ImportCplex("../models/iAF1260template.lp"))
+    mcpiObj = MCCA(util.ImportCplex(sys.argv[1]))
     rxns2remove = [r for r in mcpiObj.getRowIDs() if re.search('.*_Transp.*', r)]
     mcpiObj.deleteMetabolitesFromStoich(rxns2remove)
     mcpiObj.eraseHistory()
     util.WriteCplex(mcpiObj, 'debug.lp')
-    result = mcpiObj.mcca(printUncoupled=True)
-    pickle.dump(result, open('EcoliCoreMetaboliteCouplings.pcl', 'w'))
-    
+    result = mcpiObj.mcca(printUncoupled=False)
+    pickle.dump(result, open(sys.argv[2], 'w'))
     
     
     
