@@ -130,7 +130,7 @@ class MCCA(AnalysisOfConservedPools):
                 self.initialize()
                 continue
             self.initialize()
-            print "still ", len(metabolites) - i - len(allreadyCoupled) - len(blocked), " to check"
+            print "still ", len(metabolites) - i , " to check"
             print "directionallyCoupled: ", len(directionallyCoupled)
             print "fullyCoupled: ", len(fullyCoupled)
             print "partiallyCoupled: ", len(partiallyCoupled)
@@ -191,7 +191,7 @@ class MCCA(AnalysisOfConservedPools):
                 elif chop(r_min - r_max) != 0.:
                     print colored("partiallycoupled: ", 'red'), met1, met2
                     print info
-                    (r_min, r_max, met1maxShadow, met1minShadow, met2maxShadow, met2minShadow, fishy) = self.computeFluxRatio(met2, met1)
+                    (r_min, r_max, met1maxShadow, met1minShadow, met2maxShadow, met2minShadow, fishy) = self.computeMinMaxRatio(met2, met1)
                     info = ' '.join(("------> minRatio: ", str(chop(r_min)), "maxRatio: ", str(chop(r_max)), "met1maxShadow: ", str(chop(met1maxShadow)), "met1minShadow: ", str(chop(met1minShadow)), "met2maxShadow: ", str(chop(met2maxShadow)), "met2minShadow: ", str(chop(met2minShadow))))
                     print info
                     if chop(met2maxShadow) > 0. and chop(met2minShadow) == 0.:
@@ -218,20 +218,16 @@ class MCPI(AnalysisOfConservedPools):
         
 
 if __name__ == '__main__':
-    # print Metabolism(util.ImportCplex("../models/Ecoli_Core_template_rev.lp"))
-    # mcpiObj = MCCA(util.ImportCplex("../models/Ecoli_Core_template_rev.lp"))
-    mcpiObj = MCCA(util.ImportCplex("../models/iAF1260template.lp"))
-    boundaryMets = [met for met in mcpiObj.getColumnIDs() if re.search('M.*b$', met)]
-    mcpiObj.deleteReactionsFromStoich(boundaryMets)
+    import pickle
+    # mcpiObj = MCCA(util.ImportCplex("../models/Ecoli_Core_template.lp"))
+    mcpiObj = MCCA(util.ImportCplex("../models/Ecoli_Core_template_rev.lp"))
+    # mcpiObj = MCCA(util.ImportCplex("../models/iAF1260template.lp"))
+    rxns2remove = [r for r in mcpiObj.getRowIDs() if re.search('.*_Transp.*', r)]
+    mcpiObj.deleteMetabolitesFromStoich(rxns2remove)
     mcpiObj.eraseHistory()
-    print boundaryMets
-    print mcpiObj
     util.WriteCplex(mcpiObj, 'debug.lp')
-    # print mcpiObj.getColumnIDs()
-    # print mcpiObj.computeMinMaxRatio('M13dpgc', 'Mactpc')
-    print mcpiObj.computeMinMaxRatio('Matpc', 'Madpc')
-    # mcpiObj.mcca(metabolites=('Matpc', 'Madpc'))
-    mcpiObj.mcca(printUncoupled=False)
+    result = mcpiObj.mcca(printUncoupled=True)
+    pickle.dump(result, open('EcoliCoreMetaboliteCouplings.pcl', 'w'))
     
     
     
