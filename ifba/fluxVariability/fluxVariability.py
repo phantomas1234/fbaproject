@@ -207,7 +207,7 @@ class FluxCoupling(object):
                 continue
             self.lp.initialize()
             print maxObjVal
-            print "still ", len(reacs) - i - len(allreadyCoupled) - len(blocked), " to check"
+            print "still ", len(reacs) - i, " to check"
             print "directionallyCoupled: ", len(directionallyCoupled)
             print "fullyCoupled: ", len(fullyCoupled)
             print "partiallyCoupled: ", len(partiallyCoupled)
