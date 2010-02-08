@@ -271,7 +271,7 @@ class FluxCoupling(object):
                     print info
                     if chop(rxn2maxShadow) > 0. and chop(rxn2minShadow) == 0.:
                         print colored("!!!directionallyCoupled: ", 'red'), rxn2, rxn1
-                        directionallyCoupled.append((rxn1, rxn2))
+                        directionallyCoupled.append((rxn2, rxn1))
                     else:
                         allreadyCoupled.append(j)
                         partiallyCoupled.append((rxn1, rxn2))
