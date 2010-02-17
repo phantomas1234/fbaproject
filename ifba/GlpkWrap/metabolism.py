@@ -154,6 +154,11 @@ class Metabolism(glpk.glpk):
                 if (reaction != 0.0):
                     reactions[self.translateColumnIndices([index + 1]).pop()] = (0,0)
         self.modifyColumnBounds(reactions)
+
+    def deleteMetabolitesFromStoich(self, listOfMetabolites):
+        "Takes a list of metabolites and removes them from the stoichiometry matrix."
+        rowIndexes = self.translateRowNames(listOfMetabolites)
+        self.deleteRows(rowIndexes)
     
     def getFluxDict(self):
         return dict([(r, self.primalValues()[i]) for i, r in enumerate(self.getColumnIDs())])
@@ -166,10 +171,15 @@ class Metabolism(glpk.glpk):
         """Frees the row boundaries for metabolites"""
         boundDict = dict()
         for met in metabolites:
-            # boundDict[met] = ('-inf', 'inf')
             boundDict[met] = (0., 'inf')
         self.modifyRowBounds(boundDict)
     
+    def freeMetabolites(self, metabolites):
+        """Frees the row boundaries for metabolites"""
+        boundDict = dict()
+        for met in metabolites:
+            boundDict[met] = ('-inf', 'inf')
+        self.modifyRowBounds(boundDict)
 
 
 if __name__ == '__main__':

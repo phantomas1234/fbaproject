@@ -311,7 +311,7 @@ class glpk(object):
             if index != 0:
                 ret.append(index)
             else:
-                raise Exception, "Column id " + name + " cannot be found."
+                raise Exception, "Row id " + name + " cannot be found."
         return ret
     
     def deleteColumns(self, colIndexes):
@@ -324,6 +324,7 @@ class glpk(object):
     def deleteRows(self, rowIndexes):
         """Deletes the rows specified in rowIndexes."""
         for index in rowIndexes:
+            print index
             self._checkRowIndexValidity(index)
         command = DeleteRowsCommand(self, rowIndexes)
         command.execute()
