@@ -80,7 +80,7 @@ if __name__ == '__main__':
     usage = """Usage:
 python RandomMediaSimulations.py standalone storagefile configfile runs --> standalone mode
 python RandomMediaSimulations.py server storagefile configfile --> server mode
-python iAF1260simulations.py client serverip configfile --> client mode"""
+python RandomMediaSimulations.py client serverip configfile --> client mode"""
     try:
         if sys.argv[1] == 'standalone':
             basicFunctionality(sys.argv[2], sys.argv[3], int(sys.argv[4]))
