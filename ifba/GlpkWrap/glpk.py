@@ -67,6 +67,14 @@ class glpk(object):
         )
         return str(info)
     
+    def __repr__(self):
+        """docstring for __repr__"""
+        rndFileStr = randomString(10)
+        util.WriteCplex(self, rndFileStr)
+        f = open(rndFileStr).read()
+        os.remove(rndFileStr)
+        return f
+    
     def writeSolution(self, file="/dev/stdout"):
         glp_write_sol(self.lp, file)
         
@@ -97,11 +105,7 @@ class glpk(object):
     
     def __getstate__(self):
         """How to pickle.""" #TODO implement without temporary file workaround. Must use some pipes and stdout
-        rndFileStr = randomString(10)
-        util.WriteCplex(self, rndFileStr)
-        f = open(rndFileStr).read()
-        os.remove(rndFileStr)
-        return f
+        return self.__repr__()
     
     def __setstate__(self, stuff):
         """How to unpickle."""
@@ -221,6 +225,7 @@ class glpk(object):
         elif lb == ub:
             glp_set_row_bnds(self.lp, index, GLP_FX, lb, ub)
         elif lb != ub:
+            # print lb, ub
             glp_set_row_bnds(self.lp, index, GLP_DB, lb, ub)
         else:
             raise Exception, "Something is wrong with the provided bounds " + str(lb) + " " + str(ub)
@@ -435,6 +440,37 @@ class glpk(object):
         """Returns a list of all current dual values."""
         num = self.getNumCols()
         return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
+        
+    def addColumnSwitches(self, columns=None):
+        """Adds new columns to the lp.
+        columns is a dictionary of the form {columnID : (lb, ub, coeffList)}
+        """
+        if not columns:
+            columns = self.getColumnIDs()
+        cols = dict()
+        for c in columns:
+            cols["switch_"+c] = (0., 1., dict())
+        print 'adding columns'
+        self.addColumns(cols)
+        print 'added columns'
+        colKinds = dict()
+        for c in columns:
+            colKinds[self.translateColumnNames(("switch_"+c,))[0]] = GLP_BV
+        self.setColumnKinds(colKinds)
+        colBounds = self.getColumnBounds()
+        newRows = dict()
+        for c in columns:
+            # print "processing ", r
+            viPos = self.translateColumnNames((c,))[0]
+            yPos = self.translateColumnNames(("switch_"+c,))[0]
+            coefUb = {viPos:1., yPos:-colBounds[c][1]}
+            coefLb = {viPos:1., yPos:-colBounds[c][0]}
+            newRows["Ub_switch_"+c] = ('-inf', 0., coefUb)
+            newRows["Lb_switch_"+c] = (0., 'inf', coefLb)
+        print 'adding rows'
+        self.addRows(newRows)
+        print 'added rows'
+    
 
 
 class Command(object):
