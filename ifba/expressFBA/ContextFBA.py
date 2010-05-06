@@ -7,16 +7,14 @@ Created by Nikolaus Sonnenschein on 2009-01-13.
 Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.
 """
 
-import sys
-import os
+import re
+import copy
+import numpy
+import pickle
 from ifba.GlpkWrap import util, metabolism, randomMedia, fluxdist, glpk
 from ifba.general.util import sumDicts, filterDict, dict2mathematica, dict2tsv
 from ifba.general.combinatorics import SetCombine
 from ifba.glpki import glpki
-import copy
-import random
-import numpy
-import pickle
 
 
 class ContextFBA(metabolism.Metabolism):
@@ -52,11 +50,19 @@ class ContextFBA(metabolism.Metabolism):
     
     def _generateContextObjective(self, expData, cutoff):
         """docstring for _generateContextObjective"""
+        colIDs = self.getColumnIDs()
         for iD, val in expData.items():
-            if val > cutoff:
-                expData[iD] = 0.
-            else:
-                expData[iD] = cutoff - val
+            if iD in colIDs:
+                if val > cutoff:
+                    expData[iD] = 0.
+                else:
+                    expData[iD] = cutoff - val
+                revId = iD.split('")')[0] + "_Rev" + '")'
+                if revId in colIDs:
+                    if val > cutoff:
+                        expData[revId] = 0.
+                    else:
+                        expData[revId] = cutoff - val
         return expData
     
     def computeInconsistency(self, contxtObjective, contextFluxDist):
@@ -135,8 +141,6 @@ class MilpContextFBA(ContextFBA):
         contextFluxDist = self.fba(method='intopt')
         return (contextFluxDist, dict([(id, val) for id, val in self.mipValues().items() if val == 1. and id in milpContxtObj]))
 
-    
-
 def loadReactionData(path):
     """docstring for loadExpData"""
     file = open(path, 'r')
@@ -145,6 +149,21 @@ def loadReactionData(path):
         data.append(tuple(line.rstrip().split('\t')))
     file.close()
     return dict([(reac.replace('[', '(').replace(']', ')'), float(val)) for (reac, val) in data])
+
+def loadMultipleReactionData(path, separator="///"):
+    """docstring for loadExpData"""
+    file = open(path, 'r')
+    data = []
+    tmpData = []
+    for line in file:
+        if re.search(separator, line):
+            data.append(dict([(reac.replace('[', '(').replace(']', ')'), float(val)) for (reac, val) in tmpData]))
+            tmpData = []
+            continue
+        tmpData.append(tuple(line.rstrip().split('\t')))
+    data.append(dict([(reac.replace('[', '(').replace(']', ')'), float(val)) for (reac, val) in tmpData]))
+    file.close()
+    return data
 
 
 if __name__ == '__main__':

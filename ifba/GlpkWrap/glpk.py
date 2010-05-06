@@ -8,6 +8,7 @@ Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
 """
 
 import os
+import sys
 from ifba.glpki.glpki import *
 from ifba.GlpkWrap import util, exceptions
 from ifba.general.util import randomString
@@ -28,7 +29,7 @@ class glpk(object):
         self.smcp.msg_lev = GLP_MSG_OFF
         self.iocp.msg_lev = GLP_MSG_OFF
         self.smcp.presolve = GLP_OFF
-        self.iocp.presolve = GLP_OFF
+        self.iocp.presolve = GLP_ON
         glp_create_index(self.lp)
         glp_scale_prob(self.lp, GLP_SF_AUTO)
         self.history = []
@@ -118,10 +119,16 @@ class glpk(object):
         """Toggles the verbosity level of glpk.
         The toggle switches between all messages allowed to no messages
         allowed."""
+        # return glp_term_out(GLP_ON)
         if self.smcp.msg_lev == GLP_MSG_ON:
             self.smcp.msg_lev = GLP_MSG_OFF
         elif self.smcp.msg_lev == GLP_MSG_OFF:
             self.smcp.msg_lev = GLP_MSG_ON
+        if self.iocp.msg_lev == GLP_MSG_ON:
+            self.iocp.msg_lev = GLP_MSG_OFF
+        elif self.iocp.msg_lev == GLP_MSG_OFF:
+            self.iocp.msg_lev = GLP_MSG_ON
+
     
     def getNumCols(self):
         """Returns the number of columns in lp."""
@@ -167,9 +174,10 @@ class glpk(object):
     def intopt(self):
         """Solves a milp using glp_intopt."""
         print 'Hey the intopt solver is used'
-        glp_intopt(self.lp, None)
+        glp_intopt(self.lp, self.iocp)
         status = glp_mip_status(self.lp)
         if status != GLP_OPT:
+            print status
             raise Exception, str(self.errDict[status])
         return status
         
@@ -426,6 +434,13 @@ class glpk(object):
     
     def getColumnsOfType(self, desiredKind):
         "Returns a list of column indices that have"
+        if isinstance(desiredKind, str):
+            mapping = {"integer":GLP_IV, "binary":GLP_BV, "continuous":GLP_CV}
+            try:
+                desiredKind = mapping[desiredKind]
+            except KeyError, msg:
+                raise KeyError, "Unknown column type " + desiredKind + '. Choose between "binary", "integer" and "continous".'
+                sys.exit(-1)
         return [index for index, kind in self.getColumnKinds().items() if kind == desiredKind]
     
     def mipValues(self):
@@ -441,18 +456,18 @@ class glpk(object):
         num = self.getNumCols()
         return [glp_get_col_dual(self.lp, i) for i in range(1, num + 1)]
         
-    def addColumnSwitches(self, columns=None):
-        """Adds new columns to the lp.
-        columns is a dictionary of the form {columnID : (lb, ub, coeffList)}
+    def addPositiveColumnSwitches(self, columns=None):
+        """
+        If integer switch switch_c = 1 than lower_bound <= c <= upper_bound
         """
         if not columns:
             columns = self.getColumnIDs()
         cols = dict()
         for c in columns:
             cols["switch_"+c] = (0., 1., dict())
-        print 'adding columns'
+        # print 'adding columns'
         self.addColumns(cols)
-        print 'added columns'
+        # print 'added columns'
         colKinds = dict()
         for c in columns:
             colKinds[self.translateColumnNames(("switch_"+c,))[0]] = GLP_BV
@@ -467,10 +482,37 @@ class glpk(object):
             coefLb = {viPos:1., yPos:-colBounds[c][0]}
             newRows["Ub_switch_"+c] = ('-inf', 0., coefUb)
             newRows["Lb_switch_"+c] = (0., 'inf', coefLb)
-        print 'adding rows'
+        # print 'adding rows'
         self.addRows(newRows)
-        print 'added rows'
+        # print 'added rows'
     
+
+    def addNegativeColumnSwitches(self, columns=None):
+        """
+        If integer switch switch_c = 1 than c = 0
+        """
+        if not columns:
+            columns = self.getColumnIDs()
+        cols = dict()
+        for c in columns:
+            cols["switch_"+c] = (0., 1., dict())
+        cols["one_stub"] = (1., 1., dict())
+        self.addColumns(cols)
+        colKinds = dict()
+        for c in columns:
+            colKinds[self.translateColumnNames(("switch_"+c,))[0]] = GLP_BV
+        self.setColumnKinds(colKinds)
+        colBounds = self.getColumnBounds()
+        newRows = dict()
+        for c in columns:
+            stubPos = self.translateColumnNames(("one_stub",))[0]
+            viPos = self.translateColumnNames((c,))[0]
+            yPos = self.translateColumnNames(("switch_"+c,))[0]
+            coefUb = {viPos:1., yPos:colBounds[c][1], stubPos:-colBounds[c][1]}
+            coefLb = {viPos:1., yPos:colBounds[c][0], stubPos:-colBounds[c][0]}
+            newRows["Ub_switch_"+c] = ('-inf', 0., coefUb)
+            newRows["Lb_switch_"+c] = (0., 'inf', coefLb)
+        self.addRows(newRows)
 
 
 class Command(object):

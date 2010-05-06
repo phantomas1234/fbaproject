@@ -29,11 +29,12 @@ class Variability(object):
         self.lp.setOptFlag('min')
         try:
             self.lp.simplex()
-        except:
-            print "Running with presolver"
-            self.lp.smcp.presolve = glpk.GLP_ON
-            self.lp.simplex()
-            self.lp.smcp.presolve = glpk.GLP_OFF
+        except Exception, msg:
+            print msg
+            # print "Running with presolver"
+            # self.lp.smcp.presolve = glpk.GLP_ON
+            # self.lp.simplex()
+            # self.lp.smcp.presolve = glpk.GLP_OFF
         self.lp.undo()
         return self.lp.getObjVal()
     
@@ -42,11 +43,12 @@ class Variability(object):
         self.lp.setOptFlag('max')
         try:
             self.lp.simplex()
-        except:
-            print "Running with presolver"
-            self.lp.smcp.presolve = glpk.GLP_ON
-            self.lp.simplex()
-            self.lp.smcp.presolve = glpk.GLP_OFF
+        except Exception, msg:
+            print msg
+            # print "Running with presolver"
+            # self.lp.smcp.presolve = glpk.GLP_ON
+            # self.lp.simplex()
+            # self.lp.smcp.presolve = glpk.GLP_OFF
         self.lp.undo()
         return self.lp.getObjVal()
     
