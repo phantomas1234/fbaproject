@@ -101,16 +101,17 @@ class test_ConstraintModelling(unittest.TestCase):
         self.glp.initialize()
         self.assertEqual(self.glp.getObjectiveFunction(), {'R("R_BiomassEcoli")' : 1.})
 
-    def testSetReactionObjectiveMinRest(self):
-        """docstring for testGetObjective"""
-        self.glp.setReactionObjectiveMinimizeRest('R("R_PGK")')
-        reacsTmp = self.glp.getColumnIDs()
-        reference = zip(reacsTmp, [-1.e-8 for i in range(0, len(reacsTmp))])
-        referenceDict = dict(reference)
-        referenceDict['R("R_PGK")'] = 1.
-        self.assertEqual(self.glp.getObjectiveFunction(), referenceDict)
-        self.glp.initialize()
-        self.assertEqual(self.glp.getObjectiveFunction(), {'R("R_BiomassEcoli")' : 1.})
+    # def testSetReactionObjectiveMinRest(self):
+    #     """docstring for testGetObjective"""
+    #     self.glp.setReactionObjectiveMinimizeRest('R("R_PGK")')
+    #     reacsTmp = self.glp.getColumnIDs()
+    #     t = self.glp.getTransporters()
+    #     reference = zip(reacsTmp, [-1.e-8 for i in range(0, len(reacsTmp))])
+    #     referenceDict = dict(reference)
+    #     referenceDict['R("R_PGK")'] = 1.
+    #     self.assertEqual(self.glp.getObjectiveFunction(), referenceDict)
+    #     self.glp.initialize()
+    #     self.assertEqual(self.glp.getObjectiveFunction(), {'R("R_BiomassEcoli")' : 1.})
         
     def testGetSubstratesAndProducts(self):
         """Test if getSubstratesAndProducts(rxn) returns the correct substrates and products"""

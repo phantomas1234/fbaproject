@@ -51,6 +51,21 @@ class Metabolism(glpk.glpk):
         productsIndices.sort()
         return (tuple(self.translateRowIndices(substratesIndices)), tuple(self.translateRowIndices(productsIndices)))
     
+    def addTransporters(self, rowIDs, postfix="_Transp"):
+        newColumns = dict()
+        for r in rowIDs:
+            newColumns[r+postfix] = ('-inf', 'inf', {self.translateRowNames([r])[0]:1.})
+        # return newColumns
+        self.addColumns(newColumns)
+        
+    def addArtificalReaction(self, rowIDs, name="Biomass"):
+        newColumns = dict()
+        coeff = dict()
+        for r in rowIDs:
+            coeff[self.translateRowNames([r])[0]] = -1.
+        newColumns[name] = (0., 1000, coeff) 
+        self.addColumns(newColumns)
+    
     def getTransporters(self, postfix='_Transp'):
         """Returns a list of all available transporters in the model. The
         postfix can be changed if transporters are stigmatized by a different
@@ -121,9 +136,13 @@ class Metabolism(glpk.glpk):
     def setReactionObjectiveMinimizeRest(self, reaction, coeff=1.):
         """docstring for setReactionAsObjective"""
         rest = self.getColumnIDs()
+        t = self.getTransporters()
         reactionDict = dict()
         for reac in rest:
-            reactionDict[reac] = -1.e-8
+            if reac in t:
+                reactionDict[reac] = 0
+            else:
+                reactionDict[reac] = -1.e-8
         reactionDict[reaction] = coeff 
         self.setObjectiveFunction(reactionDict)
     

@@ -41,6 +41,13 @@ class ContextFBA(metabolism.Metabolism):
     def _partA(self, level=None):
         """docstring for _partA"""
         self.setObjectiveFunction({self.rmfID : 1.})
+        colIDs = self.getColumnIDs()
+        if re.search('.*_Rev.*', self.rmfID):
+            self.modifyColumnBounds({self.rmfID.replace('_Rev', ''):(0,0)})
+        else:
+            revId = self.rmfID.split('")')[0] + "_Rev" + '")'
+            if revId in colIDs:
+                self.modifyColumnBounds({revId:(0,0)})
         # print self.getObjective()
         # rmfFlux = self.fba()[self.rmfID]
         self.simplex()
