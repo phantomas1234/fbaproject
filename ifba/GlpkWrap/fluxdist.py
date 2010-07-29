@@ -12,6 +12,7 @@ import time
 import array
 import numpy
 import pprint
+import re
 
 def gzipDump(outPutStr, head, ending):
     """docstring for gzipDump"""
@@ -20,7 +21,7 @@ def gzipDump(outPutStr, head, ending):
 
 class FluxDist(object):
     """docstring for FluxDist"""
-    def __init__(self, lp, prec=1.e-8):
+    def __init__(self, lp, prec=1.e-12):
         self.reactions = lp.getColumnIDs()
         self.prec = prec
         self.fluxes = [self._chop(i) for i in lp.primalValues()]
@@ -42,8 +43,11 @@ class FluxDist(object):
         return dict(zip(self.reactions, self.fluxes))
 
     def getActiveFluxDist(self):
-        return [i for i in zip(self.reactions, self.fluxes) 
-                if self._chop(i[1]) > 0. or self._chop(i[1]) < 0.]
+        return [i for i in zip(self.reactions, self.fluxes)
+                if (self._chop(i[1]) > 0. or self._chop(i[1]) < 0.)
+                and not re.search('.*_Transp.*', i[0])
+                and not re.search('.*R_EX.*', i[0])
+                ]
         # FIXME: Needs a better threshold
 
     def getActiveReactions(self):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-ConstraintModelling.py
+metabolism.py
 
 Created by Nikolaus Sonnenschein on 2008-02-12.
 Copyright (c) 2008 Jacobs University of Bremen. All rights reserved.
@@ -18,10 +18,6 @@ class Metabolism(glpk.glpk):
     def __init__(self, lp):
         super(Metabolism, self).__init__(lp)
     
-    # def __str__(self):
-    #     """Print some information regarding the lp model."""
-    #     super(Metabolism, self).__init__(self)
-    
     def __copy__(self):
         return Metabolism(super(Metabolism, self).__copy__().lp)
     
@@ -33,8 +29,6 @@ class Metabolism(glpk.glpk):
     def getMetabolites(self):
         """Returns a list of all metabolite ids in the model."""
         return self.getRowIDs()
-        # num = self.getNumRows()
-        # return list([glpki.glp_get_row_name(self.lp, i) for i in range(1, num+1)])
         
     def getSubstratesAndProducts(self, reaction):
         """Return a tuple containing the substrates and products of reaction"""
@@ -55,7 +49,6 @@ class Metabolism(glpk.glpk):
         newColumns = dict()
         for r in rowIDs:
             newColumns[r+postfix] = ('-inf', 'inf', {self.translateRowNames([r])[0]:1.})
-        # return newColumns
         self.addColumns(newColumns)
         
     def addArtificalReaction(self, rowIDs, name="Biomass"):
@@ -133,8 +126,13 @@ class Metabolism(glpk.glpk):
         """docstring for setReactionAsObjective"""
         self.setObjectiveFunction({reaction : coeff})
     
-    def setReactionObjectiveMinimizeRest(self, reaction, coeff=1.):
-        """docstring for setReactionAsObjective"""
+    def setReactionObjectiveMinimizeRest(self, reaction, coeff=1., factor=-1.e-8):
+        """
+        Sets a specified reaction as the new objective (maximization) and
+        sets for all other reactions a negative factor coefficient, thus
+        minimizing their usage. Transporters, which can have negative fluxes
+        are not minimized.
+        """
         rest = self.getColumnIDs()
         t = self.getTransporters()
         reactionDict = dict()
@@ -142,16 +140,47 @@ class Metabolism(glpk.glpk):
             if reac in t:
                 reactionDict[reac] = 0
             else:
-                reactionDict[reac] = -1.e-8
+                reactionDict[reac] = factor
         reactionDict[reaction] = coeff 
         self.setObjectiveFunction(reactionDict)
-    
+
     def fba(self, method='simplex'):
         """Solve the Flux Balance Model and return a flux distribution
         instance."""
         eval("self."+method+"()")
         return ifba.GlpkWrap.fluxdist.FluxDist(self)
     
+    def pFBA(self, obj, reactions=None, factor=-1.):
+        """
+        As implemented in:
+        Lewis et al. Omic data from evolved E. coli are consistent with 
+        computed optimal growth from genome-scale models. Mol Syst Biol (2010) 
+        vol. 6 (1) pp.
+        """
+        self.setReactionObjective(obj, coeff=1.)
+        mx = self.fba()[obj]
+        self.modifyColumnBounds({obj:(mx, "inf")})
+        objDict = dict()
+        if not reactions == None:
+            t = self.getTransporters()
+            for rxn in reactions:
+                if reac not in t:
+                    objDict[rxn] = -1.
+        else:
+            for rxn in self.getReactions():
+                objDict[rxn] = -1.
+        self.setObjectiveFunction(objDict)
+        # print self.getObjectiveFunction()
+        return self.fba()
+        
+    def fluxSumAnalysis(self):
+        """
+        As implemented in:
+        Chung und Lee. Flux-sum analysis: a metabolite-centric approach for 
+        understanding the metabolic network. BMC Syst Biol (2009) vol. 3 pp. 117
+        """
+        pass
+
     def deleteReactions(self, listOfReactions):
         "Takes a list of reactions and constrains them to no flux."
         reactions = dict()
@@ -202,159 +231,24 @@ class Metabolism(glpk.glpk):
 
 
 if __name__ == '__main__':
+
     def main():
         """docstring for main"""
-        lp = Metabolism(util.ImportCplex('test_data/iAF1260template.lp'))
-        print lp.getObjVal()
-        lp.simplex()
-        print lp.getObjVal()
-        # print lp.getReactions()
-        # print lp.getTransporters()
-        transp = lp.getTransporters()
-        print lp.translateColumnNames(transp)
-        lp.modifyColumnBounds({'R("R_PGK")':(0, 20), 'R("R_ENO")':(0, 20)})
-        print lp.history
-    
-    def main2():
-        """docstring for main"""
         lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        lp.simplex()
-        print lp.getObjVal()
-        lp.modifyColumnBounds({'R("R_PGK")':(0, 0), 'R("R_PGK_Rev")':(0, 0)})
-        print lp.history
-        lp.simplex()
-        print lp.getObjVal()
-        lp.undo()
-        lp.simplex()
-        print lp.getObjVal()
-    
-    def main3():
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print lp.translateColumnNames(['R("R_PGK")', 'R("R_PGK_Rev")'])
-    
-    def main4():
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        lp2 = copy.copy(lp)
-        print lp.fba()
-    
-    def main5():
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        lp.setReactionObjective('R("R_BiomassEcoli")')
-        print lp.getObjectiveFunction()
+        obj = lp.getObjectiveFunction().keys()[0]
+        print obj
+        normalFluxDist = lp.fba()
+        pFBAfluxDist = lp.pFBA(obj)
+        stuff =  normalFluxDist.getActiveFluxDist()
+        # print [i for i in stuff if not re.search('.*_Transp.*', i[0]) and not re.search('.*R_EX.*', i[0])]
         
-    def main6():
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print lp.getColumnBounds()
-    
-    def main7():
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        lp.simplexOLD()
-        print lp.getObjVal()
-        print lp.getReactions()
-        newBounds = dict()
-        # for i in range
-        # lp.modifyColumnBounds({'R("R_PGK")':(0, 0), 'R("R_PGK_Rev")':(0, 0)})
-        # lp.simplexOLD()
-        # print lp.getObjVal()
-        # lp.simplex()
-        # print lp.getObjVal()
-        # lp.undo()
-        # lp.simplex()
-        # print lp.getObjVal()
-        
-    def main8():
-        """docstring for main"""
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print lp.getObjVal()
-        f1 = lp.fba()
-        f11 = [i[1] for i in f1.getActiveFluxDist()]
-        print lp.getObjVal()
-        print lp.getObjective()
-        lp.setReactionObjectiveMinimizeRest('R("R_BiomassEcoli")')
-        print lp.getObjective()
-        f2 = lp.fba()
-        f22 = [i[1] for i in f1.getActiveFluxDist()]
-        print lp.getObjVal()
-        print [i - e for (i,e) in zip(f11,f22)]
-        util.WriteCplex(lp, 'debug.lp')
-    
-    def main9():
-        """docstring for main"""
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print lp.getNumRows()
-        # print lp.getMetabolites()
-        lp.deleteReactions(['R("R_PGK")', 'R("R_PGK_Rev")'])
-        lp.simplex()
-        print lp.getObjVal()
-        lp.undo()
-        lp.simplex()
-        print lp.getObjVal()
+        normalActiveReactions = normalFluxDist.getActiveReactions()
+        print sum([j for i, j in normalFluxDist.getActiveFluxDist()])
+        pFBAactiveReactions = pFBAfluxDist.getActiveReactions()
+        print sum([j for i, j in pFBAfluxDist.getActiveFluxDist()])
+        # print normalActiveReactions
+        # print pFBAactiveReactions
+        print set(normalActiveReactions) - set(pFBAactiveReactions)
+        print set(pFBAactiveReactions) - set(normalActiveReactions)
 
-    def testAddColumn():
-        """docstring for main"""
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print lp.getNumRows()
-        lp.addColumns({'F':(0.,999999.,{2:1.,10:-1.})})
-        print lp.getColumnCoef(lp.getNumCols())
-        lp.undo()
-        print lp.getColumnCoef(lp.getNumCols())
-        lp.deleteReactions(['R("R_PGK")', 'R("R_PGK_Rev")'])
-        lp.simplex()
-        print lp.getObjVal()
-        lp.undo()
-
-    def testDeleteColumn():
-        """docstring for main"""
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print glp_get_col_name(lp.lp, 25)
-        print lp.getColumnCoef(25)
-        print glpk.sparseList(lp.getColumnCoef(25))
-        print glpki.glp_get_col_name(lp.lp, 26)
-        print glpk.sparseList(lp.getColumnCoef(26))
-        lp.deleteColumns([25])
-        print glpki.glp_get_col_name(lp.lp, 25)
-        print glpk.sparseList(lp.getColumnCoef(25))
-        lp.undo()
-        print glpki.glp_get_col_name(lp.lp, 25)
-        print glpk.sparseList(lp.getColumnCoef(25))
-        print glpki.glp_get_col_name(lp.lp, 1473)
-        print glpk.sparseList(lp.getColumnCoef(1473))
-
-    def testDeleteRow():
-        """docstring for main"""
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        print glpki.glp_get_row_name(lp.lp, 25)
-        print lp.getRowCoef(25)
-        print glpk.sparseList(lp.getRowCoef(25))
-        print glpki.glp_get_row_name(lp.lp, 26)
-        print glpk.sparseList(lp.getRowCoef(26))
-        lp.deleteRows([25])
-        print glpki.glp_get_row_name(lp.lp, 25)
-        print glpk.sparseList(lp.getRowCoef(25))
-        lp.undo()
-        print glpki.glp_get_row_name(lp.lp, 25)
-        print glpk.sparseList(lp.getRowCoef(25))
-        print glpki.glp_get_row_name(lp.lp, 1473)
-        print glpk.sparseList(lp.getRowCoef(1473))
-    
-    def testFBAfunction():
-        """docstring for testFBAfunction"""
-        lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        f2 = lp.fba('interiorPoint').getActiveFluxDist()
-        print lp
-        lp.getObjVal()
-        # print f2
-        # f1 = lp.fba().getActiveFluxDist()
-        # print f1
-        # print len(f1)
-        # print len(f2)
-        # print f1 == f2
-
-    # testFBAfunction()
-
-    # testAddColumn()
-    # testDeleteColumn()
-    # testDeleteRow()
-    
-    lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-    print lp.translateRowNames(['Macg5sac'])[0]
+    main()

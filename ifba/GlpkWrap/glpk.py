@@ -173,11 +173,9 @@ class glpk(object):
         
     def intopt(self):
         """Solves a milp using glp_intopt."""
-        print 'Hey the intopt solver is used'
         glp_intopt(self.lp, self.iocp)
         status = glp_mip_status(self.lp)
         if status != GLP_OPT:
-            print status
             raise Exception, str(self.errDict[status])
         return status
         
@@ -233,7 +231,6 @@ class glpk(object):
         elif lb == ub:
             glp_set_row_bnds(self.lp, index, GLP_FX, lb, ub)
         elif lb != ub:
-            # print lb, ub
             glp_set_row_bnds(self.lp, index, GLP_DB, lb, ub)
         else:
             raise Exception, "Something is wrong with the provided bounds " + str(lb) + " " + str(ub)
@@ -337,7 +334,6 @@ class glpk(object):
     def deleteRows(self, rowIndexes):
         """Deletes the rows specified in rowIndexes."""
         for index in rowIndexes:
-            print index
             self._checkRowIndexValidity(index)
         command = DeleteRowsCommand(self, rowIndexes)
         command.execute()
@@ -840,81 +836,3 @@ if __name__ == '__main__':
     lp.addRows({'R("R_HansWurs")': (0., 99999., {})})
     lp.simplex()
     print lp.getObjVal()
-    
-
-    # glp = glpk(lp)
-    # print glp
-    # glp.__getstate__()
-    
-    
-    # # glp._setColumnBound(1474, 0., 0.)
-    # # glp._setRowBound(905, 0., 0.)
-    # print glp.translateColumnIndices([1473])
-    # try:
-    #     glp.translateColumnIndices([0])
-    # except IndexError, e:
-    #     print e
-    # try:
-    #     glp.translateRowIndices([0])
-    # except IndexError, e:
-    #     print e
-    # print glp.translateColumnNames(['R("R_BiomassEcoli")'])
-    # print glp.translateColumnNames(['R("R_BiomassEcoli2")'])
-    
-    # glp.exact()
-    # print glp.getObjVal()
-    # tmp = glp.interiorPoint()
-    # print "return: "
-    # print tmp
-    # print glp.getObjVal()
-    # glp.simplex()
-    # print glp.getObjVal()
-    
-    
-
-    
-    # glp.simplex()
-    # print glp.getObjVal()
-    # print glp
-    # print glp.getColumnCoef(904)
-    # print glp.getRowCoef(1)
-    # print glp.getRowCoef(2)
-    # print glp.getRowCoef(211)
-    # print glp.getRowCoef(280)
-    # print glp.getRowCoef(904)
-    
-    
-    # da = glp.getRowCoef(800)
-    # for i in range(1, 10+1):
-    #     print da[i]
-    
-    
-    # glp.toggleVerbosity()
-    # glp.simplex()
-    # print "The objective's value: ", glp.getObjVal()
-    # # print "The objective: ", glp.getObjective()
-    # print "The optimization flag: ", glp.getOptFlag()
-    # print "primal values: ", glp.primalValues()
-    # print "dual values: ", glp.dualValues()
-    # print zip(glp.primalValues(), glp.dualValues())
-    # print glp.getColumnBounds()
-    # print glp.translateRowIndices([398])
-    # print glp.translateRowIndices([709, 710])
-    # print glp
-    # glp.addColumns({'R("R_HansWurs")': (0., 99999., glp.getObjective())})
-    # lp = util.WriteCplex(glp, 'debug.lp')
-    # glp.simplex()
-    # print glp.getObjVal()
-    # print glp.getObjective()
-    # glp.deleteColumns(range(1, 1473 + 1))
-    # print glp
-    # open('memory.dgb', 'w').write(str(glp.history[0].memory))
-    # glp.initialize()
-    # print glp
-    # print glp.translateRowIndices([709, 710])
-    # print glp_get_row_name(glp.lp, 709)
-    # print glp
-    # glp.initialize()
-    # lp = util.WriteCplex(glp, 'debug.lp')
-    # glp.simplex()
-    # print glp.getObjVal()
