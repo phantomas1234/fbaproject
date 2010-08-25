@@ -11,6 +11,7 @@ import sys
 import time
 import Queue
 import yaml
+from ifba.storage.hdf5storage import SimulationDB, h5Container
 from ifba.GlpkWrap.randomMedia import RandomMediaSimulations
 from ifba.distributedFBA.networking import Server, Client
 from ifba.distributedFBA.concurrency import configInputClient, h5OutputClient
@@ -79,8 +80,6 @@ python RandomMediaSimulations.py standalone storagefile configfile runs --> stan
 python RandomMediaSimulations.py server storagefile configfile --> server mode
 python RandomMediaSimulations.py client serverip --> client mode"""
     try:
-        if sys.argv[1] is not 'client':
-            from ifba.storage.hdf5storage import SimulationDB, h5Container
         if sys.argv[1] == 'standalone':
             basicFunctionality(sys.argv[2], sys.argv[3], int(sys.argv[4]))
         elif sys.argv[1] == 'server':

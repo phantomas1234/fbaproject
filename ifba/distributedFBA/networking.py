@@ -193,8 +193,6 @@ number of active threads -> %s
             for s in inputready:
                 if s == self.server:
                     (self.sock, address) = self.server.accept()
-                    print self.sock.getpeername()
-                    print self.sock.getsockname()
                     c = ConnectionThread(Transaction(sock=self.sock,
                     outputQueue=self.outputQueue, inputQueue=self.inputQueue))
                     c.start()
@@ -236,6 +234,7 @@ class Client(Networking):
     def run(self):
         """docstring for run"""
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.settimeout(4.5)
         # self.sock.setblocking(0)
         try:
             self.sock.connect((self.host, self.port))
