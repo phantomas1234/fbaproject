@@ -14,7 +14,7 @@ import yaml
 from ifba.storage.hdf5storage import SimulationDB, h5Container
 from ifba.GlpkWrap.randomMedia import RandomMediaSimulations
 from ifba.distributedFBA.networking import Server, Client
-from ifba.distributedFBA.concurrency import stubInputClient, h5OutputClient
+from ifba.distributedFBA.concurrency import configInputClient, h5OutputClient
 
 
 def readYamlConfig(path):
@@ -41,26 +41,24 @@ def basicFunctionality(outputfile, configpath, runs):
         simulationStorage.writeSimulationResult(simulResult)
     simulationStorage.close()
 
-def client(serverip, configfile):
+def client(serverip):
     """docstring for client"""
-    config = readYamlConfig(configfile)
-    randomSimulationsObj = generateRandomMediaObject(**config)
+    # config = readYamlConfig(configfile)
+    # randomSimulationsObj = generateRandomMediaObject(**config)
     counter = 0
     while True:
         counter = counter + 1
         print counter
-        client = Client(task=randomSimulationsObj, host=serverip)
+        client = Client(task=generateRandomMediaObject, host=serverip)
         client.run()
 
 def server(outputfile='test.h5', config='parameters.yaml'):
     """Server"""
     config = readYamlConfig(config)
-    def message2client():
-        return "HooHoo"
     simulationStorage = generateStorageObject(outputfile, config)
     inputQueue = Queue.Queue(20)
     outputQueue = Queue.Queue(20)
-    t1 = stubInputClient(inputQueue, message2client)
+    t1 = configInputClient(inputQueue, config)
     t1.start()
     time.sleep(1)
     t2 = h5OutputClient(outputQueue, simulationStorage)
@@ -80,14 +78,14 @@ if __name__ == '__main__':
     usage = """Usage:
 python RandomMediaSimulations.py standalone storagefile configfile runs --> standalone mode
 python RandomMediaSimulations.py server storagefile configfile --> server mode
-python RandomMediaSimulations.py client serverip configfile --> client mode"""
+python RandomMediaSimulations.py client serverip --> client mode"""
     try:
         if sys.argv[1] == 'standalone':
             basicFunctionality(sys.argv[2], sys.argv[3], int(sys.argv[4]))
         elif sys.argv[1] == 'server':
             server(sys.argv[2], sys.argv[3])
         elif sys.argv[1] == 'client':
-            client(sys.argv[2], sys.argv[3])
+            client(sys.argv[2])
         else:
             print usage
     except IndexError:

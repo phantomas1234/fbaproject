@@ -113,12 +113,12 @@ class Transaction(Networking):
     
     def run(self):
         """docstring for run"""
-        print "sending to client", self.sock
+        # print "sending to client", self.sock
         # self.send_end(self.inputQueue.get())
         # self.sock.sendall(self.inputQueue.get())
         self.send_pickle(self.inputQueue.get())
         self.sock.shutdown(socket.SHUT_WR)
-        print "recieving from client", self.sock
+        # print "recieving from client", self.sock
         # fromClient = self.recv_end()
         fromClient = self.recv_pickle()
         self.outputQueue.put(fromClient)
@@ -185,24 +185,27 @@ number of active threads -> %s
     def run(self):
         """Mainloop of the server."""
         self.open_socket()
-        input = [self.server]
-        running = 1
+        input = [self.server, sys.stdin]
+        running = True
         print "I am starting the server mainloop ... waiting for connections"
         while running:
             inputready,outputready,exceptready = select.select(input,[],[])
             for s in inputready:
                 if s == self.server:
                     (self.sock, address) = self.server.accept()
-                    # self.transaction()
+                    print self.sock.getpeername()
+                    print self.sock.getsockname()
                     c = ConnectionThread(Transaction(sock=self.sock,
                     outputQueue=self.outputQueue, inputQueue=self.inputQueue))
                     c.start()
                     self.threads.append(c)
                     self.threads = self._killStopped(self.threads)
                 elif s == sys.stdin:
+                    print "hey I got stdin input"
                     junk = sys.stdin.readline()
-                    running = 0
+                    running = False
         self.server.close()
+        print "Shutting down threads!"
         for c in self.threads:
             c.join()
         print "Server shutting down. Bye Bye."
@@ -216,7 +219,7 @@ class ConnectionThread(threading.Thread):
         self.transaction = transaction
     def run(self):
         """Starts the transaction."""
-        print "Greetings from a thread. My Names is", self.getName()
+        print "Starting transaction with ", self.transaction.sock.getpeername()
         self.transaction.run()
 
 
@@ -240,19 +243,16 @@ class Client(Networking):
             print "cannot establish connection to server", e
             self.sock.close()
         try:
-            # stuff = self.recv_end()
-            # self.sock.shutdown(socket.SHUT_RD)
-            stuff = self.recv_pickle()
+            config = self.recv_pickle()
         except socket.error, e:
-            print e
+            print "Performing task No.", e
             self.sock.close()
             sys.exit()
         else:
-            print stuff
-            stuff2 = self.task.run(stuff)
-            # self.send_end(stuff2)
-            # self.sock.sendall(stuff2)
-            self.send_pickle(stuff2)            
+            # print config
+            readyTask = self.task(**config)
+            result = readyTask.run()
+            self.send_pickle(result)
             self.sock.shutdown(socket.SHUT_WR)
             self.sock.close()
 

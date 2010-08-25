@@ -15,7 +15,7 @@ class InputClient(threading.Thread):
         self.queue = queue
 
     def run(self):
-        raise NotImplemented, "You've instantiated OutputClient directly although it is an abstract base class. The run method has to implemented in a sub class."
+        raise NotImplemented, "You've instantiated InputClient directly although it is an abstract base class. The run method has to implemented in a sub class."
 
 
 class OutputClient(threading.Thread):
@@ -42,6 +42,17 @@ class stubInputClient(InputClient):
             print "The InputQueue is that big: ", self.queue.qsize()
             data = self.queue.put(self.func())
 
+class configInputClient(InputClient):
+    def __init__(self, queue, config):
+        InputClient.__init__(self, queue)
+        self.config = config
+
+    def run(self):
+        while True:
+            # print "Putting data into queue", self.queue
+            # print "The InputQueue is that big: ", self.queue.qsize()
+            data = self.queue.put(self.config)
+
 
 class h5OutputClient(OutputClient):
     def __init__(self, queue, simulationDB):
@@ -52,8 +63,9 @@ class h5OutputClient(OutputClient):
         counter = 0
         while True:
             counter = counter + 1
-            print "Getting Data from Queue", self.queue
-            print "The OutputQueue is that big: ", self.queue.qsize()
+            print "Writing result No.", counter
+            # print "Getting Data from Queue", self.queue
+            # print "The OutputQueue is that big: ", self.queue.qsize()
             simulationResult = self.queue.get()
             self.simulationDB.writeSimulationResult(simulationResult)
 
