@@ -37,25 +37,35 @@ INCLUDE = ('R("Mhb_Transp")',
          'R("Mmn2b_Transp")',
          'R("Mclb_Transp")')
 
-
 class RandomMediaSimulations(object):
     """A class simplifying random media simulations."""
-    def __init__(self, path2template, objective, includes, minimizeRest=True):
+    def __init__(self, path2template, objective, includes, description, minimizeRest=True, optimizationRoutine='fba', koQ=True):
         self.path2template = path2template
         self.objective = objective
         self.includes = includes
+        self.koQ = koQ
+        self.descr = description
         tmpLP = metabolism.Metabolism(util.ImportCplex(self.path2template))
+        # print tmpLP.pFBA().getActiveFluxes()
         if minimizeRest:
             tmpLP.setReactionObjectiveMinimizeRest(self.objective)
         else:
             tmpLP.setReactionObjective(self.objective)
-        self.almaas = Almaas(copy.copy(tmpLP), alwaysInc=self.includes)
+        self.optimizationRoutine = optimizationRoutine
+        self.almaas = Almaas(copy.copy(tmpLP), alwaysInc=self.includes, optimizationRoutine=self.optimizationRoutine)
     
     def run(self, *args, **kwargs):
         """Run one random medium simulation and return a FBAsimulationResult object."""
         f = self.almaas.generateFluxdist()
-        return FBAsimulationResult(f, self.almaas.lp.getColumnBounds(), self.almaas.lp.getObjectiveFunction(), time.time(), self.path2template)
-
+        knockoutEffects = dict()
+        if self.koQ:
+            self.almaas.lp.modifyColumnBounds(self.almaas.currDict)
+            knockoutEffects = self.almaas.lp.singleKoAnalysis(f.getActiveReactions())
+            wt = f[self.objective]
+            for k in knockoutEffects:
+                knockoutEffects[k] = knockoutEffects[k] / wt
+            self.almaas.lp.initialize()
+        return FBAsimulationResult(f, knockoutEffects, self.almaas.lp.getColumnBounds(), self.almaas.lp.getObjectiveFunction(), time.time(), self.path2template, self.descr)
 
 def dict2tsv(condDict):
     """Convert a dict into TSV format."""
@@ -69,22 +79,39 @@ class Almaas(object):
     
     Adds the necessary functionality to the metabolism class.
     """
-    def __init__(self, lp, default_bound=20, percRange=(10, 100), alwaysInc=set()):
+    def __init__(self, lp, default_bound=20, percRange=(10, 100), alwaysInc=set(), optimizationRoutine='fba'):
         super(Almaas, self).__init__()
         self.lp = lp
+        # self._preconditioning()
         self.def_bnd = default_bound
-        # self.lp.smcp.presolve = GLP_ON #TODO: I don't know if this is correct
         self.currDict = {}
         self.percRange = percRange
         self.debugDict = {}
         self.alwaysInc = alwaysInc
-    
+        self.optimizationRoutine = optimizationRoutine
+
+    def _preconditioning(self):
+        """docstring for _preconditioning"""
+        transporters = self.lp.getTransporters()
+        # columnBounds = self.lp.getColumnBounds()
+        # for t in transporters:
+        #     print t, columnBounds[t]
+        d = dict()
+        for t in transporters:
+            d[t] = (0,0)
+        self.lp.modifyColumnBounds(d)
+        self.lp.eraseHistory()
+        # transporters = self.lp.getTransporters()
+        # columnBounds = self.lp.getColumnBounds()
+        # print 10*'\n'
+        # for t in transporters:
+        #     print t, columnBounds[t]
+
     def _rndBndDict(self, list):
         boundDict = {}
         rnd = random.uniform
         for i in list:
-            boundDict[i] = (-rnd(0, self.def_bnd), rnd(0, self.def_bnd)) # TODO Fix it
-            # boundDict[i] = (-100000., 100000.)
+            boundDict[i] = (-rnd(0, self.def_bnd), rnd(0, self.def_bnd))
         return boundDict
     
     def _randomPercantage(self):
@@ -107,22 +134,25 @@ class Almaas(object):
             tmpDict[i] = 1
         self.debugDict = sumDicts(self.debugDict, tmpDict)
     
-    def generateFluxdist(self, minGrowth=0.05):
+    def generateFluxdist(self, minGrowth=0.2):
+        try:
+            getattr(self.lp, self.optimizationRoutine)
+        except AttributeError, msg:
+            print "\nThe optimization routine seems to wrongly specified!"
+            raise AttributeError, msg
         growth = 0.
         num = self._randomPercantage()
         while growth <= minGrowth:
             self.generateRandCond(num)
             try:
-                self.lp.simplex()
-                growth = self.lp.getObjVal()
-                # print growth
+                fluxdist = getattr(self.lp, self.optimizationRoutine)()
+                growth = fluxdist[self.lp.getReactionObjective()]
                 self.lp.initialize()
             except Exception, msg:
                 # print msg
                 growth = 0.
                 self.lp.initialize()
-        return fluxdist.FluxDist(self.lp)
-
+        return fluxdist
 
 def main(path2template, resultsPath, runs):
     import gzip
@@ -172,10 +202,16 @@ def main2(path2template, resultsPath, runs):
 if __name__ == '__main__':
     # main('../models/iAF1260template2.lp', "/Volumes/Rudi1/Niko/20080926_NewRandomMediaSimulations_iAF1260/", 100000)
     # main2('../models/iJR904_rev_template.lp', '', 1)
-    lp = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', [], minimizeRest=True)
-    print lp.almaas.lp.getObjective()
-    lp = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', [], minimizeRest=False)
-    print lp.almaas.lp.getObjectiveFunction()
-    simul = lp.run()
-    print simul.objective
+    # lp = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', [], minimizeRest=True)
+    # print lp.almaas.lp.getObjective()
+    obj = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', INCLUDE, minimizeRest=False, optimizationRoutine='fba', koQ=True)
+    result = obj.run()
+    print result.fluxactivity
+    print result.knockoutEffects
+
+    obj = RandomMediaSimulations('../models/iAF1260template2.lp', 'R("R_Ec_biomass_iAF1260_core_59p81M")', INCLUDE, minimizeRest=False, optimizationRoutine='pFBA', koQ=True)
+    result = obj.run()
+    print result.fluxactivity
+    print result.knockoutEffects
+
     

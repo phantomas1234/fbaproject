@@ -13,6 +13,7 @@ import copy
 from ifba.GlpkWrap import glpk, util
 from ifba.glpki import glpki
 import ifba.GlpkWrap.fluxdist
+from ifba.GlpkWrap.exceptions import NoFeasibleSolution
 
 class Metabolism(glpk.glpk):
     def __init__(self, lp):
@@ -124,7 +125,19 @@ class Metabolism(glpk.glpk):
     
     def setReactionObjective(self, reaction, coeff=1.):
         """docstring for setReactionAsObjective"""
+        self.reactionObjective = reaction
         self.setObjectiveFunction({reaction : coeff})
+
+    def getReactionObjective(self):
+        """docstring for getReactionObjective"""
+        objDict = self.getObjectiveFunction()
+        tmpList = list()
+        for k, v in objDict.items():
+            if v == 1.:
+                tmpList.append(k)
+        if len(tmpList) is not 1:
+            raise Exception, "There exists no unique reaction objective. " + str(tmpList)
+        return tmpList[0]
     
     def setReactionObjectiveMinimizeRest(self, reaction, coeff=1., factor=-1.e-8):
         """
@@ -150,28 +163,31 @@ class Metabolism(glpk.glpk):
         eval("self."+method+"()")
         return ifba.GlpkWrap.fluxdist.FluxDist(self)
     
-    def pFBA(self, obj, reactions=None, factor=-1.):
+    def pFBA(self, reactions=None, factor=-1.):
         """
         As implemented in:
         Lewis et al. Omic data from evolved E. coli are consistent with 
         computed optimal growth from genome-scale models. Mol Syst Biol (2010) 
         vol. 6 (1) pp.
         """
-        self.setReactionObjective(obj, coeff=1.)
+        # self.setReactionObjective(obj, coeff=1.)
+        obj = self.getReactionObjective()
         mx = self.fba()[obj]
         self.modifyColumnBounds({obj:(mx, "inf")})
         objDict = dict()
         if not reactions == None:
             t = self.getTransporters()
             for rxn in reactions:
-                if reac not in t:
+                if rxn not in t:
                     objDict[rxn] = -1.
         else:
             for rxn in self.getReactions():
                 objDict[rxn] = -1.
         self.setObjectiveFunction(objDict)
         # print self.getObjectiveFunction()
-        return self.fba()
+        fluxdist = self.fba()
+        self.initialize()
+        return fluxdist
         
     def fluxSumAnalysis(self):
         """
@@ -180,6 +196,22 @@ class Metabolism(glpk.glpk):
         understanding the metabolic network. BMC Syst Biol (2009) vol. 3 pp. 117
         """
         pass
+
+    def singleKoAnalysis(self, reactions=None):
+        """Perform single KO analysis."""
+        effects = dict()
+        if reactions == None:
+            reactions = self.getReactions()
+        for r in reactions:
+            self.deleteReactions([r])
+            try:
+                growth = self.fba()[self.getReactionObjective()]
+            except NoFeasibleSolution:
+                growth = 0.
+            effects[r] = growth
+            print r, growth
+            self.undo()
+        return effects
 
     def deleteReactions(self, listOfReactions):
         "Takes a list of reactions and constrains them to no flux."
@@ -235,12 +267,16 @@ if __name__ == '__main__':
     def main():
         """docstring for main"""
         lp = Metabolism(util.ImportCplex('test_data/model.lp'))
-        obj = lp.getObjectiveFunction().keys()[0]
+        obj = lp.getReactionObjective()
         print obj
         normalFluxDist = lp.fba()
-        pFBAfluxDist = lp.pFBA(obj)
+        print normalFluxDist[obj]
+        pFBAfluxDist = lp.pFBA()
+        print pFBAfluxDist[obj]
         stuff =  normalFluxDist.getActiveFluxDist()
         # print [i for i in stuff if not re.search('.*_Transp.*', i[0]) and not re.search('.*R_EX.*', i[0])]
+        
+        print lp.singleKoAnalysis()
         
         normalActiveReactions = normalFluxDist.getActiveReactions()
         print sum([j for i, j in normalFluxDist.getActiveFluxDist()])

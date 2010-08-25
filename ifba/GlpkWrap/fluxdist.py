@@ -87,17 +87,19 @@ class FluxDist(object):
 
 class FBAsimulationResult(object):
     """A class that stores parameters and results of FBAsimulations."""
-    def __init__(self, fluxDist, columnBounds, objective, timeStamp, modelPath):
+    def __init__(self, fluxDist, knockoutEffects, columnBounds, objective, timeStamp, modelPath, descr):
         self.columnBounds = columnBounds
         self.fluxactivity = fluxDist.getFluxArray()
+        self.knockoutEffects = self.__getValuesByKeys(knockoutEffects, fluxDist.reactions, default=None)
         self.constraints = self.__getValuesByKeys(self.columnBounds, fluxDist.reactions)
         self.lowerBounds = [l for l, u in self.constraints]
         self.upperBounds = [u for l, u in self.constraints]
         self.objective = self.__getValuesByKeys(objective, fluxDist.reactions)
         self.timeStamp = timeStamp
+        self.descr = descr
         self.modelPath = modelPath
 
-    def __getValuesByKeys(self, dictionary, keys):
+    def __getValuesByKeys(self, dictionary, keys, default=0.):
         """Stupid function that returns values from a dict in the order specified by keys."""
         tmpList = list()
         # for key in dictionary:
@@ -106,7 +108,7 @@ class FBAsimulationResult(object):
             if key in dictionary:
                 tmpList.append(dictionary[key])
             else:
-                tmpList.append(0.)
+                tmpList.append(default)
         return tuple(tmpList)
 
     def __str__(self):

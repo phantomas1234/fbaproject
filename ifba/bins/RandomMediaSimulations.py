@@ -15,6 +15,8 @@ from ifba.storage.hdf5storage import SimulationDB, h5Container
 from ifba.GlpkWrap.randomMedia import RandomMediaSimulations
 from ifba.distributedFBA.networking import Server, Client
 from ifba.distributedFBA.concurrency import configInputClient, h5OutputClient
+from ifba.GlpkWrap.util import ImportCplex
+from ifba.GlpkWrap.metabolism import Metabolism
 
 
 def readYamlConfig(path):
@@ -22,29 +24,31 @@ def readYamlConfig(path):
     config = yaml.load(open(path))
     return config
 
-def generateRandomMediaObject(path=None, include=None, objective=None, minimizerest=True):
+def generateRandomMediaObject(path=None, include=None, objective=None, minimizerest=True, optimizationRoutine='fba', koQ=True, descr=''):
     """Generate the RandomMediaSimulations object"""
-    return RandomMediaSimulations(path, objective, include, minimizerest)
+    return RandomMediaSimulations(path, objective, include, minimizerest, descr, koQ=koQ, optimizationRoutine=optimizationRoutine)
 
-def generateStorageObject(path, config):
+def generateStorageObject(path, lp):
     """docstring for generateStorageObject"""
-    randomSimulationsObj = generateRandomMediaObject(**config)
-    return SimulationDB(h5Container(path, randomSimulationsObj.almaas.lp))
+    return SimulationDB(h5Container(path, lp))
 
 def basicFunctionality(outputfile, configpath, runs):
     """Perform random media simulations and store them in a hdf5 file"""
     config = readYamlConfig(configpath)
+    descr = yaml.dump(config)
+    print descr
+    config['descr'] = descr
     randomSimulationsObj = generateRandomMediaObject(**config)
-    simulationStorage = generateStorageObject(outputfile, config)
+    simulationStorage = generateStorageObject(outputfile, randomSimulationsObj.almaas.lp)
     for i in range(runs):
+        if 100 % (i+1) == 0:
+            print i
         simulResult = randomSimulationsObj.run()
         simulationStorage.writeSimulationResult(simulResult)
     simulationStorage.close()
 
 def client(serverip):
     """docstring for client"""
-    # config = readYamlConfig(configfile)
-    # randomSimulationsObj = generateRandomMediaObject(**config)
     counter = 0
     while True:
         counter = counter + 1
@@ -55,7 +59,12 @@ def client(serverip):
 def server(outputfile='test.h5', config='parameters.yaml'):
     """Server"""
     config = readYamlConfig(config)
-    simulationStorage = generateStorageObject(outputfile, config)
+    descr = yaml.dump(config)
+    print descr
+    config['descr'] = descr
+    randomSimulationsObj = generateRandomMediaObject(**config)
+    lp = Metabolism(ImportCplex(config['path']))
+    simulationStorage = generateStorageObject(outputfile, lp)
     inputQueue = Queue.Queue(20)
     outputQueue = Queue.Queue(20)
     t1 = configInputClient(inputQueue, config)

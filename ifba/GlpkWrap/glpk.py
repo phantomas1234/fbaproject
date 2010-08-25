@@ -68,7 +68,7 @@ class glpk(object):
         )
         return str(info)
     
-    def __repr__(self):
+    def cplex(self):
         """docstring for __repr__"""
         rndFileStr = randomString(10)
         util.WriteCplex(self, rndFileStr)
