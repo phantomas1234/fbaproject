@@ -171,6 +171,7 @@ class Metabolism(glpk.glpk):
         vol. 6 (1) pp.
         """
         # self.setReactionObjective(obj, coeff=1.)
+        # print "I am getting used!"
         obj = self.getReactionObjective()
         mx = self.fba()[obj]
         self.modifyColumnBounds({obj:(mx, "inf")})

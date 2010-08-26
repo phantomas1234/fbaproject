@@ -13,6 +13,7 @@ import random
 import string
 import time
 import copy
+import re
 
 from ifba.GlpkWrap import fluxdist, metabolism, util
 from ifba.GlpkWrap.fluxdist import FBAsimulationResult
@@ -59,13 +60,14 @@ class RandomMediaSimulations(object):
         f = self.almaas.generateFluxdist()
         knockoutEffects = dict()
         if self.koQ:
-            self.almaas.lp.modifyColumnBounds(self.almaas.currDict)
+            self.almaas.lp.modifyColumnBounds(self.almaas.lastBounds)
             knockoutEffects = self.almaas.lp.singleKoAnalysis(f.getActiveReactions())
             wt = f[self.objective]
             for k in knockoutEffects:
                 knockoutEffects[k] = knockoutEffects[k] / wt
             self.almaas.lp.initialize()
-        return FBAsimulationResult(f, knockoutEffects, self.almaas.lp.getColumnBounds(), self.almaas.lp.getObjectiveFunction(), time.time(), self.path2template, self.descr)
+        # print dict([(k, v) for k, v in self.almaas.lastBounds.items() if re.search('.*_Transp.*', k)])
+        return FBAsimulationResult(f, knockoutEffects, self.almaas.lastBounds, self.almaas.lp.getObjectiveFunction(), time.time(), self.path2template, self.descr)
 
 def dict2tsv(condDict):
     """Convert a dict into TSV format."""
@@ -79,16 +81,17 @@ class Almaas(object):
     
     Adds the necessary functionality to the metabolism class.
     """
-    def __init__(self, lp, default_bound=20, percRange=(10, 100), alwaysInc=set(), optimizationRoutine='fba'):
+    def __init__(self, lp, default_bound=20, percRange=(5, 100), alwaysInc=set(), optimizationRoutine='fba'):
         super(Almaas, self).__init__()
         self.lp = lp
-        # self._preconditioning()
+        self._preconditioning()
         self.def_bnd = default_bound
         self.currDict = {}
         self.percRange = percRange
         self.debugDict = {}
         self.alwaysInc = alwaysInc
         self.optimizationRoutine = optimizationRoutine
+        self.lastBounds = None
 
     def _preconditioning(self):
         """docstring for _preconditioning"""
@@ -98,7 +101,7 @@ class Almaas(object):
         #     print t, columnBounds[t]
         d = dict()
         for t in transporters:
-            d[t] = (0,0)
+            d[t] = (-99999,0)
         self.lp.modifyColumnBounds(d)
         self.lp.eraseHistory()
         # transporters = self.lp.getTransporters()
@@ -111,7 +114,8 @@ class Almaas(object):
         boundDict = {}
         rnd = random.uniform
         for i in list:
-            boundDict[i] = (-rnd(0, self.def_bnd), rnd(0, self.def_bnd))
+            # boundDict[i] = (-rnd(0, self.def_bnd), rnd(0, self.def_bnd))
+            boundDict[i] = (-99999, rnd(0, self.def_bnd))
         return boundDict
     
     def _randomPercantage(self):
@@ -124,15 +128,13 @@ class Almaas(object):
     def generateRandCond(self, num):
         transp = self.lp.getTransporters()
         sample = set(random.sample(transp, num)).union(self.alwaysInc)
-        dict = self._rndBndDict(sample)
-        # print len(dict)
-        self.lp.modifyColumnBounds(dict)
-        self.currDict = dict
-        # TODO: Caution! Debug stuff follows
-        tmpDict = {}
-        for i in self.currDict:
-            tmpDict[i] = 1
-        self.debugDict = sumDicts(self.debugDict, tmpDict)
+        self.currDict = self._rndBndDict(sample)
+        self.lp.modifyColumnBounds(self.currDict)
+        self.lastBounds = self.lp.getColumnBounds()
+        # tmpDict = {}
+        # for i in self.currDict:
+        #     tmpDict[i] = 1
+        # self.debugDict = sumDicts(self.debugDict, tmpDict)
     
     def generateFluxdist(self, minGrowth=0.2):
         try:
@@ -152,6 +154,7 @@ class Almaas(object):
                 # print msg
                 growth = 0.
                 self.lp.initialize()
+        # print self.currDict
         return fluxdist
 
 def main(path2template, resultsPath, runs):

@@ -26,7 +26,7 @@ def readYamlConfig(path):
 
 def generateRandomMediaObject(path=None, include=None, objective=None, minimizerest=True, optimizationRoutine='fba', koQ=True, descr=''):
     """Generate the RandomMediaSimulations object"""
-    return RandomMediaSimulations(path, objective, include, minimizerest, descr, koQ=koQ, optimizationRoutine=optimizationRoutine)
+    return RandomMediaSimulations(path, objective, include, descr, minimizerest, koQ=koQ, optimizationRoutine=optimizationRoutine)
 
 def generateStorageObject(path, lp):
     """docstring for generateStorageObject"""
