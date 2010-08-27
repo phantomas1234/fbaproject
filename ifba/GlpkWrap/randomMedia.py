@@ -60,7 +60,6 @@ class RandomMediaSimulations(object):
         """Run one random medium simulation and return a FBAsimulationResult object."""
         f = self.almaas.generateFluxdist()
         knockoutEffects = dict()
-        self.koQ = False
         if self.koQ:
             self.almaas.lp.modifyColumnBounds(self.almaas.lastBounds)
             knockoutEffects = self.almaas.lp.singleKoAnalysis(f.getActiveReactions())
