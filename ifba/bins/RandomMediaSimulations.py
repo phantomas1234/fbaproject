@@ -41,19 +41,21 @@ def basicFunctionality(outputfile, configpath, runs):
     randomSimulationsObj = generateRandomMediaObject(**config)
     simulationStorage = generateStorageObject(outputfile, randomSimulationsObj.almaas.lp)
     for i in range(runs):
-        if 100 % (i+1) == 0:
+        if i % 10 == 0:
             print i
+        randomSimulationsObj = generateRandomMediaObject(**config)
         simulResult = randomSimulationsObj.run()
+        del randomSimulationsObj
         simulationStorage.writeSimulationResult(simulResult)
     simulationStorage.close()
 
 def client(serverip):
     """docstring for client"""
     counter = 0
+    client = Client(task=generateRandomMediaObject, host=serverip)
     while True:
         counter = counter + 1
         print counter
-        client = Client(task=generateRandomMediaObject, host=serverip)
         client.run()
 
 def server(outputfile='test.h5', config='parameters.yaml'):

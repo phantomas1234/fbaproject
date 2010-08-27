@@ -88,8 +88,9 @@ class FluxDist(object):
 class FBAsimulationResult(object):
     """A class that stores parameters and results of FBAsimulations."""
     def __init__(self, fluxDist, knockoutEffects, columnBounds, objective, timeStamp, modelPath, descr):
+        self.fluxDist = fluxDist
         self.columnBounds = columnBounds
-        self.fluxactivity = fluxDist.getFluxArray()
+        self.fluxactivity = self.fluxDist.getFluxArray()
         self.knockoutEffects = self.__getValuesByKeys(knockoutEffects, fluxDist.reactions, default=None)
         self.constraints = self.__getValuesByKeys(self.columnBounds, fluxDist.reactions)
         self.lowerBounds = [l for l, u in self.constraints]

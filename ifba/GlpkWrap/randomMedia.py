@@ -46,28 +46,35 @@ class RandomMediaSimulations(object):
         self.includes = includes
         self.koQ = koQ
         self.descr = description
-        tmpLP = metabolism.Metabolism(util.ImportCplex(self.path2template))
+        self.tmpLP = metabolism.Metabolism(util.ImportCplex(self.path2template))
         # print tmpLP.pFBA().getActiveFluxes()
         if minimizeRest:
-            tmpLP.setReactionObjectiveMinimizeRest(self.objective)
+            self.tmpLP.setReactionObjectiveMinimizeRest(self.objective)
         else:
-            tmpLP.setReactionObjective(self.objective)
+            self.tmpLP.setReactionObjective(self.objective)
         self.optimizationRoutine = optimizationRoutine
-        self.almaas = Almaas(copy.copy(tmpLP), alwaysInc=self.includes, optimizationRoutine=self.optimizationRoutine)
+        self.tmpLP.eraseHistory()
+        self.almaas = Almaas(self.tmpLP, alwaysInc=self.includes, optimizationRoutine=self.optimizationRoutine)
     
     def run(self, *args, **kwargs):
         """Run one random medium simulation and return a FBAsimulationResult object."""
         f = self.almaas.generateFluxdist()
         knockoutEffects = dict()
+        self.koQ = False
         if self.koQ:
             self.almaas.lp.modifyColumnBounds(self.almaas.lastBounds)
             knockoutEffects = self.almaas.lp.singleKoAnalysis(f.getActiveReactions())
             wt = f[self.objective]
             for k in knockoutEffects:
                 knockoutEffects[k] = knockoutEffects[k] / wt
-            self.almaas.lp.initialize()
+        self.almaas.lp.initialize()
         # print dict([(k, v) for k, v in self.almaas.lastBounds.items() if re.search('.*_Transp.*', k)])
         return FBAsimulationResult(f, knockoutEffects, self.almaas.lastBounds, self.almaas.lp.getObjectiveFunction(), time.time(), self.path2template, self.descr)
+
+    def __del__(self):
+        """docstring for __del__"""
+        glp_delete_prob(self.almaas.lp.lp) # FIXME this is a dirty hack
+        del self
 
 def dict2tsv(condDict):
     """Convert a dict into TSV format."""
