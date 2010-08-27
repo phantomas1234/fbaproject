@@ -234,7 +234,9 @@ class Client(Networking):
     def run(self):
         """docstring for run"""
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        if sys.platform is not 'darwin':
+        if sys.platform != 'darwin':
+            print sys.platform
+            print "I am using timeout!!!!"
             self.sock.settimeout(120.5)
         # self.sock.setblocking(0)
         try:
