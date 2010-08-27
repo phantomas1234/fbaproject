@@ -60,7 +60,7 @@ class h5OutputClient(OutputClient):
         self.simulationDB = simulationDB
 
     def run(self):
-        counter = 0
+        counter = len(self.simulationDB.h5container.root.simulations)
         while True:
             counter = counter + 1
             print "Writing result No.", counter
