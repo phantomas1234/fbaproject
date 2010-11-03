@@ -16,6 +16,9 @@ Copyright (c) 2010 . All rights reserved.
 
 import networkx as nx
 
+def test(hello):
+
+
 # =====================
 # = Class definitions =
 # =====================

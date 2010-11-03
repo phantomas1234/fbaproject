@@ -14,18 +14,12 @@ import unittest
 
 class test_gpr(unittest.TestCase):
     def setUp(self):
-        
-
+        pass
     
-    def testSimplex(self):
-        """Tests if the real glpk simplex function spits out the correct
-        objective value for the iJR904 model under glucose minimal medium
-        condition."""
-        self.glp.simplex()
-        obj = glpk.glp_get_obj_val(self.glp.lp)
-        self.assertAlmostEqual(obj, 0.9259122)
-
+    def testTemplate(self):
+        """..."""
+        pass
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(test_glpk)
+    suite = unittest.TestLoader().loadTestsFromTestCase(test_gpr)
     unittest.TextTestRunner(verbosity=6).run(suite)

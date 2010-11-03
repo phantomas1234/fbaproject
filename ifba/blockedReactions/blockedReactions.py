@@ -12,7 +12,7 @@ import os
 from ifba.GlpkWrap import util, metabolism, randomMedia, knockouts, glpk
 import copy
 
-def openAllDoors(lp, defaulBound=1000.):
+def openAllDoors(lp, defaulBound=100000.):
     transp = lp.getTransporters()
     bounds = [(-defaulBound, defaulBound) for i in transp]
     boundsDict = dict(zip(transp, bounds))
@@ -27,6 +27,7 @@ def blockedQ(lp, reaction):
     try:
         lp.simplex()
         objVal = lp.getObjVal()
+        print objVal
         if -1e-6 < objVal < 1e-6:
             lp.setOptFlag('MiN')
             lp.simplex()
@@ -58,14 +59,15 @@ def analyseBlockedReactions(lp, reactions=None):
 
 if __name__ == '__main__':
 
-    # path = sys.argv[1]
-    path = '../models/iAF1260template.lp'
+    path = sys.argv[1]
+    # path = '../models/iAF1260templateMinMax.lp'
     lp = metabolism.Metabolism(util.ImportCplex(path))
     openLP = openAllDoors(lp)
     openLP.smcp.presolve = glpk.GLP_ON
     print openLP
     util.WriteCplex(openLP)
-    blockedReactions = analyseBlockedReactions(openLP)
-    print blockedReactions
-    open(sys.argv[2], 'w').write("\n".join(blockedReactions))
+    analyseBlockedReactions(openLP, reactions=['R("R_ADOCBLS")'])
+    # blockedReactions = analyseBlockedReactions(openLP)
+    # print blockedReactions
+    # open(sys.argv[2], 'w').write("\n".join(blockedReactions))
 

@@ -1,0 +1,19 @@
+path: ../models/iAF1260templateMinMax.lp
+include:
+- R("Mhb_Transp")
+- R("Mna1b_Transp")
+- R("Mkb_Transp")
+- R("Mca2b_Transp")
+- R("Mcu2b_Transp")
+- R("Mmg2b_Transp")
+- R("Mzn2b_Transp")
+- R("Mmobdb_Transp")
+- R("Mfe2b_Transp")
+- R("Mfe3b_Transp")
+- R("Mcobalt2b_Transp")
+- R("Mmn2b_Transp")
+- R("Mclb_Transp")
+objective: R("R_Ec_biomass_iAF1260_core_59p81M")
+minimizerest: True
+optimizationRoutine: fba
+koQ: True
