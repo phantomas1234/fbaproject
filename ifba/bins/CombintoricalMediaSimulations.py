@@ -39,6 +39,7 @@ from ifba.GlpkWrap.util import ImportCplex
 from ifba.GlpkWrap.metabolism import Metabolism
 from ifba.GlpkWrap.fluxdist import FBAsimulationResult
 from RandomMediaSimulations import generateStorageObject
+from ifba.glpki.glpki import glp_delete_prob
 
 def generateStorageObject(path, lp):
     """docstring for generateStorageObject"""
@@ -184,6 +185,11 @@ class SolveMedium(object):
         return FBAsimulationResult(f, knockoutEffects, self.lp.getColumnBounds(),
                                                 self.lp.getObjectiveFunction(),
                                                 time.time(), self.path2model, "Test")
+
+    def __del__(self):
+        """docstring for __del__"""
+        glp_delete_prob(self.lp) # FIXME this is a dirty hack
+        del self
 
 
 def solveMedium(path2model="", medium={}, include={}, objective=None, optimizationRoutine='pFBA', koQ=True, *args, **kwargs):
