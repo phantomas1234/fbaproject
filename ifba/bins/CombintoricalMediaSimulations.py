@@ -38,7 +38,8 @@ from ifba.distributedFBA.concurrency import GeneratorInputClient, h5OutputClient
 from ifba.GlpkWrap.util import ImportCplex
 from ifba.GlpkWrap.metabolism import Metabolism
 from ifba.GlpkWrap.fluxdist import FBAsimulationResult
-from RandomMediaSimulations import generateStorageObject
+if sys.argv[1] != 'client':
+    from RandomMediaSimulations import generateStorageObject
 from ifba.glpki.glpki import glp_delete_prob
 
 def generateStorageObject(path, lp):
