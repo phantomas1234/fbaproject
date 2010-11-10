@@ -25,14 +25,14 @@ import yaml
 #     import json
 # except ImportError:
 #     import simplejson as json
-try:
+if sys.argv[1] != 'client':
     from ifba.storage.hdf5storage import SimulationDB, h5Container
-except ImportError:
-    if sys.argv[1] == 'client':
-        pass
-    else:
-        print "HDF5/pyTables is not available! You can use the script only in client mode!"
-        sys.exit(-1)
+# except ImportError:
+#     
+#         pass
+#     else:
+#         print "HDF5/pyTables is not available! You can use the script only in client mode!"
+#         sys.exit(-1)
 from ifba.distributedFBA.networking import Server, Client
 from ifba.distributedFBA.concurrency import GeneratorInputClient, h5OutputClient
 from ifba.GlpkWrap.util import ImportCplex
