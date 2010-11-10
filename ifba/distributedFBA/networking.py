@@ -254,7 +254,7 @@ class Client(Networking):
             # print config
             readyTask = self.task(**config)
             result = readyTask.run()
-            del readyTask
+            # del readyTask
             # print result
             self.send_pickle(result)
             self.sock.shutdown(socket.SHUT_WR)
