@@ -210,7 +210,7 @@ class Metabolism(glpk.glpk):
             except NoFeasibleSolution:
                 growth = 0.
             effects[r] = growth
-            print r, growth
+            # print r, growth
             self.undo()
         return effects
 

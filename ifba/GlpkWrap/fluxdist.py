@@ -34,7 +34,9 @@ class FluxDist(object):
             return value
         
     def __str__(self):
-        return str(self.getFluxDict())
+        sortedFluxDist = sorted(self.getActiveFluxDist(), key=lambda val: val[1], reverse=True)
+        pretty = ["%s\t\t%f" % (r, v) for r, v in sortedFluxDist]
+        return "\n".join(pretty)
         
     def __getitem__(self, key):
         return self.getFluxDict()[key]

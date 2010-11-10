@@ -53,6 +53,17 @@ class configInputClient(InputClient):
             # print "The InputQueue is that big: ", self.queue.qsize()
             data = self.queue.put(self.config)
 
+class GeneratorInputClient(InputClient):
+    def __init__(self, queue, generator):
+        InputClient.__init__(self, queue)
+        self.generator = generator
+
+    def run(self):
+        for elem in self.generator:
+            # print "Putting data into queue", self.queue
+            # print "The InputQueue is that big: ", self.queue.qsize()
+            data = self.queue.put(elem)
+
 
 class h5OutputClient(OutputClient):
     def __init__(self, queue, simulationDB):

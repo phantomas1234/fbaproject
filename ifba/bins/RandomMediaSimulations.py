@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-iAF1260simulations.py
+RandomMediaSimulaitons.py
 
 Created by Nikolaus Sonnenschein on 2009-09-01.
 Copyright (c) 2009 Jacobs University of Bremen. All rights reserved.

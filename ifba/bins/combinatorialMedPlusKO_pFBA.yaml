@@ -1,0 +1,29 @@
+path2model: '../models/iAF1260templateMinMax.lp'
+sourcesPath: '/Users/niko/arbeit/Data/SBMLmodels/iAF1260/biologValidatedSourcesWithElementalComposition.tsv'
+include:
+    R("Mca2b_Transp"): [-1000, 1000]
+    R("Mclb_Transp"): [-1000, 1000]
+    R("Mco2b_Transp"): [-1000, 1000]
+    R("Mcobalt2b_Transp"): [-1000, 1000]
+    R("Mcu2b_Transp"): [-1000, 1000]
+    R("Mfe2b_Transp"): [-1000, 1000]
+    R("Mfe3b_Transp"): [-1000, 1000]
+    R("Mh2ob_Transp"): [-1000, 1000]
+    R("Mhb_Transp"): [-1000, 1000]
+    R("Mkb_Transp"): [-1000, 1000]
+    R("Mmg2b_Transp"): [-1000, 1000]
+    R("Mmn2b_Transp"): [-1000, 1000]
+    R("Mmobdb_Transp"): [-1000, 1000]
+    R("Mna1b_Transp"): [-1000, 1000]
+    R("Mo2b_Transp"): [0, 18.5]
+    R("Mzn2b_Transp"): [-1000, 1000]
+    R("R_ATPM"): [8.3900000000000006, 8.3900000000000006]
+    R("R_CAT"): [0, 0]
+    R("R_FHL"): [0, 0]
+    R("R_SPODM"): [0, 0]
+    R("R_SPODMpp"): [0, 0]
+objective: R("R_Ec_biomass_iAF1260_core_59p81M")
+minimizerest: False
+optimizationRoutine: pFBA
+koQ: True
+uptake: 20
