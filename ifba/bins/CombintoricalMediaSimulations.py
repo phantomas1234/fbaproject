@@ -189,7 +189,7 @@ class SolveMedium(object):
 
     def __del__(self):
         """docstring for __del__"""
-        glp_delete_prob(self.lp) # FIXME this is a dirty hack
+        glp_delete_prob(self.lp.lp) # FIXME this is a dirty hack
         del self
 
 
