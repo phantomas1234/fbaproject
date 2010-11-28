@@ -102,6 +102,7 @@ class FluxCoupling(object):
     reconstructions. Genome Res (2004) vol. 14 (2) pp. 301-312"""# TODO Its not finished yet
     def __init__(self, lp):
         self.lp = lp
+        print self.lp
     
     def computeFluxRatio(self, v_i, v_j):
         """Computes the the ration of v1/v2."""
@@ -200,6 +201,19 @@ class FluxCoupling(object):
             print "Reaction ", rxn1, " is being checked!"
             self.lp.setReactionObjective(rxn1)
             self.lp.setOptFlag('max')
+            revFlag = 0
+            if re.search(".*_Rev", rxn1):
+                revFlag = 1
+                try:
+                    self.lp.modifyColumnBounds({rxn1.replace('_Rev',''):(0., 0.)})
+                except:
+                    pass
+            if not revFlag:
+                try:
+                    self.lp.modifyColumnBounds({rxn1.split('")')[0] + "_Rev" + '")':(0., 0.)}) # TODO _Rev does not imply not _Rev
+                except:
+                    pass
+            revFlag = 0
             self.lp.simplex()
             maxObjVal = self.lp.getObjVal()
             if maxObjVal <= 0:
@@ -209,7 +223,7 @@ class FluxCoupling(object):
                 continue
             self.lp.initialize()
             print maxObjVal
-            print "still ", len(reacs) - i, " to check"
+            print "still ", len(reacs) - i - len(blocked), " to check"
             print "directionallyCoupled: ", len(directionallyCoupled)
             print "fullyCoupled: ", len(fullyCoupled)
             print "partiallyCoupled: ", len(partiallyCoupled)
@@ -220,10 +234,30 @@ class FluxCoupling(object):
                     continue
                 self.lp.setReactionObjective(rxn2)
                 self.lp.setOptFlag('max')
+                revFlag = 0
+                if re.search(".*_Rev", rxn2):
+                    revFlag = 1
+                    try:
+                        self.lp.modifyColumnBounds({rxn2.replace('_Rev',''):(0., 0.)})
+                        if rxn2 == 'R("R_ADSL1r_Rev")':
+                            print self.lp.getColumnBounds()['R("R_ADSL1r")']
+                    except:
+                        pass
+                if not revFlag:
+                    try:
+                        self.lp.modifyColumnBounds({rxn2.split('")')[0] + "_Rev" + '")':(0., 0.)}) # TODO _Rev does not imply not _Rev
+                    except:
+                        pass
+                revFlag = 0
                 try:
                     self.lp.simplex()
                 except:
                     continue
+                if rxn2 == 'R("R_ADSL1r_Rev")':
+                    print self.lp.getColumnBounds()['R("R_ADSL1r_Rev")']
+                    print self.lp.getColumnBounds()['R("R_ADSL1r")']
+                    print self.lp.getObjVal()
+
                 if self.lp.getObjVal() < 1.:
                     print colored(rxn2, 'red'), " is blocked"
                     blocked.append(j)

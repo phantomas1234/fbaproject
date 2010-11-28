@@ -128,7 +128,6 @@ class glpk(object):
             self.iocp.msg_lev = GLP_MSG_OFF
         elif self.iocp.msg_lev == GLP_MSG_OFF:
             self.iocp.msg_lev = GLP_MSG_ON
-
     
     def getNumCols(self):
         """Returns the number of columns in lp."""
